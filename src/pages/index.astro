@@ -1,0 +1,263 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+import { googleReviews, pullQuotes, studentStories } from "../data/testimonials";
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    url: site.domain + "/",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: site.name,
+    image: site.domain + "/favicon.svg",
+    url: site.domain + "/",
+    telephone: site.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: site.address.street,
+      addressLocality: site.address.locality,
+      addressRegion: site.address.region,
+      postalCode: site.address.postalCode,
+      addressCountry: site.address.country,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "06:00",
+        closes: "22:00",
+      },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "214",
+    },
+  },
+];
+
+const stats = [
+  { value: "7", label: "DAYS / WEEK" },
+  { value: "20+", label: "YEARS EXPERIENCE" },
+  { value: "200+", label: "5★ REVIEWS" },
+  { value: "300+", label: "COMPETITION MEDALS" },
+  { value: "400+", label: "LIVES TRANSFORMED" },
+  { value: "1000+", label: "CLASSES EVERY YEAR" },
+];
+
+const programmes = [
+  {
+    title: "ADULTS PROGRAMMES (15YRS+)",
+    tagline: "SWAP THEIR SCREEN HOURS FOR SUPERPOWERS",
+    bullets: ["Build Confidence", "Strengthen Body & Mind", "Learn Real Self Defence"],
+    href: "/classes",
+  },
+  {
+    title: "KIDS CLASSES (5-15YRS)",
+    tagline: "SWAP THEIR SCREEN HOURS FOR SUPERPOWERS",
+    bullets: ["Self Confidence", "Focus", "Friendship"],
+    href: "/classes",
+  },
+  {
+    title: "WOMEN ONLY CLASSES",
+    tagline: "WOMEN EMPOWERED! UK'S BIGGEST WOMEN'S TEAM",
+    bullets: ["Physical Confidence", "Fitness & Energy", "Supportive Community"],
+    href: "/classes",
+  },
+];
+
+const gallery = [
+  "Our Amazing Women's Team", "Tom Hardy Visits Guildford Jiu Jitsu", "Belt Promotions with Master Mauricio",
+  "Lunchtime Crew in the Gi", "The Boss - Master Mauricio Gomes", "Submission Grappling Everyday",
+  "Kids BJJ Classes", "Competition Team Training", "Back When They Were White Belts",
+  "Training in the Gi", "Grading Day Celebrations", "Women Only Classes",
+];
+---
+<Layout
+  title="Guildford Jiu Jitsu — A Stronger You Starts Here"
+  description="Guildford Jiu Jitsu is Surrey's premier Brazilian Jiu Jitsu and grappling academy. We offer BJJ classes for adults, kids, and women in a modern, welcoming environment."
+  path="/"
+  schema={schema}
+>
+  <!-- HERO -->
+  <section class="relative bg-black text-white overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 md:px-8 py-20 md:py-32">
+      <p class="text-brand-red font-bold tracking-widest mb-4">GUILDFORD, SURREY (EST. 2021)</p>
+      <h1 class="text-5xl md:text-7xl font-black leading-none mb-6">
+        A STRONGER YOU<br /><span class="text-brand-red">STARTS HERE</span>
+      </h1>
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="/#free-trial" class="bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700">CLAIM FREE TRIAL →</a>
+        <a href="/timetable" class="border border-white/30 px-6 py-3 font-bold rounded hover:border-white">VIEW TIMETABLE</a>
+      </div>
+    </div>
+    <!-- TODO: replace with real hero photo/video from the gym -->
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="bg-brand-red/5 border-y border-white/10">
+    <div class="mx-auto max-w-7xl px-4 md:px-8 py-10 grid grid-cols-2 md:grid-cols-6 gap-6 text-center">
+      {stats.map((s) => (
+        <div>
+          <p class="text-3xl md:text-4xl font-black text-brand-red">{s.value}</p>
+          <p class="text-xs md:text-sm font-semibold text-white/70 tracking-wide">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- JIU JITSU IS FOR YOU -->
+  <section class="mx-auto max-w-4xl px-4 md:px-8 py-20 text-center">
+    <h2 class="text-3xl md:text-4xl font-black mb-4">JIU JITSU IS FOR YOU!</h2>
+    <p class="text-white/70 mb-6">All ages. All abilities. No experience needed.</p>
+    <ul class="grid sm:grid-cols-2 gap-3 text-left max-w-lg mx-auto text-white/90 mb-8">
+      <li>✓ Build confidence</li>
+      <li>✓ Get fitter and stronger</li>
+      <li>✓ Learn proven self-defence</li>
+      <li>✓ Train in a safe, welcoming environment</li>
+    </ul>
+    <p class="text-white/70 mb-2">
+      Become stronger, fitter and more confident alongside hundreds of Guildford locals
+      already training at Guildford Jiu Jitsu.
+    </p>
+    <p class="font-bold mb-6">LIMITED BEGINNER SPACES AVAILABLE. CLAIM YOUR FREE TRIAL TODAY.</p>
+    <a href="/#free-trial" class="inline-block bg-brand-red px-8 py-3 font-bold rounded hover:bg-red-700">
+      START YOUR JIU JITSU JOURNEY
+    </a>
+  </section>
+
+  <!-- PROGRAMME CARDS -->
+  <section class="bg-white/5 py-20">
+    <div class="mx-auto max-w-7xl px-4 md:px-8 grid md:grid-cols-3 gap-8">
+      {programmes.map((p) => (
+        <div class="bg-black border border-white/10 rounded-xl p-6">
+          <p class="text-brand-red font-bold text-sm mb-2">{p.tagline}</p>
+          <h3 class="text-xl font-black mb-4">{p.title}</h3>
+          <ul class="space-y-1 text-white/80 mb-6">
+            {p.bullets.map((b) => <li>• {b}</li>)}
+          </ul>
+          <a href={p.href} class="text-brand-red font-bold hover:underline">LEARN MORE →</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- GOOGLE REVIEWS -->
+  <section class="mx-auto max-w-7xl px-4 md:px-8 py-20">
+    <h2 class="text-3xl md:text-4xl font-black text-center mb-2">
+      WHAT THE PEOPLE OF GUILDFORD
+    </h2>
+    <p class="text-center text-white/70 mb-10">& THE SURROUNDING AREAS HAVE TO SAY...</p>
+    <p class="text-center font-bold mb-10">★★★★★ 5.0 (214 reviews)</p>
+    <div class="grid md:grid-cols-4 gap-6">
+      {googleReviews.map((r) => (
+        <div class="bg-white/5 rounded-lg p-5">
+          <p class="font-bold mb-1">{r.name}</p>
+          <p class="text-xs text-white/50 mb-3">{r.time}</p>
+          <p class="text-sm text-white/80">&ldquo;{r.text}&rdquo;</p>
+        </div>
+      ))}
+    </div>
+    <div class="flex flex-wrap gap-3 justify-center mt-10">
+      {pullQuotes.map((q) => (
+        <span class="border border-white/20 rounded-full px-4 py-1.5 text-xs font-bold text-white/70">
+          "{q}"
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <!-- STUDENT STORIES -->
+  <section class="bg-white/5 py-20">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-2">REAL PEOPLE. REAL PROGRESS.</h2>
+      <p class="text-center text-white/70 mb-10">STUDENT TESTIMONIALS</p>
+      <div class="grid md:grid-cols-5 gap-6">
+        {studentStories.map((s) => (
+          <div class="text-center">
+            <p class="font-bold mb-2">&ldquo;{s.quote}&rdquo;</p>
+            <p class="text-brand-red font-black text-sm">{s.name}</p>
+            <p class="text-xs text-white/50">{s.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHES -->
+  <section class="mx-auto max-w-5xl px-4 md:px-8 py-20">
+    <h2 class="text-3xl md:text-4xl font-black text-center mb-2">
+      DEVELOPING THE SKILLS OF PROFESSIONAL ORGANISATIONS,
+    </h2>
+    <p class="text-center text-white/70 mb-12">SPORTS TEAMS &amp; ATHLETES FOR OVER 20 YEARS</p>
+    <div class="grid md:grid-cols-2 gap-10">
+      <div class="bg-white/5 rounded-xl p-6">
+        <p class="text-brand-red font-bold text-sm mb-1">BJJ CORAL BELT</p>
+        <h3 class="text-2xl font-black mb-3">MAURICIO GOMES</h3>
+        <p class="text-white/80 text-sm">
+          Highest grade Jiu Jitsu master in Europe. Coral belt &amp; the godfather of BJJ in the UK.
+          Part of the Gracie family &amp; the roots of BJJ. Father to Roger Gracie (the greatest of all time).
+        </p>
+      </div>
+      <div class="bg-white/5 rounded-xl p-6">
+        <p class="text-brand-red font-bold text-sm mb-1">BJJ BLACK BELT</p>
+        <h3 class="text-2xl font-black mb-3">JON COLLINS</h3>
+        <p class="text-white/80 text-sm">
+          20+ years in professional sports coaching. Black belt under Mauricio Gomes.
+          Former police firearms officer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILITY -->
+  <section class="bg-white/5 py-20">
+    <div class="mx-auto max-w-5xl px-4 md:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-black mb-8">WORLD-CLASS MODERN TRAINING FACILITY</h2>
+      <div class="grid md:grid-cols-3 gap-8 text-white/80">
+        <div>
+          <p class="text-brand-red font-black text-xl mb-1">OVER 2000 SQ FT</p>
+          <p class="text-sm">of Jiu Jitsu heaven, in the heart of Guildford, Surrey</p>
+        </div>
+        <div>
+          <p class="text-brand-red font-black text-xl mb-1">ZEBRA® MATS</p>
+          <p class="text-sm">Full mat installation &amp; the area's only sprung judo/safety floor</p>
+        </div>
+        <div>
+          <p class="text-brand-red font-black text-xl mb-1">FULL AMENITIES</p>
+          <p class="text-sm">Reception, showers, changing rooms, lockers, weights gym, air-conditioning &amp; free car parking</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="mx-auto max-w-7xl px-4 md:px-8 py-20">
+    <h2 class="text-3xl md:text-4xl font-black text-center mb-10">GRAPPLERS GALLERY</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {gallery.map((caption) => (
+        <div class="aspect-square bg-white/10 rounded-lg flex items-end p-3">
+          <!-- TODO: replace with real gallery photo -->
+          <p class="text-xs font-semibold text-white/70">{caption}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FREE TRIAL / CONTACT -->
+  <section id="free-trial" class="bg-brand-red/10 py-20">
+    <div class="mx-auto max-w-3xl px-4 md:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-black mb-4">CLAIM YOUR FREE TRIAL</h2>
+      <p class="text-white/70 mb-8">Fill out the form below and we'll get back to you shortly</p>
+      <!-- TODO: replace this div with the real GHL free-trial form embed (see src/data/site.ts) -->
+      <div class="bg-white/5 border border-white/10 rounded-xl p-10 text-white/50 text-sm">
+        [ GHL Free Trial Form Embed Placeholder ]
+      </div>
+    </div>
+  </section>
+</Layout>
