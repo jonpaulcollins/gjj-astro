@@ -1,0 +1,31 @@
+---
+// Native Astro SEO component. Renders at BUILD TIME into static HTML —
+// there is no client-side rendering step here, so this cannot suffer the
+// "silently fails on some routes" bug we hit in GHL AI Studio.
+interface Props {
+  title: string;
+  description: string;
+  path: string; // e.g. "/", "/timetable"
+  schema?: Record<string, any> | Record<string, any>[];
+}
+
+const { title, description, path, schema } = Astro.props;
+const canonicalUrl = new URL(path, Astro.site).toString();
+const schemaJson = schema ? JSON.stringify(schema) : null;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+{schemaJson && (
+  <script type="application/ld+json" set:html={schemaJson} />
+)}
