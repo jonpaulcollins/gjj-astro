@@ -53,21 +53,24 @@ const stats = [
 const programmes = [
   {
     title: "ADULTS PROGRAMMES (15YRS+)",
-    tagline: "SWAP THEIR SCREEN HOURS FOR SUPERPOWERS",
+    tagline: "JIU-JITSU IS A SUPERPOWER!",
     bullets: ["Build Confidence", "Strengthen Body & Mind", "Learn Real Self Defence"],
     href: "/classes",
+    image: "/images/programme-adults-superpower.jpg",
   },
   {
     title: "KIDS CLASSES (5-15YRS)",
     tagline: "SWAP THEIR SCREEN HOURS FOR SUPERPOWERS",
     bullets: ["Self Confidence", "Focus", "Friendship"],
     href: "/classes",
+    image: "/images/programme-kids-screentime.jpg",
   },
   {
     title: "WOMEN ONLY CLASSES",
     tagline: "WOMEN EMPOWERED! UK'S BIGGEST WOMEN'S TEAM",
     bullets: ["Physical Confidence", "Fitness & Energy", "Supportive Community"],
     href: "/classes",
+    image: "/images/programme-women-team.jpg",
   },
 ];
 
@@ -158,13 +161,21 @@ const gallery = [
   <section class="bg-white/5 py-20">
     <div class="mx-auto max-w-7xl px-4 md:px-8 grid md:grid-cols-3 gap-8">
       {programmes.map((p) => (
-        <div class="bg-black border border-white/10 rounded-xl p-6">
-          <p class="text-brand-red font-bold text-sm mb-2">{p.tagline}</p>
-          <h3 class="text-xl font-black mb-4">{p.title}</h3>
-          <ul class="space-y-1 text-white/80 mb-6">
-            {p.bullets.map((b) => <li>• {b}</li>)}
-          </ul>
-          <a href={p.href} class="text-brand-red font-bold hover:underline">LEARN MORE →</a>
+        <div class="bg-black border border-white/10 rounded-xl overflow-hidden">
+          <img
+            src={p.image}
+            alt={p.title}
+            class="w-full h-56 object-cover"
+            loading="lazy"
+          />
+          <div class="p-6">
+            <p class="text-brand-red font-bold text-sm mb-2">{p.tagline}</p>
+            <h3 class="text-xl font-black mb-4">{p.title}</h3>
+            <ul class="space-y-1 text-white/80 mb-6">
+              {p.bullets.map((b) => <li class="flex items-center gap-2"><span class="text-brand-red">✓</span> {b}</li>)}
+            </ul>
+            <a href={p.href} class="text-brand-red font-bold hover:underline">LEARN MORE →</a>
+          </div>
         </div>
       ))}
     </div>
