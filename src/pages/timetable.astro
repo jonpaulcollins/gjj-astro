@@ -1,0 +1,100 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+import { programmes } from "../data/programmes";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: site.domain + "/" },
+    { "@type": "ListItem", position: 2, name: "Timetable", item: site.domain + "/timetable" },
+  ],
+};
+
+const steps = ["Book Your Free Trial", "Arrive 10 Minutes Early", "Meet Your Coach", "Enjoy Your First Class", "Leave Smiling"];
+
+const quickFaqs = [
+  "Do I need to be fit?", "Am I too old?", "What should I wear?", "Can I start as a complete beginner?",
+  "Is there parking?", "How much does it cost after my trial?", "How long are classes?", "Can my child try first?",
+];
+---
+<Layout
+  title="Class Timetable — Guildford Jiu Jitsu"
+  description="View the Guildford Jiu Jitsu class schedule. We offer morning, lunchtime and evening BJJ classes 7 days a week for all levels."
+  path="/timetable"
+  schema={schema}
+>
+  <section class="bg-black py-16 text-center">
+    <div class="mx-auto max-w-3xl px-4">
+      <h1 class="text-4xl md:text-5xl font-black mb-4">FIND THE PERFECT<br />CLASS FOR YOU</h1>
+      <p class="text-white/70 mb-6">Morning, lunchtime and evening classes. Beginners encouraged. Train 7 days a week.</p>
+      <a href="/#free-trial" class="inline-block bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700">CLAIM YOUR FREE TRIAL →</a>
+      <div class="flex flex-wrap gap-3 justify-center mt-8 text-xs font-bold text-white/60">
+        <span class="border border-white/20 rounded-full px-3 py-1">BEGINNERS ENCOURAGED</span>
+        <span class="border border-white/20 rounded-full px-3 py-1">FREE TRIAL AVAILABLE</span>
+        <span class="border border-white/20 rounded-full px-3 py-1">FRIENDLY COACHES</span>
+        <span class="border border-white/20 rounded-full px-3 py-1">ALL FITNESS LEVELS</span>
+        <span class="border border-white/20 rounded-full px-3 py-1">AGES 5+</span>
+        <span class="border border-white/20 rounded-full px-3 py-1">7 DAYS PER WEEK</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TODO: replace with the real GHL calendar/booking widget embed (see src/data/site.ts) -->
+  <section class="mx-auto max-w-7xl px-4 md:px-8 py-16">
+    <h2 class="text-2xl md:text-3xl font-black text-center mb-2">CLASS TIMETABLE</h2>
+    <p class="text-center text-white/60 mb-10">Plan your training week — filter by age group</p>
+    <div class="bg-white/5 border border-white/10 rounded-xl p-10 text-center text-white/50 text-sm">
+      [ GHL Calendar / Timetable Widget Embed Placeholder — filterable grid: All Classes / Adults / Kids / Private Tuition ]
+    </div>
+  </section>
+
+  <section class="bg-white/5 py-16">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <h2 class="text-2xl md:text-3xl font-black text-center mb-10">OUR PROGRAMMES</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {programmes.map((p) => (
+          <div class="bg-black border border-white/10 rounded-xl p-6">
+            <h3 class="font-black mb-2">{p.title}</h3>
+            <p class="text-sm text-white/70 mb-4">{p.desc}</p>
+            <p class="text-xs font-bold text-brand-red mb-4">IDEAL FOR: {p.idealFor}</p>
+            <a href="/#free-trial" class="text-sm font-bold hover:underline">BOOK FREE TRIAL →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 md:px-8 py-16">
+    <h2 class="text-2xl md:text-3xl font-black text-center mb-10">YOUR FIRST CLASS IS EASY</h2>
+    <ol class="grid sm:grid-cols-5 gap-6 text-center">
+      {steps.map((s, i) => (
+        <li>
+          <div class="w-10 h-10 rounded-full bg-brand-red text-white font-black flex items-center justify-center mx-auto mb-3">{i + 1}</div>
+          <p class="text-sm font-semibold">{s}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="bg-white/5 py-16">
+    <div class="mx-auto max-w-3xl px-4 md:px-8">
+      <h2 class="text-2xl md:text-3xl font-black text-center mb-8">FREQUENTLY ASKED QUESTIONS</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {quickFaqs.map((q) => (
+          <a href="/faq" class="block bg-black border border-white/10 rounded px-4 py-3 text-sm font-semibold hover:border-brand-red">{q}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 text-center">
+    <h2 class="text-2xl md:text-3xl font-black mb-4">YOUR FIRST CLASS COULD<br/>CHANGE EVERYTHING.</h2>
+    <p class="text-white/70 max-w-xl mx-auto mb-6">
+      Join hundreds of people across Guildford and Surrey who have built confidence, fitness
+      and lifelong friendships through Brazilian Jiu Jitsu.
+    </p>
+    <a href="/#free-trial" class="inline-block bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700">CLAIM YOUR FREE TRIAL →</a>
+  </section>
+</Layout>
