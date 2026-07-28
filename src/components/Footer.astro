@@ -1,0 +1,53 @@
+---
+import { site } from "../data/site";
+---
+<footer class="bg-black text-white/80 border-t border-white/10">
+  <div class="mx-auto max-w-7xl px-4 md:px-8 py-12 grid gap-10 md:grid-cols-3">
+    <div>
+      <h3 class="text-white font-bold mb-3 tracking-wide">FOLLOW US</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href={site.social.facebook} class="hover:text-brand-red">Facebook</a></li>
+        <li><a href={site.social.instagram} class="hover:text-brand-red">Instagram</a></li>
+        <li><a href={site.social.youtube} class="hover:text-brand-red">YouTube</a></li>
+        <li><a href={site.social.tiktok} class="hover:text-brand-red">TikTok</a></li>
+      </ul>
+    </div>
+    <div id="contact">
+      <h3 class="text-white font-bold mb-3 tracking-wide">CONTACT US</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href={`tel:${site.phone}`} class="hover:text-brand-red">{site.phoneDisplay}</a></li>
+        <li><a href={`mailto:${site.email}`} class="hover:text-brand-red">{site.email}</a></li>
+        <li>{site.address.street}, {site.address.locality}, {site.address.postalCode}</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="text-white font-bold mb-3 tracking-wide">QUICK LINKS</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/timetable" class="hover:text-brand-red">Timetable</a></li>
+        <li><a href="/classes" class="hover:text-brand-red">Classes</a></li>
+        <li><a href="/faq" class="hover:text-brand-red">FAQ</a></li>
+        <li><a href="/#free-trial" class="hover:text-brand-red">Free Trial</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 px-4 md:px-8 py-6 text-xs flex flex-col md:flex-row justify-between gap-2">
+    <p>&copy; {new Date().getFullYear()} Guildford Jiu Jitsu. All rights reserved.</p>
+    <div class="flex gap-4">
+      <a href="/privacy-policy" class="hover:text-brand-red">Privacy &amp; Cookie Policy</a>
+      <a href="/child-protection-policy" class="hover:text-brand-red">Child Protection Policy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp click-to-chat — replace number in src/data/site.ts -->
+<a
+  href={`https://wa.me/${site.ghl.whatsappNumber}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg"
+  aria-label="Chat on WhatsApp"
+>
+  <svg viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
+    <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.12-2.9-6.98A9.82 9.82 0 0 0 12.04 2Z"/>
+  </svg>
+</a>
