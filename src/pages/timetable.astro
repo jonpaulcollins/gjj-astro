@@ -25,8 +25,18 @@ const quickFaqs = [
   path="/timetable"
   schema={schema}
 >
-  <section class="bg-black py-16 text-center">
-    <div class="mx-auto max-w-3xl px-4">
+  <section class="relative bg-black py-16 text-center overflow-hidden min-h-[500px] flex items-center">
+    <div class="absolute inset-0 z-0">
+      <iframe
+        src="https://player.vimeo.com/video/1211204706?h=b9e43f0c5e&background=1&autoplay=1&loop=1&muted=1"
+        class="absolute top-1/2 left-1/2 w-[177.77vh] min-w-full h-[56.25vw] min-h-full -translate-x-1/2 -translate-y-1/2"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        title="Guildford Jiu Jitsu timetable hero video"
+      ></iframe>
+      <div class="absolute inset-0 bg-black/60"></div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-3xl px-4">
       <h1 class="text-4xl md:text-5xl font-black mb-4">FIND THE PERFECT<br />CLASS FOR YOU</h1>
       <p class="text-white/70 mb-6">Morning, lunchtime and evening classes. Beginners encouraged. Train 7 days a week.</p>
       <a href="/#free-trial" class="inline-block bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700">CLAIM YOUR FREE TRIAL →</a>
