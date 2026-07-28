@@ -1,0 +1,36 @@
+---
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Timetable", href: "/timetable" },
+  { label: "Classes", href: "/classes" },
+  { label: "Memberships", href: "/memberships" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/#contact" },
+];
+const currentPath = Astro.url.pathname;
+---
+<header class="bg-black text-white sticky top-0 z-50 border-b border-white/10">
+  <div class="mx-auto max-w-7xl flex items-center justify-between px-4 py-4 md:px-8">
+    <a href="/" class="font-black text-xl md:text-2xl tracking-tight">
+      GUILDFORD <span class="text-brand-red">JIU JITSU</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`hover:text-brand-red transition-colors ${
+            currentPath === item.href ? "text-brand-red" : ""
+          }`}
+        >
+          {item.label.toUpperCase()}
+        </a>
+      ))}
+    </nav>
+    <a
+      href="/#free-trial"
+      class="bg-brand-red text-white px-5 py-2.5 text-sm font-bold rounded hover:bg-red-700 transition-colors"
+    >
+      CLAIM FREE TRIAL
+    </a>
+  </div>
+</header>
