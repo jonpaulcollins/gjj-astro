@@ -17,9 +17,9 @@ export const pullQuotes = [
 ];
 
 export const studentStories = [
-  { quote: "YOU'LL FALL IN LOVE WITH THE PLACE!!", name: "NEIL", detail: "WHITE BELT / 8 MONTHS TRAINING" },
-  { quote: "IT'S A SUPER WELCOMING PLACE!", name: "CHARLOTTE", detail: "WHITE BELT / 5 MONTHS TRAINING" },
-  { quote: "BEST THING YOU'LL EVER DO!", name: "ELIOT", detail: "WHITE BELT / 1 YEAR TRAINING" },
-  { quote: "I WISH I'D STARTED 20 YEARS AGO!", name: "DAVID", detail: "AGED 58, NEW WHITE BELT" },
-  { quote: "DON'T PUT IT OFF, JUST START!", name: "SIMON", detail: "AGED 47, BLUE BELT" },
+  { quote: "YOU'LL FALL IN LOVE WITH THE PLACE!!", name: "NEIL", detail: "WHITE BELT / 8 MONTHS TRAINING", youtubeId: "1X7AQptU2bs" },
+  { quote: "IT'S A SUPER WELCOMING PLACE!", name: "CHARLOTTE", detail: "WHITE BELT / 5 MONTHS TRAINING", youtubeId: "2A4Rh_tjc-Q" },
+  { quote: "BEST THING YOU'LL EVER DO!", name: "ELIOT", detail: "WHITE BELT / 1 YEAR TRAINING", youtubeId: "fEQIoZVBoFc" },
+  { quote: "I WISH I'D STARTED 20 YEARS AGO!", name: "DAVID", detail: "AGED 58, NEW WHITE BELT", youtubeId: "OcuD3pY9JKs" },
+  { quote: "DON'T PUT IT OFF, JUST START!", name: "SIMON", detail: "AGED 47, BLUE BELT", youtubeId: "i3BbbFCUiEo" },
 ];

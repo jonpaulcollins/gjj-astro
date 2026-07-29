@@ -207,21 +207,65 @@ const gallery = [
   </section>
 
   <!-- STUDENT STORIES -->
-  <section class="bg-white/5 py-20">
+  <section class="bg-white/5 py-20 overflow-hidden">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
       <h2 class="text-3xl md:text-4xl font-black text-center mb-2">REAL PEOPLE. REAL PROGRESS.</h2>
       <p class="text-center text-white/70 mb-10">STUDENT TESTIMONIALS</p>
-      <div class="grid md:grid-cols-5 gap-6">
+      <div class="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth">
         {studentStories.map((s) => (
-          <div class="text-center">
-            <p class="font-bold mb-2">&ldquo;{s.quote}&rdquo;</p>
-            <p class="text-brand-red font-black text-sm">{s.name}</p>
-            <p class="text-xs text-white/50">{s.detail}</p>
+          <div
+            class="video-testimonial group relative flex-none w-[210px] md:w-[250px] aspect-[9/16] rounded-xl overflow-hidden bg-black snap-start cursor-pointer"
+            data-video-id={s.youtubeId}
+            role="button"
+            tabindex="0"
+            aria-label={`Play ${s.name}'s testimonial video`}
+          >
+            <img
+              src={`https://img.youtube.com/vi/${s.youtubeId}/hqdefault.jpg`}
+              alt={`${s.name} testimonial video thumbnail`}
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/10 to-black/85"></div>
+            <span class="absolute inset-0 flex items-center justify-center">
+              <span class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-red/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </span>
+            <p class="absolute top-4 left-4 right-4 font-bold text-white text-sm leading-snug drop-shadow">&ldquo;{s.quote}&rdquo;</p>
+            <div class="absolute bottom-4 left-4 right-4">
+              <p class="text-brand-red font-black text-sm">{s.name}</p>
+              <p class="text-xs text-white/70">{s.detail}</p>
+            </div>
           </div>
         ))}
       </div>
+      <p class="text-center text-white/40 text-xs mt-2 md:hidden">&larr; Swipe to see more &rarr;</p>
     </div>
   </section>
+
+  <script>
+    function playTestimonial(card: Element) {
+      const id = card.getAttribute("data-video-id");
+      if (!id || card.querySelector("iframe")) return;
+      card.innerHTML = `<iframe
+        src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0&playsinline=1"
+        class="absolute inset-0 w-full h-full"
+        style="border:0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+      ></iframe>`;
+    }
+    document.querySelectorAll(".video-testimonial").forEach((card) => {
+      card.addEventListener("click", () => playTestimonial(card));
+      card.addEventListener("keydown", (e) => {
+        if ((e as KeyboardEvent).key === "Enter" || (e as KeyboardEvent).key === " ") {
+          e.preventDefault();
+          playTestimonial(card);
+        }
+      });
+    });
+  </script>
 
   <!-- COACHES -->
   <section class="mx-auto max-w-5xl px-4 md:px-8 py-20">
