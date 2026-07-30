@@ -11,8 +11,12 @@ const currentPath = Astro.url.pathname;
 ---
 <header class="bg-black text-white sticky top-0 z-50 border-b border-white/10">
   <div class="mx-auto max-w-7xl flex items-center justify-between px-4 py-4 md:px-8">
-    <a href="/" class="font-black text-xl md:text-2xl tracking-tight">
-      GUILDFORD <span class="text-brand-red">JIU JITSU</span>
+    <a href="/" class="flex items-center shrink-0">
+      <img
+        src="/images/logo.png"
+        alt="Guildford Jiu Jitsu"
+        class="h-8 md:h-10 w-auto"
+      />
     </a>
     <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide">
       {navItems.map((item) => (
