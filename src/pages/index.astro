@@ -89,6 +89,7 @@ const coaches = [
     bio: "Highest grade Jiu Jitsu master in Europe. Coral belt & the godfather of BJJ in the UK. Part of the Gracie family & the roots of BJJ. Father to Roger Gracie (the greatest of all time).",
     href: "/classes",
     image: "/images/coach-mauricio-gomes.png",
+    imgClass: "object-top",
   },
   {
     name: "JON COLLINS",
@@ -96,6 +97,7 @@ const coaches = [
     bio: "20+ years in professional sports coaching. Black belt under Mauricio Gomes. Former police firearms officer.",
     href: "/classes",
     image: "/images/coach-jon-collins.jpg",
+    imgClass: "scale-125",
   },
 ];
 
@@ -423,12 +425,12 @@ const gallery = [
     <div class="space-y-8">
       {coaches.map((coach, i) => (
         <div class="grid md:grid-cols-2 rounded-xl overflow-hidden">
-          <div class={`relative h-[360px] md:h-[440px] bg-black ${i % 2 === 1 ? "md:order-2" : ""}`}>
+          <div class={`relative h-[360px] md:h-[440px] bg-black overflow-hidden ${i % 2 === 1 ? "md:order-2" : ""}`}>
             {coach.image ? (
               <img
                 src={coach.image}
                 alt={coach.name}
-                class="absolute inset-0 w-full h-full object-cover grayscale"
+                class={`absolute inset-0 w-full h-full object-cover grayscale ${coach.imgClass ?? ""}`}
                 loading="lazy"
               />
             ) : (
