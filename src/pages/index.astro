@@ -317,7 +317,7 @@ const gallery = [
         allowfullscreen
       ></iframe>`;
     }
-    document.querySelectorAll(".video-testimonial").forEach((card) => {
+    document.querySelectorAll(".video-testimonial, .coach-video").forEach((card) => {
       card.addEventListener("click", () => playTestimonial(card));
       card.addEventListener("keydown", (e) => {
         if ((e as KeyboardEvent).key === "Enter" || (e as KeyboardEvent).key === " ") {
@@ -343,10 +343,31 @@ const gallery = [
 
   <!-- COACHES -->
   <section class="mx-auto max-w-5xl px-4 md:px-8 py-20">
-    <h2 class="text-3xl md:text-4xl font-black text-center mb-2">
+    <h2 class="text-base md:text-xl font-semibold tracking-[0.15em] text-center text-white/90 mb-2">
       DEVELOPING THE SKILLS OF PROFESSIONAL ORGANISATIONS,
     </h2>
-    <p class="text-center text-white/70 mb-12">SPORTS TEAMS &amp; ATHLETES FOR OVER 20 YEARS</p>
+    <p class="text-base md:text-xl font-semibold tracking-[0.15em] text-center text-white/90 mb-12">SPORTS TEAMS &amp; ATHLETES FOR OVER 20 YEARS</p>
+
+    <div
+      class="coach-video group relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-white/10 mb-16 cursor-pointer"
+      data-video-id="bLrHQ6Dmmqc"
+      role="button"
+      tabindex="0"
+      aria-label="Play Guildford Jiu Jitsu coaching video"
+    >
+      <img
+        src="https://img.youtube.com/vi/bLrHQ6Dmmqc/hqdefault.jpg"
+        alt="Guildford Jiu Jitsu coaching video thumbnail"
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-black/30"></div>
+      <span class="absolute inset-0 flex items-center justify-center">
+        <span class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-brand-red/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"></path></svg>
+        </span>
+      </span>
+    </div>
     <div class="grid md:grid-cols-2 gap-10">
       <div class="bg-white/5 rounded-xl p-6">
         <p class="text-brand-red font-bold text-sm mb-1">BJJ CORAL BELT</p>
