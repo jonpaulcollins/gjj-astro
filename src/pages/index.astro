@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
-import { googleReviews, pullQuotes, studentStories } from "../data/testimonials";
+import { pullQuotes, studentStories } from "../data/testimonials";
 
 const schema = [
   {
@@ -187,16 +187,14 @@ const gallery = [
       WHAT THE PEOPLE OF GUILDFORD
     </h2>
     <p class="text-center text-white/70 mb-10">& THE SURROUNDING AREAS HAVE TO SAY...</p>
-    <p class="text-center font-bold mb-10">★★★★★ 5.0 (214 reviews)</p>
-    <div class="grid md:grid-cols-4 gap-6">
-      {googleReviews.map((r) => (
-        <div class="bg-white/5 rounded-lg p-5">
-          <p class="font-bold mb-1">{r.name}</p>
-          <p class="text-xs text-white/50 mb-3">{r.time}</p>
-          <p class="text-sm text-white/80">&ldquo;{r.text}&rdquo;</p>
-        </div>
-      ))}
-    </div>
+    <script is:inline type="text/javascript" src="https://reputationhub.site/reputation/assets/review-widget.js"></script>
+    <iframe
+      class="lc_reviews_widget"
+      src="https://reputationhub.site/reputation/widgets/review_widget/3lxJJ7cu1zHYhHZZrgTx?widgetId=6a6b26a608d0db90a29a2a7b"
+      frameborder="0"
+      scrolling="no"
+      style="min-width: 100%; width: 100%;"
+    ></iframe>
     <div class="flex flex-wrap gap-3 justify-center mt-10">
       {pullQuotes.map((q) => (
         <span class="border border-white/20 rounded-full px-4 py-1.5 text-xs font-bold text-white/70">
