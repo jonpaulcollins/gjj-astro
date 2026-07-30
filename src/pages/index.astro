@@ -74,6 +74,14 @@ const programmes = [
   },
 ];
 
+const pastClients = [
+  { name: "Harlequins", image: "/images/client-harlequins.png" },
+  { name: "AFC Bournemouth", image: "/images/client-afc-bournemouth.png" },
+  { name: "Oxford University Sport", image: "/images/client-oxford-university-sport.png" },
+  { name: "Surrey Police", image: "/images/client-surrey-police.png" },
+  { name: "MOD Police", image: "/images/client-mod-police.png" },
+];
+
 const gallery = [
   "Our Amazing Women's Team", "Tom Hardy Visits Guildford Jiu Jitsu", "Belt Promotions with Master Mauricio",
   "Lunchtime Crew in the Gi", "The Boss - Master Mauricio Gomes", "Submission Grappling Everyday",
@@ -303,6 +311,10 @@ const gallery = [
         transform: translateX(-50%);
       }
     }
+    .client-logo.is-active {
+      filter: grayscale(0) !important;
+      opacity: 1 !important;
+    }
   </style>
 
   <script>
@@ -325,6 +337,10 @@ const gallery = [
           playTestimonial(card);
         }
       });
+    });
+
+    document.querySelectorAll(".client-logo").forEach((logo) => {
+      logo.addEventListener("click", () => logo.classList.toggle("is-active"));
     });
 
     const track = document.getElementById("stories-track");
@@ -368,6 +384,18 @@ const gallery = [
         </span>
       </span>
     </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-10 items-center justify-items-center mb-16">
+      {pastClients.map((c) => (
+        <img
+          src={c.image}
+          alt={c.name}
+          class="client-logo w-full max-w-[110px] h-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer"
+          loading="lazy"
+        />
+      ))}
+    </div>
+
     <div class="grid md:grid-cols-2 gap-10">
       <div class="bg-white/5 rounded-xl p-6">
         <p class="text-brand-red font-bold text-sm mb-1">BJJ CORAL BELT</p>
