@@ -126,6 +126,9 @@ const coaches = [
     modalQuote: "Train with confidence. Train with purpose. Train under one of Brazilian Jiu Jitsu's most respected lineages.",
     lineageImage: "https://vibe.filesafe.space/1779794450101245883/attachments/ba0c9a66-3f67-43ca-8ca8-4c45cf980f00.png",
     lineageAlt: "Mauricio Gomes Lineage",
+    modalImage: "/images/Roger+and+Mauricio+rolling.webp",
+    modalImagePosition: "20% 40%",
+    modalGrayscale: true,
   },
   {
     name: "JON COLLINS",
@@ -144,6 +147,9 @@ const coaches = [
     modalQuote: "You don't need confidence to start. You'll build that here.",
     lineageImage: "https://vibe.filesafe.space/1779794450101245883/attachments/10395f91-5707-49ba-b50d-5c95cc1a28a8.png",
     lineageAlt: "Jon Collins Lineage",
+    modalImage: "/images/JonCollinsSmall.jpg",
+    modalImagePosition: "55% 35%",
+    modalGrayscale: false,
   },
 ];
 
@@ -524,7 +530,9 @@ const gallery = [
             <button
               type="button"
               class="coach-learn-more inline-block w-fit bg-black border border-white/20 px-6 py-3 font-bold rounded hover:bg-white/10 transition-colors"
-              data-image={coach.image}
+              data-image={coach.modalImage}
+              data-image-position={coach.modalImagePosition}
+              data-grayscale={coach.modalGrayscale ? "true" : "false"}
               data-pretitle={coach.modalPretitle}
               data-name={coach.name}
               data-paragraphs={JSON.stringify(coach.modalParagraphs)}
@@ -833,6 +841,8 @@ const gallery = [
         if (!modal) return;
         modalImg.src = btn.dataset.image || "";
         modalImg.alt = btn.dataset.name || "";
+        modalImg.style.objectPosition = btn.dataset.imagePosition || "center";
+        modalImg.classList.toggle("grayscale", btn.dataset.grayscale === "true");
         pretitleEl.textContent = btn.dataset.pretitle || "";
         nameEl.textContent = btn.dataset.name || "";
 
