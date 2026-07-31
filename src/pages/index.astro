@@ -114,6 +114,18 @@ const coaches = [
     href: "/classes",
     image: "/images/coach-mauricio-gomes.png",
     imgClass: "object-top",
+    modalPretitle: "Legacy Team Founder & Head Coach of Roger Gracie HQ",
+    modalParagraphs: [
+      "Every time you step onto the mats at Guildford Jiu Jitsu, you become part of a story that began in Rio de Janeiro - over 50 years ago.",
+      "Mauricio Gomes is one of the true pioneers of Brazilian Jiu Jitsu outside Brazil and is widely respected as one of the sport's most influential coaches. More importantly for our students, he's dedicated his life to helping ordinary people become more confident, capable and resilient through Jiu Jitsu.",
+      "His teaching has shaped generations of world-class competitors and instructors, including his son, Roger Gracie, widely regarded as the greatest Brazilian Jiu Jitsu Champion of all time.",
+      "At Guildford Jiu Jitsu, we proudly teach under the Mauricio Gomes lineage. That means the values, welcoming atmosphere and inclusivity you'll experience have been refined over decades and passed directly from one of the art's most respected masters.",
+      "Whether your goal is fitness, confidence, self-defence or competition, you'll benefit from a proven system that has helped thousands of people around the world.",
+      "When you join Guildford Jiu Jitsu, you're not just joining a local club, you become part of a lineage trusted by complete beginners, world champions and local families alike.",
+    ],
+    modalQuote: "Train with confidence. Train with purpose. Train under one of Brazilian Jiu Jitsu's most respected lineages.",
+    lineageImage: "https://vibe.filesafe.space/1779794450101245883/attachments/ba0c9a66-3f67-43ca-8ca8-4c45cf980f00.png",
+    lineageAlt: "Mauricio Gomes Lineage",
   },
   {
     name: "JON COLLINS",
@@ -122,6 +134,16 @@ const coaches = [
     href: "/classes",
     image: "/images/coach-jon-collins.jpg",
     imgClass: "scale-125",
+    modalPretitle: "Guildford Jiu Jitsu Head Coach & Founder",
+    modalParagraphs: [
+      "Starting Jiu Jitsu can feel intimidating, but Jon has built Guildford Jiu Jitsu around making that first step as welcoming, enjoyable and rewarding as possible.",
+      "A Brazilian Jiu Jitsu Black Belt under the legendary Mauricio Gomes, Jon has spent more than 20 years coaching athletes, teams and individuals across professional sport. His experience includes working with elite organisations, universities and law enforcement, but his greatest passion is helping complete beginners discover what they're truly capable of.",
+      "Rather than relying on old-fashioned drills and endless repetition, Jon has embraced modern, research-backed coaching methods that place students into realistic, training environments from day one. Every class is carefully designed to help you build confidence, solve problems, improve fitness and develop genuine Jiu Jitsu skills - while enjoying every minute on the mats.",
+      "The result is a gym that's become known not only for producing excellent competition-grade grapplers, but also for its welcoming atmosphere, outstanding coaching and genuine sense of community. Visitors regularly highlight the academy's progressive coaching methods, friendly culture and exceptional training environment.",
+    ],
+    modalQuote: "You don't need confidence to start. You'll build that here.",
+    lineageImage: "https://vibe.filesafe.space/1779794450101245883/attachments/10395f91-5707-49ba-b50d-5c95cc1a28a8.png",
+    lineageAlt: "Jon Collins Lineage",
   },
 ];
 
@@ -499,12 +521,19 @@ const gallery = [
             <p class="text-brand-red font-black text-sm tracking-wide mb-2">{coach.belt}</p>
             <h4 class="text-3xl md:text-4xl font-black mb-4">{coach.name}</h4>
             <p class="text-white/80 mb-8">{coach.bio}</p>
-            <a
-              href={coach.href}
-              class="inline-block w-fit bg-black border border-white/20 px-6 py-3 font-bold rounded hover:bg-white/10 transition-colors"
+            <button
+              type="button"
+              class="coach-learn-more inline-block w-fit bg-black border border-white/20 px-6 py-3 font-bold rounded hover:bg-white/10 transition-colors"
+              data-image={coach.image}
+              data-pretitle={coach.modalPretitle}
+              data-name={coach.name}
+              data-paragraphs={JSON.stringify(coach.modalParagraphs)}
+              data-quote={coach.modalQuote}
+              data-lineage-image={coach.lineageImage}
+              data-lineage-alt={coach.lineageAlt}
             >
               LEARN MORE
-            </a>
+            </button>
           </div>
         </div>
       ))}
@@ -745,6 +774,104 @@ const gallery = [
 
       document.querySelectorAll(".facility-card").forEach((card) => {
         card.addEventListener("click", () => openModal(card));
+      });
+
+      if (closeBtn) closeBtn.addEventListener("click", closeModal);
+      if (modal) {
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+    })();
+  </script>
+
+  <!-- COACH BIO MODAL -->
+  <div id="coach-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4">
+    <div class="relative w-full max-w-lg sm:max-w-[700px] max-h-[90vh] bg-zinc-950 border border-white/10 rounded-lg overflow-hidden text-white flex flex-col">
+      <div class="overflow-y-auto w-full">
+        <div class="relative aspect-video">
+          <img id="coach-modal-img" src="" alt="" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+        </div>
+        <div class="p-6 md:p-8 pt-0 -mt-8 relative z-10">
+          <div class="text-center sm:text-left">
+            <p id="coach-modal-pretitle" class="text-brand-red font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-2"></p>
+            <h2 id="coach-modal-name" class="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-4 text-white"></h2>
+          </div>
+          <div id="coach-modal-paragraphs" class="space-y-4 mt-2 text-white/80 leading-relaxed text-sm md:text-base"></div>
+          <div class="mt-8 border-t border-white/10 pt-8">
+            <h4 class="text-xl font-black uppercase tracking-tighter mb-4 text-white text-center sm:text-left">Lineage</h4>
+            <img id="coach-modal-lineage" src="" alt="" class="w-full h-auto rounded-lg shadow-sm border border-white/5" />
+          </div>
+          <div class="mt-8 flex justify-center sm:justify-end">
+            <button
+              id="coach-modal-close"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm border border-white/20 text-white hover:bg-white/5 uppercase tracking-widest font-bold h-10 px-4 py-2 transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const modal = document.getElementById("coach-modal");
+      const modalImg = document.getElementById("coach-modal-img");
+      const pretitleEl = document.getElementById("coach-modal-pretitle");
+      const nameEl = document.getElementById("coach-modal-name");
+      const paragraphsEl = document.getElementById("coach-modal-paragraphs");
+      const lineageImg = document.getElementById("coach-modal-lineage");
+      const closeBtn = document.getElementById("coach-modal-close");
+
+      function openModal(btn) {
+        if (!modal) return;
+        modalImg.src = btn.dataset.image || "";
+        modalImg.alt = btn.dataset.name || "";
+        pretitleEl.textContent = btn.dataset.pretitle || "";
+        nameEl.textContent = btn.dataset.name || "";
+
+        paragraphsEl.innerHTML = "";
+        let paragraphs = [];
+        try {
+          paragraphs = JSON.parse(btn.dataset.paragraphs || "[]");
+        } catch (e) {
+          paragraphs = [];
+        }
+        paragraphs.forEach((text) => {
+          const p = document.createElement("p");
+          p.textContent = text;
+          paragraphsEl.appendChild(p);
+        });
+        if (btn.dataset.quote) {
+          const quoteP = document.createElement("p");
+          quoteP.className = "font-bold text-white uppercase tracking-widest pt-2";
+          quoteP.textContent = `"${btn.dataset.quote}"`;
+          paragraphsEl.appendChild(quoteP);
+        }
+
+        lineageImg.src = btn.dataset.lineageImage || "";
+        lineageImg.alt = btn.dataset.lineageAlt || "";
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll(".coach-learn-more").forEach((btn) => {
+        btn.addEventListener("click", () => openModal(btn));
       });
 
       if (closeBtn) closeBtn.addEventListener("click", closeModal);
