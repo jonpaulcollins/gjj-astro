@@ -74,6 +74,24 @@ const programmes = [
   },
 ];
 
+const teamShowcase = [
+  {
+    title: "Adults Brazilian Jiu Jitsu (age 15+)",
+    image: "/images/team-adults-bjj.png",
+    href: "/classes",
+  },
+  {
+    title: "Adults Submission Grappling/NoGi (age 15+)",
+    image: "/images/team-adults-nogi.png",
+    href: "/classes",
+  },
+  {
+    title: "Juniors & Teens BJJ & Submission Grappling (age 5-15)",
+    image: "/images/team-juniors-teens.png",
+    href: "/classes",
+  },
+];
+
 const pastClients = [
   { name: "Harlequins", image: "/images/client-harlequins.png" },
   { name: "AFC Bournemouth", image: "/images/client-afc-bournemouth.png" },
@@ -207,6 +225,30 @@ const gallery = [
       ))}
     </div>
   </section>
+
+  <!-- TEAM SHOWCASE -->
+  {teamShowcase.map((t) => (
+    <section class="relative w-full overflow-hidden">
+      <div class="relative h-[420px] md:h-[600px]">
+        <img
+          src={t.image}
+          alt={t.title}
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 flex flex-col md:flex-row md:items-end md:justify-between gap-4 p-6 md:p-10">
+          <h2 class="text-2xl md:text-4xl font-black uppercase max-w-2xl leading-tight">{t.title}</h2>
+          <a
+            href={t.href}
+            class="inline-block bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700 transition-colors whitespace-nowrap w-fit"
+          >
+            LEARN MORE →
+          </a>
+        </div>
+      </div>
+    </section>
+  ))}
 
   <!-- GOOGLE REVIEWS -->
   <section class="mx-auto max-w-7xl px-4 md:px-8 py-20">
