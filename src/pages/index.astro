@@ -529,32 +529,56 @@ const gallery = [
       <div class="w-16 h-1 bg-brand-red mx-auto mb-12"></div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <div class="relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
+        <div class="facility-card relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
           <img src="/images/1000059649.png" alt="Guildford Jiu Jitsu training mats" class="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-2 bg-brand-red px-5 py-2.5 rounded font-bold text-xs uppercase tracking-widest">
+              View Details
+            </span>
+          </div>
         </div>
-        <div class="relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
+        <div class="facility-card relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
           <img src="/images/1000059648.png" alt="Guildford Jiu Jitsu training floor" class="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-2 bg-brand-red px-5 py-2.5 rounded font-bold text-xs uppercase tracking-widest">
+              View Details
+            </span>
+          </div>
         </div>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-        <div class="relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
+        <div class="facility-card relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
           <img src="/images/1000062744.png" alt="Guildford Jiu Jitsu reception area" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-2 bg-brand-red px-4 py-2 rounded font-bold text-xs uppercase tracking-widest text-center">
+              View Details
+            </span>
+          </div>
         </div>
-        <div class="relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
+        <div class="facility-card relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
           <img src="/images/1000062745.png" alt="Guildford Jiu Jitsu weights gym" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-2 bg-brand-red px-4 py-2 rounded font-bold text-xs uppercase tracking-widest text-center">
+              View Details
+            </span>
+          </div>
         </div>
-        <div class="relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
+        <div class="facility-card relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
           <img src="/images/1000062746.png" alt="Guildford Jiu Jitsu showers and changing rooms" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-2 bg-brand-red px-4 py-2 rounded font-bold text-xs uppercase tracking-widest text-center">
+              View Details
+            </span>
+          </div>
         </div>
-        <div class="relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
+        <div class="facility-card relative overflow-hidden group cursor-pointer rounded-2xl shadow-sm border border-white/5">
           <img src="/images/5884eebf9938331f9f650fa8e3d3070977d6cd7fede4096d1b399beb53e61fe4.png" alt="Guildford Jiu Jitsu free car parking" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center gap-2 bg-brand-red px-4 py-2 rounded font-bold text-xs uppercase tracking-widest text-center">
+              View Details
+            </span>
+          </div>
         </div>
       </div>
 
@@ -598,6 +622,94 @@ const gallery = [
       </div>
     </div>
   </section>
+
+  <!-- FACILITY IMAGE MODAL -->
+  <div id="facility-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4">
+    <div class="relative w-full max-w-lg sm:max-w-[600px] bg-zinc-950 border border-white/10 rounded-lg overflow-hidden text-white">
+      <div class="relative aspect-video">
+        <img id="facility-modal-img" src="" alt="Facility" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+      </div>
+      <div class="p-6 md:p-8 pt-0 -mt-8 relative z-10">
+        <h2 class="text-2xl font-black uppercase tracking-tighter mb-4 text-white text-center sm:text-left">World-Class Facility</h2>
+        <ul class="space-y-3 mt-4">
+          <li class="flex items-start gap-3 text-white/90 font-bold tracking-wide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5">
+              <circle cx="12" cy="12" r="10" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4" />
+            </svg>
+            <span>Modern, Clean &amp; Professional Environment</span>
+          </li>
+          <li class="flex items-start gap-3 text-white/90 font-bold tracking-wide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5">
+              <circle cx="12" cy="12" r="10" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4" />
+            </svg>
+            <span>Full Zebra Pro-Series Mat Installation</span>
+          </li>
+          <li class="flex items-start gap-3 text-white/90 font-bold tracking-wide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5">
+              <circle cx="12" cy="12" r="10" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4" />
+            </svg>
+            <span>The region's only "sprung" Judo Safety Floor dramatically reduces the risk of injury</span>
+          </li>
+          <li class="flex items-start gap-3 text-white/90 font-bold tracking-wide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5">
+              <circle cx="12" cy="12" r="10" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4" />
+            </svg>
+            <span>Full climate control Aircon, Heating &amp; Ventilation</span>
+          </li>
+        </ul>
+        <button
+          id="facility-modal-close"
+          class="mt-6 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm border border-white/20 text-white hover:bg-white/5 uppercase tracking-widest font-bold h-10 px-4 py-2 transition-colors"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const modal = document.getElementById("facility-modal");
+      const modalImg = document.getElementById("facility-modal-img");
+      const closeBtn = document.getElementById("facility-modal-close");
+
+      function openModal(card) {
+        const img = card.querySelector("img");
+        if (!img || !modal || !modalImg) return;
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll(".facility-card").forEach((card) => {
+        card.addEventListener("click", () => openModal(card));
+      });
+
+      if (closeBtn) closeBtn.addEventListener("click", closeModal);
+      if (modal) {
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+    })();
+  </script>
 
   <!-- GALLERY -->
   <section class="mx-auto max-w-7xl px-4 md:px-8 py-20">
