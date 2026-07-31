@@ -248,7 +248,7 @@ const gallery = [
   <section class="bg-white/5 py-20">
     <div class="mx-auto max-w-7xl px-4 md:px-8 grid md:grid-cols-3 gap-8">
       {programmes.map((p) => (
-        <div class="group relative overflow-hidden bg-black border border-white/10 rounded-2xl flex flex-col shadow-sm transition-all duration-300 hover:border-brand-red/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] hover:-translate-y-1">
+        <a href={p.href} class="group relative overflow-hidden bg-black border border-white/10 rounded-2xl flex flex-col shadow-sm transition-all duration-300 hover:border-brand-red/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] hover:-translate-y-1 cursor-pointer">
           <div class="overflow-hidden">
             <img
               src={p.image}
@@ -263,9 +263,9 @@ const gallery = [
             <ul class="space-y-1 text-white/80 mb-6">
               {p.bullets.map((b) => <li class="flex items-center gap-2"><span class="text-brand-red">✓</span> {b}</li>)}
             </ul>
-            <a href={p.href} class="mt-auto w-full inline-flex items-center justify-center bg-brand-red hover:bg-red-700 text-white font-bold uppercase tracking-widest text-sm rounded-md border border-white/20 py-2.5 transition-colors">LEARN MORE</a>
+            <span class="mt-auto w-full inline-flex items-center justify-center bg-brand-red group-hover:bg-red-700 text-white font-bold uppercase tracking-widest text-sm rounded-md border border-white/20 py-2.5 transition-colors">LEARN MORE</span>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </section>
@@ -520,13 +520,27 @@ const gallery = [
 
     <div class="space-y-8">
       {coaches.map((coach, i) => (
-        <div class="grid md:grid-cols-2 rounded-xl overflow-hidden">
+        <div
+          class="coach-card-clickable group grid md:grid-cols-2 rounded-xl overflow-hidden cursor-pointer"
+          role="button"
+          tabindex="0"
+          aria-label={`View ${coach.name}'s full bio`}
+          data-image={coach.modalImage}
+          data-image-position={coach.modalImagePosition}
+          data-grayscale={coach.modalGrayscale ? "true" : "false"}
+          data-pretitle={coach.modalPretitle}
+          data-name={coach.name}
+          data-paragraphs={JSON.stringify(coach.modalParagraphs)}
+          data-quote={coach.modalQuote}
+          data-lineage-image={coach.lineageImage}
+          data-lineage-alt={coach.lineageAlt}
+        >
           <div class={`relative h-[360px] md:h-[440px] bg-black overflow-hidden ${i % 2 === 1 ? "md:order-2" : ""}`}>
             {coach.image ? (
               <img
                 src={coach.image}
                 alt={coach.name}
-                class={`absolute inset-0 w-full h-full object-cover grayscale ${coach.imgClass ?? ""}`}
+                class={`absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105 ${coach.imgClass ?? ""}`}
                 loading="lazy"
               />
             ) : (
@@ -539,21 +553,9 @@ const gallery = [
             <p class="text-brand-red font-black text-sm tracking-wide mb-2">{coach.belt}</p>
             <h4 class="text-3xl md:text-4xl font-black mb-4">{coach.name}</h4>
             <p class="text-white/80 mb-8">{coach.bio}</p>
-            <button
-              type="button"
-              class="coach-learn-more inline-block w-fit bg-black border border-white/20 px-6 py-3 font-bold rounded hover:bg-white/5 transition-colors"
-              data-image={coach.modalImage}
-              data-image-position={coach.modalImagePosition}
-              data-grayscale={coach.modalGrayscale ? "true" : "false"}
-              data-pretitle={coach.modalPretitle}
-              data-name={coach.name}
-              data-paragraphs={JSON.stringify(coach.modalParagraphs)}
-              data-quote={coach.modalQuote}
-              data-lineage-image={coach.lineageImage}
-              data-lineage-alt={coach.lineageAlt}
-            >
+            <span class="inline-block w-fit bg-black border border-white/20 px-6 py-3 font-bold rounded group-hover:bg-white/5 transition-colors">
               LEARN MORE
-            </button>
+            </span>
           </div>
         </div>
       ))}
@@ -892,8 +894,14 @@ const gallery = [
         document.body.style.overflow = "";
       }
 
-      document.querySelectorAll(".coach-learn-more").forEach((btn) => {
-        btn.addEventListener("click", () => openModal(btn));
+      document.querySelectorAll(".coach-card-clickable").forEach((card) => {
+        card.addEventListener("click", () => openModal(card));
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openModal(card);
+          }
+        });
       });
 
       if (closeBtn) closeBtn.addEventListener("click", closeModal);
