@@ -187,13 +187,13 @@ const gallery = [
       <div class="absolute inset-0 bg-black/60"></div>
     </div>
     <div class="relative z-10 mx-auto max-w-7xl px-4 md:px-8 py-20 md:py-32">
-      <p class="text-brand-red font-bold tracking-widest mb-4">GUILDFORD, SURREY (EST. 2021)</p>
+      <p class="text-brand-red font-bold tracking-widest mb-4 animate-fade-up">GUILDFORD, SURREY (EST. 2021)</p>
       <h1 class="text-5xl md:text-7xl font-black leading-none mb-6">
-        A STRONGER YOU<br /><span class="text-brand-red">STARTS HERE</span>
+        <span class="block animate-fade-up">A STRONGER YOU</span><span class="block text-brand-red animate-fade-up" style="animation-delay: 0.15s;">STARTS HERE</span>
       </h1>
-      <div class="flex flex-wrap gap-4 mt-8">
-        <a href="/#free-trial" class="bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700">CLAIM FREE TRIAL →</a>
-        <a href="/timetable" class="border border-white/30 px-6 py-3 font-bold rounded hover:border-white">VIEW TIMETABLE</a>
+      <div class="flex flex-wrap gap-4 mt-8 animate-fade-up" style="animation-delay: 0.3s;">
+        <a href="/#free-trial" class="bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700 transition-transform hover:scale-105">CLAIM FREE TRIAL →</a>
+        <a href="/timetable" class="border border-white/30 px-6 py-3 font-bold rounded hover:border-white transition-transform hover:scale-105">VIEW TIMETABLE</a>
       </div>
     </div>
   </section>
@@ -248,20 +248,22 @@ const gallery = [
   <section class="bg-white/5 py-20">
     <div class="mx-auto max-w-7xl px-4 md:px-8 grid md:grid-cols-3 gap-8">
       {programmes.map((p) => (
-        <div class="bg-black border border-white/10 rounded-xl overflow-hidden">
-          <img
-            src={p.image}
-            alt={p.title}
-            class="w-full h-56 object-cover object-[center_18%]"
-            loading="lazy"
-          />
-          <div class="p-6">
+        <div class="group relative overflow-hidden bg-black border border-white/10 rounded-2xl flex flex-col shadow-sm transition-all duration-300 hover:border-brand-red/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] hover:-translate-y-1">
+          <div class="overflow-hidden">
+            <img
+              src={p.image}
+              alt={p.title}
+              class="w-full h-56 object-cover object-[center_18%] transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
             <p class="text-brand-red font-bold text-sm mb-2">{p.tagline}</p>
             <h3 class="text-xl font-black mb-4">{p.title}</h3>
             <ul class="space-y-1 text-white/80 mb-6">
               {p.bullets.map((b) => <li class="flex items-center gap-2"><span class="text-brand-red">✓</span> {b}</li>)}
             </ul>
-            <a href={p.href} class="text-brand-red font-bold hover:underline">LEARN MORE →</a>
+            <a href={p.href} class="mt-auto w-full inline-flex items-center justify-center bg-brand-red hover:bg-red-700 text-white font-bold uppercase tracking-widest text-sm rounded-md border border-white/20 py-2.5 transition-colors">LEARN MORE</a>
           </div>
         </div>
       ))}
@@ -377,10 +379,7 @@ const gallery = [
       display: none;
     }
     .marquee-track {
-      animation: marquee-scroll 28s linear infinite;
-    }
-    .marquee-track:hover {
-      animation-play-state: paused;
+      animation: marquee-scroll 40s linear infinite;
     }
     @keyframes marquee-scroll {
       from {
@@ -388,6 +387,19 @@ const gallery = [
       }
       to {
         transform: translateX(-50%);
+      }
+    }
+    .animate-fade-up {
+      animation: fade-up 1s ease-out both;
+    }
+    @keyframes fade-up {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
     .client-logo.is-active {
@@ -529,7 +541,7 @@ const gallery = [
             <p class="text-white/80 mb-8">{coach.bio}</p>
             <button
               type="button"
-              class="coach-learn-more inline-block w-fit bg-black border border-white/20 px-6 py-3 font-bold rounded hover:bg-white/10 transition-colors"
+              class="coach-learn-more inline-block w-fit bg-black border border-white/20 px-6 py-3 font-bold rounded hover:bg-white/5 transition-colors"
               data-image={coach.modalImage}
               data-image-position={coach.modalImagePosition}
               data-grayscale={coach.modalGrayscale ? "true" : "false"}
@@ -925,9 +937,161 @@ const gallery = [
       <h2 class="text-3xl md:text-4xl font-black mb-4">CLAIM YOUR FREE TRIAL</h2>
       <p class="text-white/70 mb-8">Fill out the form below and we'll get back to you shortly</p>
       <!-- TODO: replace this div with the real GHL free-trial form embed (see src/data/site.ts) -->
-      <div class="bg-white/5 border border-white/10 rounded-xl p-10 text-white/50 text-sm">
+      <div class="bg-white/5 border border-white/10 rounded-xl p-10 text-white/50 text-sm mb-12">
         [ GHL Free Trial Form Embed Placeholder ]
       </div>
+
+      <div class="grid sm:grid-cols-2 gap-4 text-left">
+        <a
+          href={`https://wa.me/${site.ghl.whatsappNumber}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-start gap-4 p-5 bg-zinc-950 rounded-xl border border-white/10 hover:bg-white/5 transition-colors group cursor-pointer shadow-sm"
+        >
+          <span class="p-3 bg-white text-black rounded-full group-hover:scale-110 transition-transform flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.12-2.9-6.98A9.82 9.82 0 0 0 12.04 2Z"/>
+            </svg>
+          </span>
+          <span>
+            <p class="font-black uppercase tracking-widest text-sm mb-1">WhatsApp Us</p>
+            <p class="text-white/60 text-sm">We are available on WhatsApp, so click to chat now or carefully enter your mobile number - so we can get back to you via WhatsApp/SMS.</p>
+          </span>
+        </a>
+
+        <a
+          href={`tel:${site.phone}`}
+          class="flex items-start gap-4 p-5 bg-zinc-950 rounded-xl border border-white/10 hover:bg-white/5 transition-colors group cursor-pointer shadow-sm"
+        >
+          <span class="p-3 bg-white text-black rounded-full group-hover:scale-110 transition-transform flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </span>
+          <span>
+            <p class="font-black uppercase tracking-widest text-sm mb-1">Call Us</p>
+            <p class="text-white/60 text-sm">{site.phoneDisplay}</p>
+          </span>
+        </a>
+
+        <a
+          href={`mailto:${site.email}`}
+          class="flex items-start gap-4 p-5 bg-zinc-950 rounded-xl border border-white/10 hover:bg-white/5 transition-colors group cursor-pointer shadow-sm"
+        >
+          <span class="p-3 bg-white text-black rounded-full group-hover:scale-110 transition-transform flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+              <path d="M4 4h16v16H4z" fill="none" stroke="none"/>
+              <path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6Zm-2 0-8 5-8-5"/>
+            </svg>
+          </span>
+          <span>
+            <p class="font-black uppercase tracking-widest text-sm mb-1">Email Us</p>
+            <p class="text-white/60 text-sm">{site.email}</p>
+          </span>
+        </a>
+
+        <a
+          href={site.social.facebook}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-start gap-4 p-5 bg-zinc-950 rounded-xl border border-white/10 hover:bg-white/5 transition-colors group cursor-pointer shadow-sm"
+        >
+          <span class="p-3 bg-white text-black rounded-full group-hover:scale-110 transition-transform flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/>
+            </svg>
+          </span>
+          <span>
+            <p class="font-black uppercase tracking-widest text-sm mb-1">Facebook</p>
+            <p class="text-white/60 text-sm">@GuildfordBJJ</p>
+          </span>
+        </a>
+
+        <a
+          href={site.social.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-start gap-4 p-5 bg-zinc-950 rounded-xl border border-white/10 hover:bg-white/5 transition-colors group cursor-pointer shadow-sm"
+        >
+          <span class="p-3 bg-white text-black rounded-full group-hover:scale-110 transition-transform flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </span>
+          <span>
+            <p class="font-black uppercase tracking-widest text-sm mb-1">Instagram</p>
+            <p class="text-white/60 text-sm">@guildford.bjj</p>
+          </span>
+        </a>
+
+        <a
+          href={site.social.youtube}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-start gap-4 p-5 bg-zinc-950 rounded-xl border border-white/10 hover:bg-white/5 transition-colors group cursor-pointer shadow-sm"
+        >
+          <span class="p-3 bg-white text-black rounded-full group-hover:scale-110 transition-transform flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/>
+            </svg>
+          </span>
+          <span>
+            <p class="font-black uppercase tracking-widest text-sm mb-1">YouTube</p>
+            <p class="text-white/60 text-sm">@GuildfordBJJ</p>
+          </span>
+        </a>
+
+        <a
+          href={site.social.tiktok}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-start gap-4 p-5 bg-zinc-950 rounded-xl border border-white/10 hover:bg-white/5 transition-colors group cursor-pointer shadow-sm sm:col-span-2"
+        >
+          <span class="p-3 bg-white text-black rounded-full group-hover:scale-110 transition-transform flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+              <path d="M16.6 5.82c-.98-.94-1.6-2.24-1.6-3.68h-3.1v13.42a3.06 3.06 0 0 1-3.06 2.96 3.07 3.07 0 0 1 0-6.14c.31 0 .61.05.9.14V9.4a6.2 6.2 0 0 0-.9-.06 6.2 6.2 0 1 0 6.2 6.2V8.66a8.3 8.3 0 0 0 4.66 1.42V6.98a4.85 4.85 0 0 1-3.1-1.16Z"/>
+            </svg>
+          </span>
+          <span>
+            <p class="font-black uppercase tracking-widest text-sm mb-1">TikTok</p>
+            <p class="text-white/60 text-sm">@guildford.bjj</p>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIND US -->
+  <section class="bg-black py-20">
+    <div class="mx-auto max-w-6xl px-4 md:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-black mb-3">FIND US</h2>
+      <p class="text-white/70 mb-2">{site.address.street}, {site.address.locality}, {site.address.region}, {site.address.postalCode}</p>
+      <p class="text-white/50 text-sm mb-10">Access the Gym &amp; Carpark via Fays Passage, off Bedford Rd (SAT NAV GU1 4SQ)</p>
+
+      <a
+        href="https://maps.google.com/maps?q=1-2%20Bridge%20Street,%20Guildford,%20GU1%204RY"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group block max-w-6xl mx-auto h-[450px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700 relative"
+      >
+        <div class="absolute inset-0 pointer-events-none">
+          <iframe
+            src="https://www.google.com/maps?q=1-2+Bridge+Street,+Guildford,+GU1+4RY&output=embed"
+            class="w-full h-full border-0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Guildford Jiu Jitsu location map"
+          ></iframe>
+        </div>
+        <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none drop-shadow-2xl group-hover:scale-110 transition-transform duration-500">
+          <svg viewBox="0 0 24 24" fill="#dc2626" stroke="white" stroke-width="1" class="w-14 h-14">
+            <path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
+          </svg>
+        </div>
+      </a>
     </div>
   </section>
 </Layout>
