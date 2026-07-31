@@ -729,7 +729,7 @@ const gallery = [
         if (modalTitle) modalTitle.textContent = card.dataset.title || img.alt;
         for (let i = 1; i <= 4; i++) {
           const span = document.getElementById(`facility-modal-item-${i}`);
-          if (span) span.textContent = card.dataset[`item${i}`] || "";
+          if (span) span.textContent = card.dataset[`item-${i}`] || "";
         }
         modal.classList.remove("hidden");
         modal.classList.add("flex");
