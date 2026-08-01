@@ -17,9 +17,9 @@ export const site = {
     youtube: "https://youtube.com/@GuildfordBJJ",
     tiktok: "https://tiktok.com/@guildford.bjj",
   },
-  // TODO: replace with real GHL embed snippets before launch
+  // Free-trial form embed is live directly in src/pages/index.astro (#free-trial section).
+  // TODO: calendar/timetable widget embed still needed.
   ghl: {
-    formEmbed: "<!-- Paste GHL free-trial form embed code here -->",
     calendarEmbed: "<!-- Paste GHL calendar/booking widget embed code here -->",
     whatsappNumber: "447575572021",
   },
