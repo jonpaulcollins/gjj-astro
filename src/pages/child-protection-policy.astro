@@ -1,15 +1,271 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+
+const recognise = [
+  "The welfare of the child is paramount, as given in the Children Act 1989.",
+  "All children, regardless of age, disability, gender, racial heritage, religious belief, sexual orientation, or identity, have the right to equal protection from all types of harm and abuse.",
+  "Some children are additionally vulnerable because of the impact of previous experience, their level of dependency, communication needs or other issues.",
+  "Working in partnership with children, young people, their parents, carers, and other agencies is essential in promoting young people's welfare.",
+];
+
+const keepSafe = [
+  "Valuing them, listening to, and respecting them.",
+  "Appointing a Designated Safeguarding Officer (DSO) for children and young people.",
+  "Adopting child protection and safeguarding practices through procedures and a code of conduct for all the instructors.",
+];
+
+const instructorChecks = [
+  "Assistant Instructors (who may assist in leading classes or have responsibility over the safety of the class) are Enhanced DBS Checked.",
+  "Reference Checks are made on instructors.",
+  "All Instructors (Lead, Assistant & Volunteer) read our Child Protection Policy.",
+  "Instructors have a trial period in which to develop their skills under supervision and they have ongoing support and monitoring.",
+  "There are always at least 2 Instructors in each class.",
+];
+
+const guidelines = [
+  "Increase awareness of the different forms of abuse.",
+  "Present the responsibilities of each instructor to protect all children in their classes.",
+  "Outline a code of conduct for instructors working with children.",
+];
+
+const abuseTypes = [
+  { title: "Physical", body: "Physical abuse is when a child suffers some form of physical injury e.g. bone breaks, burns or scalds, which are not the result of an accident. Some signs of physical abuse may be visible, but injuries may be covered by clothing. Some children may find it hard to explain injuries and be reluctant to remove clothing in warm weather, as injuries will be visible." },
+  { title: "Emotional", body: "Emotional abuse is the result of a child receiving little attention, but could also occur from being made to feel inadequate by remarks made by parents or other adults. A change in behaviour by a child, which is abrupt or gradual, can be a characteristic of emotional abuse. Speech may be affected and the child may develop nervous behaviour. In sports and martial arts, the indicators are often that the child loses interest in training or avoids challenging situations, due to the fear of verbal abuse, which may follow." },
+  { title: "Neglect", body: "A child failing to attain the development expected for the age can indicate neglect. It can be long term and so it is important to watch out for both physical and behavioural signs. If a child is badly cared for, they may lack friends because of their appearance and they may arrive late for coaching sessions, with no sign of parental or adult support." },
+  { title: "Sexual", body: "Sexual abuse occurs when a child is involved in sexual acts against their will. It may also take the form of involving the child in pornographic material such as magazines or videos. The adult will threaten the child not to reveal what is happening and the child will often stay quiet, as they feel responsible and ashamed. The indicators of sexual abuse may be physical in terms of pain and/or changes in behaviour. 96% of abusers are in some way known to their victim, either being in a position of trust or an influential person." },
+  { title: "Bullying", body: "Bullying can be inflicted by another young person or another adult or even an instructor. This may be physical, verbal, or emotional bullying or a combination of these. The person being bullied may not always be smaller and/or younger, but the outcome for them will be just as distressing." },
+];
+
+const disclosurePrinciples = [
+  "Stay calm and reassure the child.",
+  "For a child to disclose abuse takes great courage, but explain that you will need to contact other professionals who will be able to give the help which is needed.",
+  "You must listen to what the child says and record what has been said as soon as possible, recording the exact words as spoken by the child.",
+  "Then report it to your Designated Safeguarding Officer who in turn will report it to the relevant Social Care Team.",
+  "It is very important not to tell anyone else about the complaint until you have discussed it with the relevant Social Care Team.",
+];
+
+const codeOfConduct = [
+  "Be professional and maintain the highest standards of personal behaviour at all times.",
+  "Be aware of situations which can be misconstrued by others, for example, if an instructor is alone with a child before a class, in a changing room, or similar place, they are open to the possibility of allegations.",
+  "Be vigilant and aware of how actions can be misinterpreted.",
+  "Not appear to favour or show interest in one child more than another.",
+  "Be very aware that physically handling a participant, such as when demonstrating a technique, could be misconstrued by an observer or even the participant. Explain to the member of the club what they will be shown.",
+  "Be aware of your language at all times and never use inappropriate language.",
+  "Design and use training methods and training programmes which are wholly appropriate to the individual child.",
+  "Ensure that you are not alone when teaching children on an individual basis. If this is unavoidable then the parents should be made aware of the situation for the sake of the instructor.",
+  "Conduct all dealings with children in a public environment in full view of others, in order for all behaviour to be observed.",
+  "Report any concerns within the area of child protection (physical, emotional, sexual or neglect) in confidence and without delay, to the Designated Safeguarding Officer.",
+  "Not, at any time, discuss an allegation or suspicion with another person, other than the police, before the DSO has been contacted.",
+  "When reporting an allegation or suspicion, record information, including relevant details (this includes the nature of the allegation, background information of the parties involved, the period which the allegation relates to and the degree to which the information is known to be fact rather than opinion or hearsay).",
+];
+
+const photoParentPolicy = [
+  "To respect the wishes and privacy of all who train at Guildford Jiu Jitsu, photographs/videos are not to be taken during normal gym-based training sessions.",
+  "Photography/video is allowed at the end of the session, but only of your child or if you have obtained the explicit permission of another parent to include their child.",
+  "Photography/video is allowed at events such as grading, demonstration or competitions or to celebrate achievements by students.",
+  "Where a parent does not wish their child to be photographed/videoed at these events, it is the parent's responsibility to remain present at the event to supervise their child in this respect and make the coaches aware of your opting in or out of our Photography and Video Policy/Waiver.",
+  "Any Photos used by Guildford Jiu Jitsu on the official gym website (www.guildfordbjj.com), our official Facebook page, and our official Instagram Page should not associate children's full names with photos and vice versa.",
+  "External events, competitions and public events are outside the control of the gym and parents should investigate and be aware if there is a photography policy in use at the event and satisfy themselves that they wish for their child to attend.",
+];
+
+const monitoring = [
+  "Changes in legislation and/or government guidance.",
+  "As required by the Local Safeguarding Children Board, UK Sport or the sport's Governing Body.",
+  "As a result of any other significant change or event.",
+];
 ---
 <Layout
   title="Child Protection Policy — Guildford Jiu Jitsu"
-  description="Guildford Jiu Jitsu's child protection policy."
+  description="Guildford Jiu Jitsu's child protection and safeguarding policy, code of conduct, and photography/video policy for young members."
   path="/child-protection-policy"
 >
-  <section class="mx-auto max-w-3xl px-4 md:px-8 py-16">
-    <h1 class="text-3xl font-black mb-6">Child Protection Policy</h1>
-    <p class="text-white/70 text-sm">
-      TODO: paste the real child protection policy content here before launch.
+  <section class="bg-black py-16 text-center">
+    <div class="mx-auto max-w-3xl px-4">
+      <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2">Child Protection Policy</h1>
+      <p class="text-white/60">{site.name}</p>
+      <p class="text-white/40 text-sm mt-2">Last Reviewed: 08/06/2026</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 md:px-8 py-16 text-white/75 leading-relaxed space-y-10">
+    <p>
+      Guildford Jiu Jitsu is committed to ensuring we do everything possible to prioritise the safety of
+      children whilst training at our club. This policy applies to all instructors, and anyone working on
+      behalf of Guildford Jiu Jitsu.
     </p>
+
+    <div>
+      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">The Purpose of This Policy</h2>
+      <ul class="space-y-2">
+        <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>To protect all children and young people who train at Guildford Jiu Jitsu.</span></li>
+        <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>To provide instructors with the principles that guide our approach to safeguarding and child protection.</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">We Recognise That</h2>
+      <ul class="space-y-2">
+        {recognise.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">We Will Seek to Keep Children and Young People Safe By</h2>
+      <ul class="space-y-2">
+        {keepSafe.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">We Ensure That the Following Happens With Our Instructors</h2>
+      <ul class="space-y-2">
+        {instructorChecks.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">The Guidelines Within This Booklet Are To</h2>
+      <ul class="space-y-2">
+        {guidelines.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
+      </ul>
+    </div>
+
+    <div class="border-t border-white/10 pt-10">
+      <p class="text-brand-red font-bold uppercase tracking-widest text-xs mb-6">Guildford Jiu Jitsu Child Protection Booklet</p>
+      <h2 class="text-2xl font-black uppercase tracking-tight text-white mb-4">What Is Child Abuse?</h2>
+      <p class="mb-6">
+        The Children Act 1989 defines children as those under the age of 18 and is concerned with the
+        protection of children from any form of abuse. There are five recognised forms of child abuse.
+      </p>
+      <div class="space-y-6">
+        {abuseTypes.map((a) => (
+          <div>
+            <h3 class="font-black uppercase tracking-wide text-white mb-2">{a.title}</h3>
+            <p>{a.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-10">
+      <h2 class="text-2xl font-black uppercase tracking-tight text-white mb-4">The Responsibilities of a Guildford Jiu Jitsu Instructor Working With Children</h2>
+      <h3 class="font-black uppercase tracking-wide text-white mb-2">To Recognise Signs of Abuse and Take Any Necessary Action</h3>
+      <p class="mb-4">
+        There may be several signs that child abuse is taking place. It could be some signs of physical or
+        behavioural change in a child, from something the child says, or by something another person says.
+        It is important to be aware and vigilant and to deal with the fact in an objective manner.
+      </p>
+      <p class="mb-3">If the child indicates that they want to talk, then it is important to follow the following principles:</p>
+      <ul class="space-y-2 mb-6">
+        {disclosurePrinciples.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
+      </ul>
+
+      <h3 class="font-black uppercase tracking-wide text-white mb-2">To Ensure That Behaviour Cannot Be Called Into Question</h3>
+      <p class="mb-4">
+        As a Guildford Jiu Jitsu Coach or Instructor, you have a duty to protect children from harm. You
+        should also be aware of the impact of your words and actions on young players. It is important to
+        ensure that your verbal and non-verbal communication with all players is positive.
+      </p>
+      <p class="mb-4">
+        You have a duty to prevent physical injury and your training should always be very objective ensuring
+        the programmes are appropriate to individual players in terms of their age, ability, and physical
+        development.
+      </p>
+      <p>
+        Any behaviour, word, or actions which could be construed by others as sexual in nature are
+        inappropriate and will be viewed with <strong class="text-white">serious concern</strong>.
+      </p>
+    </div>
+
+    <div class="border-t border-white/10 pt-10">
+      <h2 class="text-2xl font-black uppercase tracking-tight text-white mb-4">Guildford Jiu Jitsu Code of Conduct for Working With Children</h2>
+      <p class="mb-4">Those working with children at Guildford Jiu Jitsu should:</p>
+      <ul class="space-y-2">
+        {codeOfConduct.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
+      </ul>
+    </div>
+
+    <div class="border-t border-white/10 pt-10">
+      <h2 class="text-2xl font-black uppercase tracking-tight text-white mb-4">Guildford BJJ Photography &amp; Video Policy</h2>
+      <p class="mb-4">
+        When parents/carers register their children to train at Guildford Jiu Jitsu, they are given the
+        option of opting in or out of our Photography and Video Policy/Waiver, via a tick-box on the
+        registration form. However, to completely protect the images of our young members, from 2026 we made
+        the decision to never use photographs or videos of our Juniors or Teens on our website or social
+        media.
+      </p>
+      <p class="mb-4">
+        In accordance with our child protection policy (and guidance from the NSPCC's Child Protection in
+        Sport Unit) we will also attempt to ensure that no photographs, video or other images of young people
+        are taken without this consent. This applies to the gym owner and instructors, as well as parents,
+        members and any visitors granted access to the gym.
+      </p>
+      <p class="mb-4">The NSPCC's Child Protection in Sport Unit offers this guidance for sports clubs:</p>
+      <blockquote class="border-l-2 border-brand-red pl-4 italic text-white/60 mb-4">
+        &ldquo;&hellip;it is important to recognise that parents and young people generally welcome
+        opportunities to celebrate or publicise their involvement and achievements when taking part in sport
+        by photographing children at events, and sports organisations may also want to promote their
+        activities to encourage participation. The CPSU does not advocate the banning of photography or the
+        use of images and videos of children.&rdquo;
+      </blockquote>
+      <p class="mb-4">
+        As a result, Guildford Jiu Jitsu's Coaches are happy to have photos with children whenever the
+        parents request (at the end of a training session), or with groups of children — if the approval of
+        ALL relevant parents/carers has been sought at that time.
+      </p>
+      <p class="mb-4">
+        But <strong class="text-white">no</strong> photos or videos are to be taken of children in the gym
+        unless permission has been granted by the parent/guardian of any child whose image is captured.
+      </p>
+      <p class="mb-4">
+        From a business perspective, Guildford Jiu Jitsu has always taken a clear stance by no longer using
+        footage or photographs of our young members, or sharing their achievements online and only choosing
+        to go against this policy with those youngsters whose parents are directly involved in the process of
+        capturing and sharing these images with us at special events like competitions and gradings, or the
+        children of our Adult Membership/Coaching Team.
+      </p>
+      <p>
+        In addition, we will take steps to ensure that any images collected in these limited circumstances
+        are used solely for the purposes for which they are intended. If you become aware that these images
+        are being used inappropriately, please inform us immediately.
+      </p>
+    </div>
+
+    <div class="border-t border-white/10 pt-10">
+      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">Photography Policy for Guildford Jiu Jitsu Parents</h2>
+      <ul class="space-y-2">
+        {photoParentPolicy.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
+      </ul>
+      <p class="mt-4">
+        The Photographic Waiver does not include or cover Guildford Jiu Jitsu's security CCTV footage, CCTV
+        from neighbouring businesses or CCTV systems belonging to the landlords of Blenheim House, Guildford.
+      </p>
+    </div>
+
+    <div class="border-t border-white/10 pt-6 grid sm:grid-cols-2 gap-8">
+      <div>
+        <p class="font-bold uppercase tracking-wide text-white text-sm mb-2">Designated Safeguarding Officer (DSO)</p>
+        <p>Name: Jon Collins</p>
+        <p>Email: <a href={`mailto:${site.email}`} class="text-brand-red hover:underline">{site.email}</a></p>
+      </div>
+      <div>
+        <p class="font-bold uppercase tracking-wide text-white text-sm mb-2">NSPCC Helpline</p>
+        <p><a href="tel:08088005000" class="text-brand-red hover:underline">0808 800 5000</a></p>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-6">
+      <p class="font-bold uppercase tracking-wide text-white text-sm mb-2">Monitoring</p>
+      <p class="mb-3">
+        This policy will be reviewed a year after development and then every three years, or in the following
+        circumstances:
+      </p>
+      <ul class="space-y-2">
+        {monitoring.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
+      </ul>
+    </div>
+
+    <p class="text-white/40 text-sm pt-6">Last Reviewed: 08/06/2026</p>
   </section>
 </Layout>

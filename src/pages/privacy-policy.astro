@@ -1,19 +1,126 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
+
+const purposes = [
+  "To provide and operate the Services;",
+  "To provide our Users with ongoing customer assistance and technical support;",
+  "To be able to contact our Visitors and Users with general or personalized service-related notices and promotional messages;",
+  "To create aggregated statistical data and other aggregated and/or inferred Non-personal Information, which we or our business partners may use to provide and improve our respective services;",
+  "To comply with any applicable laws and regulations.",
+];
+
+const monitoring = [
+  "Changes in legislation and/or government guidance.",
+  "As a result of any other significant change or event.",
+];
 ---
 <Layout
   title="Privacy & Cookie Policy — Guildford Jiu Jitsu"
-  description="Guildford Jiu Jitsu's privacy and cookie policy."
+  description="Guildford Jiu Jitsu's privacy and cookie policy: what data we collect, how we use it, and how to contact us about your information."
   path="/privacy-policy"
 >
-  <section class="mx-auto max-w-3xl px-4 md:px-8 py-16">
-    <h1 class="text-3xl font-black mb-6">Privacy &amp; Cookie Policy</h1>
-    <p class="text-white/70 text-sm">
-      TODO: paste the real privacy policy content from the current live site
-      (guildfordbjj.com/privacy-policy) here before launch. Note: the old Wix
-      site had a duplicate orphan page at /copy-of-privacy-policy — do not
-      recreate that page, redirect it straight to this one in the DNS/redirect map.
+  <section class="bg-black py-16 text-center">
+    <div class="mx-auto max-w-3xl px-4">
+      <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2">Privacy &amp; Cookie Policy</h1>
+      <p class="text-white/60">{site.name}</p>
+      <p class="text-white/40 text-sm mt-2">Last Reviewed: 08/06/2026</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 md:px-8 py-16 text-white/75 leading-relaxed space-y-6">
+    <h2 class="text-xl font-black uppercase tracking-tight text-white mb-2">guildfordbjj.com Privacy Policy</h2>
+
+    <p>
+      We receive, collect and store any information you enter on our website or provide us in any other way.
+      In addition, we collect the Internet protocol (IP) address used to connect your computer to the Internet;
+      login; e-mail address; password; computer and connection information and purchase history. We may use
+      software tools to measure and collect session information, including page response times, length of
+      visits to certain pages, page interaction information, and methods used to browse away from the page.
+      We also collect personally identifiable information (including name, email, password, communications);
+      payment details (including credit card information), comments, feedback, product reviews,
+      recommendations, and personal profile.
     </p>
+
+    <p>
+      When you conduct a transaction on our website, as part of the process, we collect personal information
+      you give us such as your name, address and email address. Your personal information will be used for
+      the specific reasons stated above only.
+    </p>
+
+    <div>
+      <p class="font-bold uppercase tracking-wide text-white text-sm mb-3">We collect such non-personal and personal information for the following purposes:</p>
+      <ul class="space-y-2">
+        {purposes.map((item) => (
+          <li class="flex items-start gap-3">
+            <span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <p>
+      Our company is hosted on the Wix.com platform. Wix.com provides us with the online platform that allows
+      us to sell our products and services to you. Your data may be stored through Wix.com's data storage,
+      databases and the general Wix.com applications. They store your data on secure servers behind a firewall.
+    </p>
+
+    <p>
+      All direct payment gateways offered by Wix.com and used by our company adhere to the standards set by
+      PCI-DSS as managed by the PCI Security Standards Council, which is a joint effort of brands like Visa,
+      MasterCard, American Express and Discover. PCI-DSS requirements help ensure the secure handling of
+      credit card information by our store and its service providers.
+    </p>
+
+    <p>
+      We may contact you to notify you regarding your account, to troubleshoot problems with your account, to
+      resolve a dispute, to collect fees or monies owed, to poll your opinions through surveys or
+      questionnaires, to send updates about our company, or as otherwise necessary to contact you to enforce
+      our User Agreement, applicable national laws, and any agreement we may have with you. For these
+      purposes we may contact you via email, telephone, text messages, and postal mail.
+    </p>
+
+    <p>
+      If you don't want us to process your data anymore, please contact us at
+      {" "}<a href={`mailto:${site.email}`} class="text-brand-red hover:underline">{site.email}</a>
+    </p>
+
+    <p>
+      We reserve the right to modify this privacy policy at any time, so please review it frequently. Changes
+      and clarifications will take effect immediately upon their posting on the website. If we make material
+      changes to this policy, we will notify you here that it has been updated, so that you are aware of what
+      information we collect, how we use it, and under what circumstances, if any, we use and/or disclose it.
+    </p>
+
+    <p>
+      If you would like to: access, correct, amend or delete any personal information we have about you, you
+      are invited to contact us at
+      {" "}<a href={`mailto:${site.email}`} class="text-brand-red hover:underline">{site.email}</a>
+    </p>
+
+    <div class="border-t border-white/10 pt-6 mt-8">
+      <p class="font-bold uppercase tracking-wide text-white text-sm mb-2">Contact</p>
+      <p>Name: Jon Collins</p>
+      <p>Email: <a href={`mailto:${site.email}`} class="text-brand-red hover:underline">{site.email}</a></p>
+    </div>
+
+    <div class="border-t border-white/10 pt-6 mt-8">
+      <p class="font-bold uppercase tracking-wide text-white text-sm mb-2">Monitoring</p>
+      <p class="mb-3">
+        The policy will be reviewed a year after development and then every three years, or in the following
+        circumstances:
+      </p>
+      <ul class="space-y-2">
+        {monitoring.map((item) => (
+          <li class="flex items-start gap-3">
+            <span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <p class="text-white/40 text-sm pt-6">Last Reviewed: 08/06/2026</p>
   </section>
 </Layout>

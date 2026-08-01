@@ -13,18 +13,38 @@ const schema = {
 };
 
 const plans = [
-  { name: "SILVER", popular: false, features: ["2 Classes Per Week", "Flexible Schedule", "Train Morning, Noon or Night", "Ideal For Hobbyists"] },
-  { name: "GOLD", popular: true, features: ["Unlimited Classes", "Gi & No-Gi Training", "Wrestling Included", "Weights Gym Included", "Best Value - Get Good, Fast!"] },
-  { name: "PLATINUM", popular: false, features: ["Unlimited Classes", "Monthly Private Lesson Included", "Weights Gym Included", "Fastest Progress Possible"] },
-  { name: "KIDS TEAM", popular: false, features: ["Ages 5-15", "Up to 4 Training Sessions a Week", "Structured Curriculum", "Bully-Proofing Your Little Ones"] },
+  {
+    name: "Gold", popular: true, barClass: "from-yellow-400 to-yellow-600", underlineClass: "bg-yellow-500", borderHover: "hover:border-yellow-500/50",
+    features: ["Unlimited Classes", "Gi & No-Gi Training", "Wrestling Included", "Weights Gym Included", "Best Value - Get Good, Fast!"],
+  },
+  {
+    name: "Silver", popular: false, barClass: "from-gray-300 to-gray-500", underlineClass: "bg-gray-400", borderHover: "hover:border-gray-400/50",
+    features: ["2 Classes Per Week", "Flexible Schedule", "Train Morning, Noon or Night", "Ideal For Hobbyists"],
+  },
+  {
+    name: "Platinum", popular: false, barClass: "from-slate-500 to-slate-700", underlineClass: "bg-slate-500", borderHover: "hover:border-slate-500/50",
+    features: ["Unlimited Classes", "Monthly Private Lesson Included", "Weights Gym Included", "Fastest Progress Possible"],
+  },
+  {
+    name: "Kids Team", popular: false, barClass: "", solidBar: true, underlineClass: "bg-brand-red", borderHover: "hover:border-brand-red/50",
+    features: ["Ages 5-15", "Up to 4 Training Sessions a Week", "Structured Curriculum", "Bully-Proofing your little ones"],
+  },
 ];
 
 const whyJoin = ["No Contracts", "No Annual Fees", "No Grading Fees", "Upgrade or Downgrade Anytime", "Friendly Community", "Dedicated, Modern Facility", "Experienced & Qualified Coaches", "Sessions, Morning Noon & Night"];
+
+const different = [
+  { icon: "🥋", text: "Beginner Friendly" },
+  { icon: "🛡", text: "Safe Training Environment" },
+  { icon: "🧠", text: "Modern Science-Based Coaching" },
+  { icon: "🤝", text: "Supportive Community" },
+];
 
 const compareRows = [
   { feature: "Unlimited Training", gold: true, silver: false, platinum: true },
   { feature: "Private Lessons", gold: false, silver: false, platinum: true },
   { feature: "Weights Gym", gold: true, silver: false, platinum: true },
+  { feature: "Classes Per Week", gold: "Unlimited", silver: "2", platinum: "Unlimited" },
 ];
 ---
 <Layout
@@ -33,76 +53,141 @@ const compareRows = [
   path="/memberships"
   schema={schema}
 >
-  <section class="bg-black py-16 text-center">
-    <div class="mx-auto max-w-2xl px-4">
-      <h1 class="text-4xl md:text-5xl font-black mb-4">MEMBERSHIP OPTIONS</h1>
-      <p class="text-white/70 mb-2">Train Around Your Schedule.</p>
-      <p class="text-2xl font-black text-brand-red mb-1">Flexible Memberships from Just £65 per Month</p>
-      <p class="text-white/60 text-sm mb-6">Children's memberships £55 per month</p>
-      <a href="/#free-trial" class="inline-block bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700">BOOK FREE TRIAL</a>
+  <!-- HERO -->
+  <section class="relative min-h-[80vh] flex flex-col text-center px-4 border-b border-white/5 overflow-hidden">
+    <div class="absolute inset-0 w-full h-full pointer-events-none overflow-hidden bg-black">
+      <iframe
+        src="https://www.youtube.com/embed/xFIenA7la2A?autoplay=1&mute=1&loop=1&playlist=xFIenA7la2A&controls=0&showinfo=0&rel=0"
+        class="absolute top-1/2 left-1/2 w-[300vw] h-[168.75vw] md:w-[150vw] md:h-[84.375vw] lg:w-[100vw] lg:h-[56.25vw] -translate-x-1/2 -translate-y-1/2"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        title="Guildford Jiu Jitsu memberships hero video"
+      ></iframe>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
     </div>
-  </section>
-
-  <section class="mx-auto max-w-7xl px-4 md:px-8 py-16">
-    <h2 class="text-2xl md:text-3xl font-black text-center mb-10">MEMBERSHIP PLANS</h2>
-    <div class="grid md:grid-cols-4 gap-6">
-      {plans.map((p) => (
-        <div class={`bg-white/5 border rounded-xl p-6 relative ${p.popular ? "border-brand-red" : "border-white/10"}`}>
-          {p.popular && (
-            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-red text-xs font-bold px-3 py-1 rounded-full">MOST POPULAR</span>
-          )}
-          <h3 class="font-black text-xl mb-4 mt-2">{p.name}</h3>
-          <ul class="space-y-2 text-sm text-white/80 mb-6">
-            {p.features.map((f) => <li>• {f}</li>)}
-          </ul>
-          <a href="/#free-trial" class="block text-center bg-brand-red font-bold rounded py-2 hover:bg-red-700">START FREE TRIAL</a>
+    <div class="container relative z-10 mx-auto max-w-4xl flex flex-col flex-grow justify-between h-full">
+      <div class="flex-grow flex flex-col justify-center mt-12">
+        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-white drop-shadow-lg">Membership Options</h1>
+        <p class="text-xl md:text-2xl font-body text-white/80 mb-2">Train Around Your Schedule.<br />Flexible Memberships from Just £65 per Month</p>
+        <p class="text-base md:text-lg font-body text-white/60 mb-10">Children's memberships £55 per month</p>
+        <div class="mt-auto pt-12">
+          <a href="/#free-trial" class="inline-flex items-center justify-center gap-2 whitespace-nowrap h-11 bg-brand-red hover:bg-red-700 text-white font-bold uppercase tracking-widest px-10 transition-transform hover:scale-105">Book Free Trial</a>
         </div>
-      ))}
+      </div>
+      <div class="max-w-2xl mx-auto pb-12">
+        <p class="text-lg md:text-xl font-bold font-body text-white mb-2">Not sure which membership is right for you?</p>
+        <p class="text-md md:text-lg text-white/80 font-body">Book a free trial and we'll recommend the best option after your first class.</p>
+      </div>
     </div>
   </section>
 
-  <section class="bg-white/5 py-16">
-    <div class="mx-auto max-w-3xl px-4 md:px-8">
-      <h2 class="text-2xl md:text-3xl font-black text-center mb-8">COMPARE PLANS</h2>
-      <table class="w-full text-sm text-center border-collapse">
-        <thead>
-          <tr class="border-b border-white/20">
-            <th class="text-left py-3">FEATURE</th>
-            <th class="py-3">GOLD</th>
-            <th class="py-3">SILVER</th>
-            <th class="py-3">PLATINUM</th>
-          </tr>
-        </thead>
-        <tbody>
-          {compareRows.map((r) => (
-            <tr class="border-b border-white/10">
-              <td class="text-left py-3">{r.feature}</td>
-              <td class="py-3">{r.gold ? "✓" : "✗"}</td>
-              <td class="py-3">{r.silver ? "✓" : "✗"}</td>
-              <td class="py-3">{r.platinum ? "✓" : "✗"}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  <!-- WHY JOIN -->
+  <section class="py-20 bg-zinc-950 border-b border-white/5">
+    <div class="mx-auto max-w-5xl px-4 md:px-8">
+      <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-12">Why Join Guildford Jiu Jitsu?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {whyJoin.map((w) => (
+          <div class="flex items-center gap-4 bg-black p-6 border border-white/10 rounded-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-brand-red flex-shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <span class="text-lg font-body text-white/90">{w}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-5xl px-4 md:px-8 py-16">
-    <h2 class="text-2xl md:text-3xl font-black text-center mb-8">WHY JOIN GUILDFORD JIU JITSU?</h2>
-    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm text-white/80">
-      {whyJoin.map((w) => <div class="bg-white/5 rounded-lg p-4">{w}</div>)}
+  <!-- WHAT MAKES US DIFFERENT -->
+  <section class="py-20 bg-black border-b border-white/5">
+    <div class="mx-auto max-w-4xl px-4 md:px-8">
+      <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-12">What Makes Us Different?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {different.map((d) => (
+          <div class="flex items-center gap-4 bg-zinc-950 p-8 border border-white/10 rounded-lg hover:border-brand-red/50 transition-colors">
+            <span class="text-4xl flex-shrink-0">{d.icon}</span>
+            <span class="text-xl font-body text-white/90">{d.text}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="bg-white/5 py-16">
+  <!-- MEMBERSHIP PLANS -->
+  <section class="py-24 bg-black border-b border-white/5">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
-      <h2 class="text-2xl md:text-3xl font-black text-center mb-2">TRUSTED BY HUNDREDS OF LOCAL MEMBERS</h2>
-      <p class="text-center font-bold mb-10">★★★★★ 5.0 (214 reviews)</p>
+      <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-12">Membership Plans</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mb-16">
+        {plans.map((p) => (
+          <div class={`bg-zinc-950 border border-white/10 p-8 flex flex-col relative group ${p.borderHover} transition-colors`}>
+            {p.solidBar ? (
+              <div class="absolute top-0 left-0 w-full h-1 bg-brand-red"></div>
+            ) : (
+              <div class={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${p.barClass}`}></div>
+            )}
+            {p.popular && (
+              <div class="absolute -top-3 right-4 bg-brand-red text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3">Most Popular</div>
+            )}
+            <h3 class="text-3xl font-black uppercase tracking-tighter text-white mb-2">{p.name}</h3>
+            <div class={`w-12 h-1 ${p.underlineClass} mb-6`}></div>
+            <ul class="space-y-4 mb-8 flex-grow">
+              {p.features.map((f) => (
+                <li class="flex items-start gap-3">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                  <span class="text-white/80 font-body text-base">{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="/#free-trial" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm bg-brand-red hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-3 text-center transition-colors">Start Free Trial</a>
+          </div>
+        ))}
+      </div>
+
+      <!-- COMPARE PLANS -->
+      <div class="max-w-3xl mx-auto">
+        <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-4 text-white text-center">Compare Plans</h3>
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-white/10">
+              <th class="py-4 px-6 text-white/60 font-bold uppercase tracking-widest text-sm">Feature</th>
+              <th class="py-4 px-6 text-yellow-500 font-bold uppercase tracking-widest text-sm text-center">Gold</th>
+              <th class="py-4 px-6 text-gray-400 font-bold uppercase tracking-widest text-sm text-center">Silver</th>
+              <th class="py-4 px-6 text-slate-500 font-bold uppercase tracking-widest text-sm text-center">Platinum</th>
+            </tr>
+          </thead>
+          <tbody class="text-white/80 font-body text-base">
+            {compareRows.map((r) => (
+              <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <td class="py-4 px-6">{r.feature}</td>
+                <td class="py-4 px-6 text-center text-xl">{r.gold === true ? <span class="text-brand-red">✓</span> : r.gold === false ? <span class="text-white/30">✗</span> : r.gold}</td>
+                <td class="py-4 px-6 text-center text-xl">{r.silver === true ? <span class="text-brand-red">✓</span> : r.silver === false ? <span class="text-white/30">✗</span> : r.silver}</td>
+                <td class="py-4 px-6 text-center text-xl">{r.platinum === true ? <span class="text-brand-red">✓</span> : r.platinum === false ? <span class="text-white/30">✗</span> : r.platinum}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM PHOTO BANNER -->
+  <section class="w-full border-b border-white/5">
+    <img src="https://vibe.filesafe.space/1779794450101245883/attachments/835b3a55-fb50-449d-b711-25a8a21beecd.png" alt="Guildford Jiu Jitsu Team" class="w-full h-auto object-cover" loading="lazy" />
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-20 bg-black overflow-hidden border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-2">Trusted By Hundreds Of Local Members</h2>
+      <p class="text-center font-bold text-brand-red mb-10">★★★★★ 5.0 (214 reviews)</p>
       <div class="grid md:grid-cols-4 gap-6">
         {googleReviews.slice(0, 4).map((r) => (
-          <div class="bg-black rounded-lg p-5">
-            <p class="font-bold mb-1">{r.name}</p>
-            <p class="text-xs text-white/50 mb-3">{r.time}</p>
+          <div class="bg-zinc-950 border border-white/10 rounded-lg p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-full bg-brand-red flex items-center justify-center font-black text-white flex-shrink-0">{r.name.charAt(0)}</div>
+              <div>
+                <p class="font-bold text-sm">{r.name}</p>
+                <p class="text-xs text-white/40">{r.time}</p>
+              </div>
+            </div>
             <p class="text-sm text-white/80">&ldquo;{r.text}&rdquo;</p>
           </div>
         ))}
@@ -110,8 +195,11 @@ const compareRows = [
     </div>
   </section>
 
-  <section class="py-16 text-center">
-    <h2 class="text-2xl md:text-3xl font-black mb-6">START YOUR FREE TRIAL TODAY</h2>
-    <a href="/#free-trial" class="inline-block bg-brand-red px-8 py-3 font-bold rounded hover:bg-red-700">BOOK FREE CLASS</a>
+  <!-- FINAL CTA -->
+  <section class="py-24 bg-black text-center">
+    <div class="mx-auto max-w-2xl px-4">
+      <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-white">Start Your Free Trial Today</h2>
+      <a href="/#free-trial" class="inline-flex items-center justify-center gap-2 whitespace-nowrap bg-brand-red hover:bg-red-700 text-white font-bold uppercase tracking-widest px-10 py-4 transition-transform hover:scale-105">Book Free Class</a>
+    </div>
   </section>
 </Layout>
