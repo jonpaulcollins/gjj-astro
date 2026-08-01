@@ -2,39 +2,102 @@
 import { site } from "../data/site";
 ---
 <footer class="bg-black text-white/80 border-t border-white/10">
-  <div class="mx-auto max-w-7xl px-4 md:px-8 py-12 grid gap-10 md:grid-cols-3">
-    <div>
-      <h3 class="text-white font-bold mb-3 tracking-wide">FOLLOW US</h3>
-      <ul class="space-y-2 text-sm">
-        <li><a href={site.social.facebook} class="hover:text-brand-red">Facebook</a></li>
-        <li><a href={site.social.instagram} class="hover:text-brand-red">Instagram</a></li>
-        <li><a href={site.social.youtube} class="hover:text-brand-red">YouTube</a></li>
-        <li><a href={site.social.tiktok} class="hover:text-brand-red">TikTok</a></li>
-      </ul>
-    </div>
-    <div id="contact">
-      <h3 class="text-white font-bold mb-3 tracking-wide">CONTACT US</h3>
-      <ul class="space-y-2 text-sm">
-        <li><a href={`tel:${site.phone}`} class="hover:text-brand-red">{site.phoneDisplay}</a></li>
-        <li><a href={`mailto:${site.email}`} class="hover:text-brand-red">{site.email}</a></li>
-        <li>{site.address.street}, {site.address.locality}, {site.address.postalCode}</li>
-      </ul>
-    </div>
-    <div>
-      <h3 class="text-white font-bold mb-3 tracking-wide">QUICK LINKS</h3>
-      <ul class="space-y-2 text-sm">
-        <li><a href="/timetable" class="hover:text-brand-red">Timetable</a></li>
-        <li><a href="/classes" class="hover:text-brand-red">Classes</a></li>
-        <li><a href="/faq" class="hover:text-brand-red">FAQ</a></li>
-        <li><a href="/#free-trial" class="hover:text-brand-red">Free Trial</a></li>
-      </ul>
+  <!-- FOLLOW US bar -->
+  <div class="bg-zinc-900 border-b border-white/10 py-6">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
+        <p class="text-xs font-bold uppercase tracking-[0.3em] text-white/50">Follow Us</p>
+        <div class="flex items-center gap-6">
+          <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-brand-red transition-colors group">
+            <span class="p-2.5 bg-white/5 rounded-full group-hover:bg-brand-red transition-colors">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/>
+              </svg>
+            </span>
+            <span class="hidden sm:inline">Facebook</span>
+          </a>
+          <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-brand-red transition-colors group">
+            <span class="p-2.5 bg-white/5 rounded-full group-hover:bg-brand-red transition-colors">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </span>
+            <span class="hidden sm:inline">Instagram</span>
+          </a>
+          <a href={site.social.youtube} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-brand-red transition-colors group">
+            <span class="p-2.5 bg-white/5 rounded-full group-hover:bg-brand-red transition-colors">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/>
+              </svg>
+            </span>
+            <span class="hidden sm:inline">YouTube</span>
+          </a>
+          <a href={site.social.tiktok} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-brand-red transition-colors group">
+            <span class="p-2.5 bg-white/5 rounded-full group-hover:bg-brand-red transition-colors">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path d="M16.6 5.82c-.98-.94-1.6-2.24-1.6-3.68h-3.1v13.42a3.06 3.06 0 0 1-3.06 2.96 3.07 3.07 0 0 1 0-6.14c.31 0 .61.05.9.14V9.4a6.2 6.2 0 0 0-.9-.06 6.2 6.2 0 1 0 6.2 6.2V8.66a8.3 8.3 0 0 0 4.66 1.42V6.98a4.85 4.85 0 0 1-3.1-1.16Z"/>
+              </svg>
+            </span>
+            <span class="hidden sm:inline">TikTok</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="border-t border-white/10 px-4 md:px-8 py-6 text-xs flex flex-col md:flex-row justify-between gap-2">
-    <p>&copy; {new Date().getFullYear()} Guildford Jiu Jitsu. All rights reserved.</p>
-    <div class="flex gap-4">
-      <a href="/privacy-policy" class="hover:text-brand-red">Privacy &amp; Cookie Policy</a>
-      <a href="/child-protection-policy" class="hover:text-brand-red">Child Protection Policy</a>
+
+  <!-- Main footer body -->
+  <div class="mx-auto max-w-7xl px-4 md:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+      <div>
+        <h3 class="text-white text-xl font-bold uppercase tracking-widest mb-6 border-b border-brand-red w-fit mx-auto md:mx-0 pb-1">Contact Us</h3>
+        <div class="space-y-4">
+          <a href={`tel:${site.phone}`} class="flex items-center justify-center md:justify-start gap-3 hover:text-brand-red transition-colors">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand-red flex-shrink-0">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>{site.phoneDisplay}</span>
+          </a>
+          <a href={`mailto:${site.email}`} class="flex items-center justify-center md:justify-start gap-3 hover:text-brand-red transition-colors">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand-red flex-shrink-0">
+              <path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6Zm-2 0-8 5-8-5"/>
+            </svg>
+            <span>{site.email}</span>
+          </a>
+          <div class="flex items-start justify-center md:justify-start gap-3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-brand-red mt-1 flex-shrink-0">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>{site.address.unit},<br />{site.address.street},<br />{site.address.locality}, {site.address.postalCode}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <h3 class="text-white text-xl font-bold uppercase tracking-widest mb-6 border-b border-brand-red w-fit pb-1">Quick Links</h3>
+        <ul class="space-y-3 text-sm uppercase tracking-widest text-white/60">
+          <li><a href="/timetable" class="hover:text-brand-red transition-colors">Timetable</a></li>
+          <li><a href="/classes#kids" class="hover:text-brand-red transition-colors">Kids Classes</a></li>
+          <li><a href="/classes#adults" class="hover:text-brand-red transition-colors">Adult Beginners</a></li>
+          <li><a href="/faq" class="hover:text-brand-red transition-colors">FAQ</a></li>
+          <li><a href="/#free-trial" class="hover:text-brand-red transition-colors">Free Trial</a></li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col items-center md:items-end">
+        <img
+          src="https://vibe.filesafe.space/1779794450101245883/assets/def5f433-3496-41e8-86c6-f27ed1492ec7.png"
+          alt="Guildford Jiu Jitsu Logo"
+          class="h-24 w-auto mb-4"
+        />
+        <p class="text-sm text-white/60">&copy; {new Date().getFullYear()} Guildford Jiu Jitsu. All rights reserved.</p>
+        <div class="flex flex-wrap gap-4 mt-4 text-xs text-white/60 uppercase tracking-widest justify-center md:justify-end">
+          <a href="/privacy-policy" class="hover:text-brand-red transition-colors">Privacy &amp; Cookie Policy</a>
+          <a href="/child-protection-policy" class="hover:text-brand-red transition-colors">Child Protection Policy</a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
