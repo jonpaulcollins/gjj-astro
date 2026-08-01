@@ -5,6 +5,7 @@ export const site = {
   phoneDisplay: "+44 7575 572021",
   email: "info@guildfordbjj.com",
   address: {
+    unit: "Lower Ground Floor",
     street: "1-2 Bridge Street",
     locality: "Guildford",
     region: "Surrey",
