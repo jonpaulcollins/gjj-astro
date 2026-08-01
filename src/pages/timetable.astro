@@ -18,6 +18,130 @@ const quickFaqs = [
   "Do I need to be fit?", "Am I too old?", "What should I wear?", "Can I start as a complete beginner?",
   "Is there parking?", "How much does it cost after my trial?", "How long are classes?", "Can my child try first?",
 ];
+
+const badges = ["Beginners Encouraged", "Free Trial Available", "Friendly Coaches", "All Fitness Levels", "Ages 5+", "7 Days Per Week"];
+
+const whyTrain = [
+  { icon: "calendar", text: "Train 7 Days Per Week" },
+  { icon: "star", text: "200+ Five-Star Reviews" },
+  { icon: "clock", text: "1000+ Classes Every Year" },
+  { icon: "sparkles", text: "Purpose-Built Facility" },
+  { icon: "smile", text: "Friendly Community" },
+];
+
+const testimonials = [
+  { name: "George Kershaw", time: "2 months ago", quote: "I dropped in for a trial and the coaches were fantastic and the members were great to roll with. I love the idea of making the classes live and realistic to competition style. Super easy to sign up with showers and clean gym." },
+  { name: "Steve Dunn", time: "5 months ago", quote: "Top training facilities, top coaches. Can only say great thing about this place" },
+  { name: "Romanas Virvilas", time: "7 months ago", quote: "Guildford jiu jitsu was the best place I came to train, the coaching and the environment of the club are absolutely brilliant and I have not just learnt so much but left with a great mood after each session." },
+  { name: "Sarah J", time: "8 months ago", quote: "Started as a complete beginner and felt welcomed immediately. The curriculum is structured perfectly for learning." },
+];
+
+const bands = [
+  { key: "early", label: "Early" },
+  { key: "noon", label: "Mid-Morning/Noon" },
+  { key: "afternoon", label: "Afternoon" },
+  { key: "evening", label: "Evening/Night" },
+];
+
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+type ClassItem = { title: string; time: string; bg: string; cat: "adults" | "kids" };
+type Cell = ClassItem[] | "private" | "empty";
+
+const schedule: Record<string, Record<string, Cell>> = {
+  Monday: {
+    early: [{ title: "Wrestling (No-Gi)", time: "06:30 – 08:00", bg: "bg-yellow-500/20 border-l-yellow-500", cat: "adults" }],
+    noon: [{ title: "Foundations BJJ (Gi)", time: "12:00 – 13:00", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" }],
+    afternoon: [
+      { title: "Junior BJJ (Gi) (5-10yrs)", time: "16:30 – 17:15", bg: "bg-orange-500/20 border-l-orange-500", cat: "kids" },
+      { title: "Teen BJJ (Gi) (10-15yrs)", time: "17:20 – 18:15", bg: "bg-emerald-500/20 border-l-emerald-500", cat: "kids" },
+    ],
+    evening: [
+      { title: "Foundations BJJ (Gi)", time: "18:30 – 19:30", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" },
+      { title: "All Levels Submission Grappling (No-Gi)", time: "19:45 – 21:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
+    ],
+  },
+  Tuesday: {
+    early: "private",
+    noon: "private",
+    afternoon: "private",
+    evening: [
+      { title: "Foundations BJJ (Gi)", time: "18:30 – 19:30", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" },
+      { title: "All Levels Submission Grappling (No-Gi)", time: "19:45 – 21:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
+    ],
+  },
+  Wednesday: {
+    early: [{ title: "Wrestling (No-Gi)", time: "06:30 – 08:00", bg: "bg-yellow-500/20 border-l-yellow-500", cat: "adults" }],
+    noon: [{ title: "Foundations BJJ (Gi)", time: "12:00 – 13:00", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" }],
+    afternoon: [
+      { title: "Junior BJJ (Gi) (5-10yrs)", time: "16:30 – 17:15", bg: "bg-orange-500/20 border-l-orange-500", cat: "kids" },
+      { title: "Teen BJJ (Gi) (10-15yrs)", time: "17:20 – 18:15", bg: "bg-emerald-500/20 border-l-emerald-500", cat: "kids" },
+    ],
+    evening: [
+      { title: "Foundations (No-Gi)", time: "18:30 – 20:00", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" },
+      { title: "Foundations MMA (Guards & Gloves)", time: "20:00 – 21:00", bg: "bg-[#39FF14]/20 border-l-[#39FF14]", cat: "adults" },
+    ],
+  },
+  Thursday: {
+    early: "private",
+    noon: "private",
+    afternoon: [
+      { title: "Junior No-Gi (5-10yrs)", time: "16:30 – 17:15", bg: "bg-orange-500/20 border-l-orange-500", cat: "kids" },
+      { title: "Teen No-Gi (10-15yrs)", time: "17:20 – 18:15", bg: "bg-emerald-500/20 border-l-emerald-500", cat: "kids" },
+    ],
+    evening: [
+      { title: "Foundations BJJ (Gi)", time: "18:30 – 19:30", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" },
+      { title: "All Levels Submission Grappling (No-Gi)", time: "19:45 – 21:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
+    ],
+  },
+  Friday: {
+    early: "private",
+    noon: [{ title: "Sparring (No-Gi)", time: "12:00 – 13:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" }],
+    afternoon: "private",
+    evening: [
+      { title: "Foundations (No-Gi)", time: "18:30 – 20:00", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" },
+      { title: "Foundations MMA (COMING SOON!)", time: "20:00 – 21:00", bg: "bg-[#39FF14]/20 border-l-[#39FF14]", cat: "adults" },
+    ],
+  },
+  Saturday: {
+    early: [{ title: "Junior & Teen Sparring (No-Gi)", time: "09:30 – 10:10", bg: "bg-orange-500/20 border-l-orange-500", cat: "kids" }],
+    noon: [
+      { title: "All Levels Leglock Class (No-Gi)", time: "10:30 – 11:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
+      { title: "Sparring (No-Gi)", time: "11:00 – 12:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
+      { title: "Blue-Light Class (No-Gi)", time: "12:15 – 13:15", bg: "bg-blue-900/40 border-l-blue-900", cat: "adults" },
+    ],
+    afternoon: "empty",
+    evening: "empty",
+  },
+  Sunday: {
+    early: "empty",
+    noon: [
+      { title: "Women Only Class", time: "10:30 – 11:45", bg: "bg-fuchsia-500/20 border-l-fuchsia-500", cat: "adults" },
+      { title: "Sparring (No-Gi)", time: "12:00 – 13:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
+    ],
+    afternoon: "empty",
+    evening: "empty",
+  },
+};
+
+const legend = [
+  { label: "Foundations", swatch: "bg-blue-400" },
+  { label: "Foundations MMA", swatch: "bg-[#39FF14]" },
+  { label: "Wrestling", swatch: "bg-yellow-500" },
+  { label: "All Levels / Sparring", swatch: "bg-red-500" },
+  { label: "Kids / Juniors", swatch: "bg-orange-500" },
+  { label: "Teens", swatch: "bg-emerald-500" },
+  { label: "Women Only", swatch: "bg-fuchsia-500" },
+  { label: "Blue-Light", swatch: "bg-blue-900/40" },
+];
+
+const icons: Record<string, string> = {
+  calendar: '<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>',
+  star: '<polygon points="12 2 15.09 8.26 22 9 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9 8.91 8.26 12 2"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  sparkles: '<path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>',
+  smile: '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/>',
+};
 ---
 <Layout
   title="Class Timetable — Guildford Jiu Jitsu"
@@ -25,7 +149,8 @@ const quickFaqs = [
   path="/timetable"
   schema={schema}
 >
-  <section class="relative bg-black py-16 text-center overflow-hidden min-h-[500px] flex items-center">
+  <!-- HERO -->
+  <section class="relative min-h-[500px] flex flex-col justify-center bg-black text-center overflow-hidden border-b border-white/10">
     <div class="absolute inset-0 z-0">
       <iframe
         src="https://player.vimeo.com/video/1211204706?h=b9e43f0c5e&background=1&autoplay=1&loop=1&muted=1"
@@ -36,48 +161,188 @@ const quickFaqs = [
       ></iframe>
       <div class="absolute inset-0 bg-black/60"></div>
     </div>
-    <div class="relative z-10 mx-auto max-w-3xl px-4">
-      <h1 class="text-4xl md:text-5xl font-black mb-4">FIND THE PERFECT<br />CLASS FOR YOU</h1>
-      <p class="text-white/70 mb-6">Morning, lunchtime and evening classes. Beginners encouraged. Train 7 days a week.</p>
-      <a href="/#free-trial" class="inline-block bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700">CLAIM YOUR FREE TRIAL →</a>
-      <div class="flex flex-wrap gap-3 justify-center mt-8 text-xs font-bold text-white/60">
-        <span class="border border-white/20 rounded-full px-3 py-1">BEGINNERS ENCOURAGED</span>
-        <span class="border border-white/20 rounded-full px-3 py-1">FREE TRIAL AVAILABLE</span>
-        <span class="border border-white/20 rounded-full px-3 py-1">FRIENDLY COACHES</span>
-        <span class="border border-white/20 rounded-full px-3 py-1">ALL FITNESS LEVELS</span>
-        <span class="border border-white/20 rounded-full px-3 py-1">AGES 5+</span>
-        <span class="border border-white/20 rounded-full px-3 py-1">7 DAYS PER WEEK</span>
+    <div class="relative z-10 mx-auto max-w-3xl px-4 animate-fade-up">
+      <h1 class="mb-6 font-black uppercase tracking-tighter leading-[1] text-4xl sm:text-6xl md:text-7xl">Find The Perfect<br />Class For You</h1>
+      <p class="text-lg md:text-xl font-bold text-white/90 mb-8 max-w-2xl mx-auto">Morning, lunchtime and evening classes. Beginners encouraged. Train 7 days a week.</p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/#free-trial" class="inline-block bg-brand-red px-8 py-4 font-bold uppercase tracking-widest rounded-none hover:bg-red-700 transition-transform hover:scale-105">Claim Your Free Trial →</a>
+        <a href="#help-choose" class="inline-block bg-black border border-white/20 px-8 py-4 font-bold uppercase tracking-widest rounded-none hover:border-white/40 transition-transform hover:scale-105">Need Help Choosing?</a>
       </div>
     </div>
   </section>
 
-  <!-- TODO: replace with the real GHL calendar/booking widget embed (see src/data/site.ts) -->
-  <section class="mx-auto max-w-7xl px-4 md:px-8 py-16">
-    <h2 class="text-2xl md:text-3xl font-black text-center mb-2">CLASS TIMETABLE</h2>
-    <p class="text-center text-white/60 mb-10">Plan your training week — filter by age group</p>
-    <div class="bg-white/5 border border-white/10 rounded-xl p-10 text-center text-white/50 text-sm">
-      [ GHL Calendar / Timetable Widget Embed Placeholder — filterable grid: All Classes / Adults / Kids / Private Tuition ]
+  <!-- BADGE STRIP -->
+  <section class="py-8 bg-zinc-950 border-b border-white/5">
+    <div class="mx-auto max-w-5xl px-4">
+      <div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+        {badges.map((b) => (
+          <span class="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-white/60">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-brand-red flex-shrink-0">
+              <circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>
+            </svg>
+            {b}
+          </span>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="bg-white/5 py-16">
+  <!-- CLASS TIMETABLE -->
+  <section id="timetable-grid" class="py-16 md:py-24 bg-zinc-950">
+    <div class="mx-auto max-w-7xl px-4 md:px-8 container">
+      <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-2">Class Timetable</h2>
+      <p class="text-center text-white/60 mb-10">Plan your training week — filter by age group</p>
+
+      <div class="flex justify-center gap-1 mb-10 flex-wrap" id="timetable-filters">
+        <button data-filter="all" class="tt-filter-btn px-4 md:px-8 py-3 text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-200 bg-brand-red text-white">All Classes</button>
+        <button data-filter="adults" class="tt-filter-btn px-4 md:px-8 py-3 text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-200 bg-white/5 text-white/60 hover:text-white">Adults</button>
+        <button data-filter="kids" class="tt-filter-btn px-4 md:px-8 py-3 text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-200 bg-white/5 text-white/60 hover:text-white">Kids</button>
+        <button data-filter="private" class="tt-filter-btn px-4 md:px-8 py-3 text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-200 bg-white/5 text-white/60 hover:text-white">Private Tuition</button>
+      </div>
+
+      <!-- Desktop grid -->
+      <div class="hidden md:block overflow-x-auto">
+        <div class="grid grid-cols-[auto_repeat(7,1fr)] gap-x-2 gap-y-6 min-w-[1000px]">
+          <div class="bg-transparent"></div>
+          {days.map((d) => (
+            <div class="text-center py-3 bg-white/5 border border-white/10 font-bold text-sm uppercase tracking-widest">{d}</div>
+          ))}
+          {bands.map((band) => (
+            <>
+              <div class="flex items-center justify-center border border-white/10 bg-white/5 rounded text-xs font-bold uppercase tracking-widest text-white/50 px-2 text-center">{band.label}</div>
+              {days.map((d) => {
+                const cell = schedule[d][band.key];
+                return (
+                  <div class="flex flex-col gap-2 p-1.5 bg-black/20 border border-white/5 rounded-sm min-h-[160px]">
+                    {cell === "private" && (
+                      <div class="flex-1 flex flex-col gap-2 items-center justify-center p-3 border-l-2 border-zinc-800 bg-zinc-900/40 rounded-sm">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-white/40 text-center leading-tight">Private Tuition Only</span>
+                      </div>
+                    )}
+                    {cell === "empty" && (
+                      <div class="flex-1"></div>
+                    )}
+                    {Array.isArray(cell) && cell.map((item) => (
+                      <div
+                        class={`p-3 border border-white/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer rounded-sm flex-1 flex flex-col justify-center ${item.bg}`}
+                        data-cat={item.cat}
+                      >
+                        <p class="text-xs font-black uppercase tracking-widest leading-tight mb-1 text-white">{item.title}</p>
+                        <div class="flex items-center justify-between text-white/50 text-[11px]">{item.time}</div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+            </>
+          ))}
+        </div>
+      </div>
+
+      <!-- Mobile: day-pill tabs + stacked list -->
+      <div class="md:hidden">
+        <div class="flex gap-2 overflow-x-auto pb-3 mb-6 -mx-4 px-4" id="tt-day-pills">
+          {days.map((d, i) => (
+            <button
+              data-day={d}
+              class={`tt-day-pill flex-shrink-0 px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-full border ${i === 0 ? "bg-brand-red text-white border-brand-red" : "bg-white/5 text-white/60 border-white/10"}`}
+            >
+              {d.slice(0, 3)}
+            </button>
+          ))}
+        </div>
+        {days.map((d, i) => (
+          <div class="tt-day-panel space-y-3" data-day={d} style={i === 0 ? "" : "display:none"}>
+            {bands.map((band) => {
+              const cell = schedule[d][band.key];
+              if (cell === "empty") return null;
+              return (
+                <div>
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1.5">{band.label}</p>
+                  {cell === "private" ? (
+                    <div class="p-3 border-l-2 border-zinc-800 bg-zinc-900/40 rounded-sm">
+                      <span class="text-xs font-bold uppercase tracking-widest text-white/40">Private Tuition Only</span>
+                    </div>
+                  ) : (
+                    Array.isArray(cell) && cell.map((item) => (
+                      <div class={`p-3 border border-white/10 rounded-sm mb-2 ${item.bg}`} data-cat={item.cat}>
+                        <p class="text-sm font-black uppercase tracking-widest leading-tight mb-1 text-white">{item.title}</p>
+                        <div class="text-white/50 text-xs">{item.time}</div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+
+      <!-- Legend -->
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-12 pt-8 border-t border-white/10">
+        {legend.map((l) => (
+          <span class="flex items-center gap-2 text-xs font-semibold text-white/60">
+            <span class={`w-3 h-3 rounded-sm ${l.swatch}`}></span>
+            {l.label}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- NOT SURE WHICH CLASS -->
+  <section id="help-choose" class="py-16 md:py-24 bg-brand-red text-white text-center">
+    <div class="mx-auto max-w-4xl px-4">
+      <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6">Not sure which class is right for you?</h2>
+      <div class="text-lg md:text-2xl font-medium mb-8 space-y-3 text-white/90">
+        <p>Most new students feel exactly the same.</p>
+        <p>Our coaching team will recommend the perfect first class based on your age, experience and goals.</p>
+        <p class="font-bold text-white uppercase tracking-widest text-sm pt-2">No pressure. No commitment. Just a free introduction to Brazilian Jiu Jitsu.</p>
+      </div>
+      <a href="/#free-trial" class="inline-block bg-black hover:bg-black/80 text-white font-bold uppercase tracking-widest px-10 py-5 text-lg transition-transform hover:scale-105 border border-transparent hover:border-white/20">Help Me Choose My First Class →</a>
+    </div>
+  </section>
+
+  <!-- OUR PROGRAMMES -->
+  <section class="py-16 md:py-24 bg-black border-b border-white/5">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
-      <h2 class="text-2xl md:text-3xl font-black text-center mb-10">OUR PROGRAMMES</h2>
-      <div class="grid md:grid-cols-3 gap-6">
+      <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-12">Our Programmes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {programmes.map((p) => (
-          <div class="bg-black border border-white/10 rounded-xl p-6">
-            <h3 class="font-black mb-2">{p.title}</h3>
-            <p class="text-sm text-white/70 mb-4">{p.desc}</p>
-            <p class="text-xs font-bold text-brand-red mb-4">IDEAL FOR: {p.idealFor}</p>
-            <a href="/#free-trial" class="text-sm font-bold hover:underline">BOOK FREE TRIAL →</a>
+          <a href="/#free-trial" class="group bg-zinc-950 border border-white/10 rounded-2xl overflow-hidden flex flex-col hover:border-brand-red/50 transition-colors cursor-pointer">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img src={p.image} alt={p.title} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="font-black mb-2 uppercase tracking-tight">{p.title}</h3>
+              <p class="text-sm text-white/70 mb-4">{p.desc}</p>
+              <p class="text-xs font-bold text-brand-red mb-4">IDEAL FOR: {p.idealFor}</p>
+              <span class="mt-auto text-sm font-bold text-white group-hover:text-brand-red transition-colors">BOOK FREE TRIAL →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY TRAIN WITH US -->
+  <section class="py-16 md:py-24 bg-zinc-950 border-b border-white/5">
+    <div class="mx-auto max-w-6xl px-4 md:px-8">
+      <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-12">Why Train With Us?</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {whyTrain.map((w) => (
+          <div class="text-center flex flex-col items-center p-6 bg-black border border-white/5 rounded-xl hover:border-brand-red/30 transition-colors">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-brand-red mb-4" set:html={icons[w.icon]} />
+            <p class="text-sm font-bold uppercase tracking-widest">{w.text}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-4xl px-4 md:px-8 py-16">
-    <h2 class="text-2xl md:text-3xl font-black text-center mb-10">YOUR FIRST CLASS IS EASY</h2>
+  <!-- YOUR FIRST CLASS IS EASY -->
+  <section class="mx-auto max-w-4xl px-4 md:px-8 py-16 md:py-24">
+    <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-10">Your First Class Is Easy</h2>
     <ol class="grid sm:grid-cols-5 gap-6 text-center">
       {steps.map((s, i) => (
         <li>
@@ -88,23 +353,106 @@ const quickFaqs = [
     </ol>
   </section>
 
-  <section class="bg-white/5 py-16">
+  <!-- FAQ -->
+  <section class="bg-zinc-950 py-16 md:py-24">
     <div class="mx-auto max-w-3xl px-4 md:px-8">
-      <h2 class="text-2xl md:text-3xl font-black text-center mb-8">FREQUENTLY ASKED QUESTIONS</h2>
+      <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
       <div class="grid sm:grid-cols-2 gap-3">
         {quickFaqs.map((q) => (
-          <a href="/faq" class="block bg-black border border-white/10 rounded px-4 py-3 text-sm font-semibold hover:border-brand-red">{q}</a>
+          <a href="/faq" class="block bg-black border border-white/10 rounded px-4 py-3 text-sm font-semibold hover:border-brand-red transition-colors">{q}</a>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="py-16 text-center">
-    <h2 class="text-2xl md:text-3xl font-black mb-4">YOUR FIRST CLASS COULD<br/>CHANGE EVERYTHING.</h2>
-    <p class="text-white/70 max-w-xl mx-auto mb-6">
-      Join hundreds of people across Guildford and Surrey who have built confidence, fitness
-      and lifelong friendships through Brazilian Jiu Jitsu.
-    </p>
-    <a href="/#free-trial" class="inline-block bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700">CLAIM YOUR FREE TRIAL →</a>
+  <!-- WHAT OUR STUDENTS SAY -->
+  <section class="py-16 md:py-24 bg-black border-b border-white/5 overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 md:px-8">
+      <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-12">What Our Students Say</h2>
+      <div class="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        {testimonials.map((t) => (
+          <div class="flex-shrink-0 w-[85vw] sm:w-[380px] snap-start bg-zinc-950 border border-white/10 rounded-2xl p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-full bg-brand-red flex items-center justify-center font-black text-white flex-shrink-0">{t.name.charAt(0)}</div>
+              <div>
+                <p class="font-bold text-sm">{t.name}</p>
+                <p class="text-xs text-white/40">{t.time}</p>
+              </div>
+            </div>
+            <p class="text-sm text-white/80 leading-relaxed">"{t.quote}"</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
+
+  <!-- FINAL CTA -->
+  <section class="py-20 md:py-32 bg-brand-red text-center">
+    <div class="mx-auto max-w-3xl px-4">
+      <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-white leading-tight">Your First Class Could<br />Change Everything.</h2>
+      <p class="text-lg md:text-2xl font-bold text-white/90 mb-10 max-w-2xl mx-auto">
+        Join hundreds of people across Guildford and Surrey who have built confidence, fitness
+        and lifelong friendships through Brazilian Jiu Jitsu.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/#free-trial" class="inline-block bg-black text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-black/80 transition-transform hover:scale-105">Claim Your Free Trial →</a>
+        <a href="/#free-trial" class="inline-block bg-transparent border border-white text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-white/10 transition-transform hover:scale-105">Contact Our Team</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .animate-fade-up { animation: fade-up 1s ease-out both; }
+    @keyframes fade-up {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Filter tabs (desktop grid + mobile panels)
+      const filterBtns = document.querySelectorAll(".tt-filter-btn");
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filter = btn.getAttribute("data-filter");
+          filterBtns.forEach((b) => {
+            b.classList.toggle("bg-brand-red", b === btn);
+            b.classList.toggle("text-white", b === btn);
+            b.classList.toggle("bg-white/5", b !== btn);
+            b.classList.toggle("text-white/60", b !== btn);
+          });
+          document.querySelectorAll("[data-cat]").forEach((el) => {
+            const cat = el.getAttribute("data-cat");
+            const show = filter === "all" || filter === cat || (filter === "private" && el.textContent.includes("Private"));
+            el.style.display = show ? "" : "none";
+          });
+          document.querySelectorAll(".flex-col.gap-2.p-1\\.5").forEach((cell) => {
+            // no-op placeholder to keep desktop cell layout intact
+          });
+        });
+      });
+
+      // Mobile day pills
+      const dayPills = document.querySelectorAll(".tt-day-pill");
+      const dayPanels = document.querySelectorAll(".tt-day-panel");
+      dayPills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          const day = pill.getAttribute("data-day");
+          dayPills.forEach((p) => {
+            const active = p === pill;
+            p.classList.toggle("bg-brand-red", active);
+            p.classList.toggle("text-white", active);
+            p.classList.toggle("border-brand-red", active);
+            p.classList.toggle("bg-white/5", !active);
+            p.classList.toggle("text-white/60", !active);
+            p.classList.toggle("border-white/10", !active);
+          });
+          dayPanels.forEach((panel) => {
+            panel.style.display = panel.getAttribute("data-day") === day ? "" : "none";
+          });
+        });
+      });
+    });
+  </script>
 </Layout>
