@@ -10,6 +10,7 @@ export default {
       },
       fontFamily: {
         sans: ['Oswald', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },
