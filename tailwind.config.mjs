@@ -8,6 +8,9 @@ export default {
           black: '#0a0a0a',
         },
       },
+      fontFamily: {
+        sans: ['Oswald', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
     },
   },
   plugins: [],
