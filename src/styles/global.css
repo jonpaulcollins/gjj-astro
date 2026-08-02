@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Arial', 'Helvetica Neue', sans-serif;
+  font-family: 'Oswald', 'ui-sans-serif', 'system-ui', sans-serif;
 }
