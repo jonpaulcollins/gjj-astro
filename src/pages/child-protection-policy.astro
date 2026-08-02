@@ -82,7 +82,7 @@ const monitoring = [
 >
   <section class="bg-black py-16 text-center">
     <div class="mx-auto max-w-3xl px-4">
-      <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2">Child Protection Policy</h1>
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tighter mb-2">Child Protection Policy</h1>
       <p class="text-white/60">{site.name}</p>
       <p class="text-white/40 text-sm mt-2">Last Reviewed: 08/06/2026</p>
     </div>
@@ -96,7 +96,7 @@ const monitoring = [
     </p>
 
     <div>
-      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">The Purpose of This Policy</h2>
+      <h2 class="text-xl md:text-2xl font-black uppercase tracking-tight text-white mb-3">The Purpose of This Policy</h2>
       <ul class="space-y-2">
         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>To protect all children and young people who train at Guildford Jiu Jitsu.</span></li>
         <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>To provide instructors with the principles that guide our approach to safeguarding and child protection.</span></li>
@@ -104,28 +104,28 @@ const monitoring = [
     </div>
 
     <div>
-      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">We Recognise That</h2>
+      <h2 class="text-xl md:text-2xl font-black uppercase tracking-tight text-white mb-3">We Recognise That</h2>
       <ul class="space-y-2">
         {recognise.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
       </ul>
     </div>
 
     <div>
-      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">We Will Seek to Keep Children and Young People Safe By</h2>
+      <h2 class="text-xl md:text-2xl font-black uppercase tracking-tight text-white mb-3">We Will Seek to Keep Children and Young People Safe By</h2>
       <ul class="space-y-2">
         {keepSafe.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
       </ul>
     </div>
 
     <div>
-      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">We Ensure That the Following Happens With Our Instructors</h2>
+      <h2 class="text-xl md:text-2xl font-black uppercase tracking-tight text-white mb-3">We Ensure That the Following Happens With Our Instructors</h2>
       <ul class="space-y-2">
         {instructorChecks.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
       </ul>
     </div>
 
     <div>
-      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">The Guidelines Within This Booklet Are To</h2>
+      <h2 class="text-xl md:text-2xl font-black uppercase tracking-tight text-white mb-3">The Guidelines Within This Booklet Are To</h2>
       <ul class="space-y-2">
         {guidelines.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
       </ul>
@@ -133,7 +133,7 @@ const monitoring = [
 
     <div class="border-t border-white/10 pt-10">
       <p class="text-brand-red font-bold uppercase tracking-widest text-xs mb-6">Guildford Jiu Jitsu Child Protection Booklet</p>
-      <h2 class="text-2xl font-black uppercase tracking-tight text-white mb-4">What Is Child Abuse?</h2>
+      <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-4">What Is Child Abuse?</h2>
       <p class="mb-6">
         The Children Act 1989 defines children as those under the age of 18 and is concerned with the
         protection of children from any form of abuse. There are five recognised forms of child abuse.
@@ -141,7 +141,7 @@ const monitoring = [
       <div class="space-y-6">
         {abuseTypes.map((a) => (
           <div>
-            <h3 class="font-black uppercase tracking-wide text-white mb-2">{a.title}</h3>
+            <h3 class="text-lg font-black uppercase tracking-wide text-white mb-2">{a.title}</h3>
             <p>{a.body}</p>
           </div>
         ))}
@@ -149,8 +149,8 @@ const monitoring = [
     </div>
 
     <div class="border-t border-white/10 pt-10">
-      <h2 class="text-2xl font-black uppercase tracking-tight text-white mb-4">The Responsibilities of a Guildford Jiu Jitsu Instructor Working With Children</h2>
-      <h3 class="font-black uppercase tracking-wide text-white mb-2">To Recognise Signs of Abuse and Take Any Necessary Action</h3>
+      <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-4">The Responsibilities of a Guildford Jiu Jitsu Instructor Working With Children</h2>
+      <h3 class="text-lg font-black uppercase tracking-wide text-white mb-2">To Recognise Signs of Abuse and Take Any Necessary Action</h3>
       <p class="mb-4">
         There may be several signs that child abuse is taking place. It could be some signs of physical or
         behavioural change in a child, from something the child says, or by something another person says.
@@ -161,7 +161,7 @@ const monitoring = [
         {disclosurePrinciples.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
       </ul>
 
-      <h3 class="font-black uppercase tracking-wide text-white mb-2">To Ensure That Behaviour Cannot Be Called Into Question</h3>
+      <h3 class="text-lg font-black uppercase tracking-wide text-white mb-2">To Ensure That Behaviour Cannot Be Called Into Question</h3>
       <p class="mb-4">
         As a Guildford Jiu Jitsu Coach or Instructor, you have a duty to protect children from harm. You
         should also be aware of the impact of your words and actions on young players. It is important to
@@ -179,7 +179,7 @@ const monitoring = [
     </div>
 
     <div class="border-t border-white/10 pt-10">
-      <h2 class="text-2xl font-black uppercase tracking-tight text-white mb-4">Guildford Jiu Jitsu Code of Conduct for Working With Children</h2>
+      <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-4">Guildford Jiu Jitsu Code of Conduct for Working With Children</h2>
       <p class="mb-4">Those working with children at Guildford Jiu Jitsu should:</p>
       <ul class="space-y-2">
         {codeOfConduct.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
@@ -187,7 +187,7 @@ const monitoring = [
     </div>
 
     <div class="border-t border-white/10 pt-10">
-      <h2 class="text-2xl font-black uppercase tracking-tight text-white mb-4">Guildford BJJ Photography &amp; Video Policy</h2>
+      <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-4">Guildford BJJ Photography &amp; Video Policy</h2>
       <p class="mb-4">
         When parents/carers register their children to train at Guildford Jiu Jitsu, they are given the
         option of opting in or out of our Photography and Video Policy/Waiver, via a tick-box on the
@@ -233,7 +233,7 @@ const monitoring = [
     </div>
 
     <div class="border-t border-white/10 pt-10">
-      <h2 class="text-xl font-black uppercase tracking-tight text-white mb-3">Photography Policy for Guildford Jiu Jitsu Parents</h2>
+      <h2 class="text-xl md:text-2xl font-black uppercase tracking-tight text-white mb-3">Photography Policy for Guildford Jiu Jitsu Parents</h2>
       <ul class="space-y-2">
         {photoParentPolicy.map((item) => <li class="flex items-start gap-3"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mt-2 flex-shrink-0"></span><span>{item}</span></li>)}
       </ul>
