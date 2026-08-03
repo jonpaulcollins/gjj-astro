@@ -220,6 +220,7 @@ const icons: Record<string, string> = {
                       <div
                         class={`p-3 border border-white/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer rounded-sm flex-1 flex flex-col justify-center ${item.bg}`}
                         data-cat={item.cat}
+                        data-day={d}
                       >
                         <p class="text-xs font-black uppercase tracking-widest leading-tight mb-1 text-white">{item.title}</p>
                         <div class="flex items-center justify-between text-white/50 text-[11px]">{item.time}</div>
@@ -259,7 +260,7 @@ const icons: Record<string, string> = {
                     </div>
                   ) : (
                     Array.isArray(cell) && cell.map((item) => (
-                      <div class={`p-3 border border-white/10 rounded-sm mb-2 ${item.bg}`} data-cat={item.cat}>
+                      <div class={`p-3 border border-white/10 rounded-sm mb-2 ${item.bg}`} data-cat={item.cat} data-day={d}>
                         <p class="text-sm font-black uppercase tracking-widest leading-tight mb-1 text-white">{item.title}</p>
                         <div class="text-white/50 text-xs">{item.time}</div>
                       </div>
@@ -534,18 +535,48 @@ const icons: Record<string, string> = {
 
       function computeRecommendation() {
         if (quizAnswers.age === "kids") {
-          return { filter: "kids", keyword: "Junior", title: "Junior BJJ Classes", desc: "Perfect for children aged 5–10. Fun, safe, play-based classes that build confidence and focus." };
+          return {
+            filter: "kids",
+            title: "Junior BJJ Classes",
+            desc: "Perfect for children aged 5–10. Fun, safe, play-based classes that build confidence and focus.",
+            matchers: [{ keyword: "junior" }],
+          };
         }
         if (quizAnswers.age === "teens") {
-          return { filter: "kids", keyword: "Teen", title: "Teen BJJ Classes", desc: "Designed for 10–15 year olds, building resilience, strength and positive friendships." };
+          return {
+            filter: "kids",
+            title: "Teen BJJ Classes",
+            desc: "Designed for 10–15 year olds, building resilience, strength and positive friendships.",
+            matchers: [{ keyword: "teen" }],
+          };
         }
         if (quizAnswers.gender === "female" && quizAnswers.exp === "beginner") {
-          return { filter: "adults", keyword: "Women Only", title: "Women's Only Class", desc: "Join the UK's biggest and most welcoming women's team in a supportive, ego-checked environment." };
+          return {
+            filter: "adults",
+            title: "Women's Only Class + Foundations BJJ",
+            desc: "Join the UK's biggest and most welcoming women's team, plus our beginner-friendly Foundations sessions on Tuesday and Thursday evenings.",
+            matchers: [
+              { keyword: "women only" },
+              { keyword: "foundations", day: "Tuesday", exclude: "mma" },
+              { keyword: "foundations", day: "Thursday", exclude: "mma" },
+              { keyword: "wrestling" },
+            ],
+          };
         }
         if (quizAnswers.exp === "experienced") {
-          return { filter: "adults", keyword: "All Levels", title: "All Levels Submission Grappling", desc: "Fast-paced No-Gi grappling to sharpen your existing skills and push your fitness further." };
+          return {
+            filter: "adults",
+            title: "All Adult Sessions",
+            desc: "As an experienced grappler you're welcome at any adult class on the timetable — Foundations, All Levels, Sparring and early-morning Wrestling included.",
+            matchers: [{ all: true }],
+          };
         }
-        return { filter: "adults", keyword: "Foundations", title: "Foundations BJJ", desc: "The perfect starting point — a structured, beginner-friendly introduction to real Jiu Jitsu skills." };
+        return {
+          filter: "adults",
+          title: "Foundations BJJ",
+          desc: "The perfect starting point — a structured, beginner-friendly introduction to real Jiu Jitsu skills, plus early-morning Wrestling if you fancy it.",
+          matchers: [{ keyword: "foundations", exclude: "mma" }, { keyword: "wrestling" }],
+        };
       }
 
       function showResult() {
@@ -556,7 +587,7 @@ const icons: Record<string, string> = {
         if (descEl) descEl.textContent = rec.desc;
         const seeTimesBtn = document.getElementById("quiz-see-times");
         if (seeTimesBtn) seeTimesBtn.setAttribute("data-rec-filter", rec.filter);
-        if (seeTimesBtn) seeTimesBtn.setAttribute("data-rec-keyword", rec.keyword);
+        if (seeTimesBtn) seeTimesBtn.setAttribute("data-rec-matchers", JSON.stringify(rec.matchers));
         showQuizStep("result");
       }
 
@@ -589,22 +620,32 @@ const icons: Record<string, string> = {
       if (seeTimesBtn) {
         seeTimesBtn.addEventListener("click", () => {
           const filter = seeTimesBtn.getAttribute("data-rec-filter") || "all";
-          const keyword = (seeTimesBtn.getAttribute("data-rec-keyword") || "").toLowerCase();
+          let matchers = [];
+          try {
+            matchers = JSON.parse(seeTimesBtn.getAttribute("data-rec-matchers") || "[]");
+          } catch (e) {
+            matchers = [];
+          }
           closeQuiz();
           const targetFilterBtn = document.querySelector(`.tt-filter-btn[data-filter="${filter}"]`);
           if (targetFilterBtn) targetFilterBtn.click();
           const grid = document.getElementById("timetable-grid");
           if (grid) grid.scrollIntoView({ behavior: "smooth", block: "start" });
           setTimeout(() => {
-            const rows = Array.from(document.querySelectorAll("[data-cat] p"));
-            const matches = rows
-              .filter((p) => {
-                const text = p.textContent.toLowerCase();
-                if (!text.includes(keyword)) return false;
-                if (keyword === "foundations" && text.includes("mma")) return false;
+            const rows = Array.from(document.querySelectorAll("[data-cat]"));
+            const matches = rows.filter((row) => {
+              const cat = row.getAttribute("data-cat");
+              const day = row.getAttribute("data-day") || "";
+              const p = row.querySelector("p");
+              const text = p ? p.textContent.toLowerCase() : "";
+              return matchers.some((m) => {
+                if (m.all) return cat === "adults";
+                if (!text.includes(m.keyword)) return false;
+                if (m.exclude && text.includes(m.exclude)) return false;
+                if (m.day && day !== m.day) return false;
                 return true;
-              })
-              .map((p) => p.closest("[data-cat]"));
+              });
+            });
             matches.forEach((row) => {
               row.classList.add("ring-4", "ring-brand-red", "ring-offset-2", "ring-offset-zinc-950");
             });
