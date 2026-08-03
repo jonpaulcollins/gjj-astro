@@ -79,22 +79,22 @@ const teamShowcase = [
   {
     title: "Adults Brazilian Jiu Jitsu (age 15+)",
     image: "/images/team-adults-bjj.png",
-    href: "/classes",
+    href: "/classes?open=foundations",
   },
   {
     title: "Adults Submission Grappling/NoGi (age 15+)",
     image: "/images/team-adults-nogi.png",
-    href: "/classes",
+    href: "/classes?open=all-levels",
   },
   {
     title: "Juniors & Teens BJJ & Submission Grappling (age 5-15)",
     image: "/images/team-juniors-teens.png",
-    href: "/classes",
+    href: "/classes?open=kids",
   },
   {
     title: "Women's Brazilian Jiu Jitsu & NoGi (age 13+)",
     image: "/images/ChatGPT%20Image%20Jul%2031%2C%202026%2C%2011_33_42%20AM.png",
-    href: "/classes",
+    href: "/classes?open=womens",
   },
 ];
 
@@ -450,26 +450,23 @@ const gallery = [
 
   <!-- TEAM SHOWCASE -->
   {teamShowcase.map((t) => (
-    <section class="relative w-full overflow-hidden">
+    <a href={t.href} class="group relative block w-full overflow-hidden cursor-pointer">
       <div class="relative h-[420px] md:h-[600px]">
         <img
           src={t.image}
           alt={t.title}
-          class="absolute inset-0 w-full h-full object-cover"
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 flex flex-col md:flex-row md:items-end md:justify-between gap-4 p-6 md:p-10">
           <h2 class="text-2xl md:text-4xl font-black uppercase max-w-2xl leading-tight">{t.title}</h2>
-          <a
-            href={t.href}
-            class="inline-block bg-brand-red px-6 py-3 font-bold rounded hover:bg-red-700 transition-colors whitespace-nowrap w-fit"
-          >
+          <span class="inline-block bg-brand-red px-6 py-3 font-bold rounded group-hover:bg-red-700 transition-colors whitespace-nowrap w-fit">
             LEARN MORE →
-          </a>
+          </span>
         </div>
       </div>
-    </section>
+    </a>
   ))}
 
   <!-- COACHES -->
