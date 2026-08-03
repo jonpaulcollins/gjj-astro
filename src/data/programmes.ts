@@ -4,7 +4,7 @@ export const programmes = [
   { title: "JUNIORS CLASSES", desc: "Fun, engaging classes that build confidence, focus and physical literacy through martial arts games and techniques.", idealFor: "CHILDREN AGED 5-10 YEARS", image: "/images/programme-kids-screentime.jpg", imagePosition: "center 20%" },
   { title: "TEENS CLASSES", desc: "Dynamic training helping teenagers build resilience, strength and positive friendships during crucial developmental years.", idealFor: "TEENAGERS AGED 10-15 YEARS", image: "/images/ChatGPT%20Image%20Jul%2021%2C%202026%2C%2003_45_17%20PM.png" },
   { title: "WOMEN'S TEAM", desc: "Join the UK's biggest and most welcoming women's team. Build fitness, confidence and learn effective self-defence.", idealFor: "WOMEN OF ALL AGES AND ABILITIES", image: "/images/ChatGPT%20Image%20Jul%2021%2C%202026%2C%2001_02_10%20PM.png" },
-  { title: "COMPETITION TEAM", desc: "Intensive training for those looking to test themselves in competition. High-paced drilling, live sparring and strategic coaching.", idealFor: "EXPERIENCED PRACTITIONERS & COMPETITORS", image: "/images/team%20on%20podium.png.png", imageZoom: "1.25" },
+  { title: "COMPETITION TEAM", desc: "Intensive training for those looking to test themselves in competition. High-paced drilling, live sparring and strategic coaching.", idealFor: "EXPERIENCED PRACTITIONERS & COMPETITORS", image: "/images/team%20on%20podium.png.png", imageZoom: "1.15", imagePosition: "center 22%" },
 ];
 
 export const classCategories = [
