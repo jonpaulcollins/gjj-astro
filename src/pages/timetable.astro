@@ -29,12 +29,6 @@ const whyTrain = [
   { icon: "smile", text: "Friendly Community" },
 ];
 
-const testimonials = [
-  { name: "George Kershaw", time: "2 months ago", quote: "I dropped in for a trial and the coaches were fantastic and the members were great to roll with. I love the idea of making the classes live and realistic to competition style. Super easy to sign up with showers and clean gym." },
-  { name: "Steve Dunn", time: "5 months ago", quote: "Top training facilities, top coaches. Can only say great thing about this place" },
-  { name: "Romanas Virvilas", time: "7 months ago", quote: "Guildford jiu jitsu was the best place I came to train, the coaching and the environment of the club are absolutely brilliant and I have not just learnt so much but left with a great mood after each session." },
-  { name: "Sarah J", time: "8 months ago", quote: "Started as a complete beginner and felt welcomed immediately. The curriculum is structured perfectly for learning." },
-];
 
 const bands = [
   { key: "early", label: "Early" },
@@ -369,20 +363,14 @@ const icons: Record<string, string> = {
   <section class="py-16 md:py-24 bg-black border-b border-white/5 overflow-hidden">
     <div class="mx-auto max-w-7xl px-4 md:px-8">
       <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-12">What Our Students Say</h2>
-      <div class="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-        {testimonials.map((t) => (
-          <div class="flex-shrink-0 w-[85vw] sm:w-[380px] snap-start bg-zinc-950 border border-white/10 rounded-2xl p-6">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-full bg-brand-red flex items-center justify-center font-black text-white flex-shrink-0">{t.name.charAt(0)}</div>
-              <div>
-                <p class="font-bold text-sm">{t.name}</p>
-                <p class="text-xs text-white/40">{t.time}</p>
-              </div>
-            </div>
-            <p class="text-sm text-white/80 leading-relaxed">"{t.quote}"</p>
-          </div>
-        ))}
-      </div>
+      <script is:inline type="text/javascript" src="https://reputationhub.site/reputation/assets/review-widget.js"></script>
+      <iframe
+        class="lc_reviews_widget"
+        src="https://reputationhub.site/reputation/widgets/review_widget/3lxJJ7cu1zHYhHZZrgTx?widgetId=6a6b26a608d0db90a29a2a7b"
+        frameborder="0"
+        scrolling="no"
+        style="min-width: 100%; width: 100%;"
+      ></iframe>
     </div>
   </section>
 
