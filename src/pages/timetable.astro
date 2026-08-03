@@ -337,7 +337,22 @@ const icons: Record<string, string> = {
         <div data-quiz-step="result" class="hidden">
           <p class="text-brand-red font-bold tracking-[0.2em] uppercase text-xs mb-2">Your Recommendation</p>
           <h3 id="quiz-result-title" class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-4"></h3>
-          <p id="quiz-result-desc" class="text-white/70 mb-8"></p>
+          <p id="quiz-result-desc" class="text-white/70 mb-6"></p>
+
+          <!-- Testimonial video placeholder: swap the <source src> below for the real file once filmed. -->
+          <div id="quiz-video-wrap" class="relative w-full aspect-video bg-black border border-white/10 rounded-lg mb-8 overflow-hidden flex items-center justify-center" data-video-slug="">
+            <video id="quiz-video-el" class="w-full h-full object-cover hidden" controls playsinline>
+              <source id="quiz-video-source" src="" type="video/mp4" />
+            </video>
+            <div id="quiz-video-placeholder" class="flex flex-col items-center gap-3 text-white/50 p-6 text-center">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-brand-red">
+                <circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z" fill="currentColor" stroke="none"/>
+              </svg>
+              <span id="quiz-video-label" class="text-xs font-bold uppercase tracking-widest"></span>
+              <span class="text-[10px] uppercase tracking-widest text-white/30">Testimonial video coming soon</span>
+            </div>
+          </div>
+
           <div class="flex flex-col sm:flex-row gap-3">
             <button id="quiz-see-times" type="button" class="flex-1 inline-flex items-center justify-center border border-white/20 hover:border-brand-red text-white font-bold uppercase tracking-widest px-6 py-4 rounded-lg transition-colors">See Times On Timetable</button>
             <a href="/#free-trial" class="flex-1 inline-flex items-center justify-center bg-brand-red hover:bg-red-700 text-white font-bold uppercase tracking-widest px-6 py-4 rounded-lg transition-colors">Book Free Trial →</a>
@@ -534,6 +549,19 @@ const icons: Record<string, string> = {
       }
       document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeQuiz(); });
 
+      // Placeholder testimonial videos — one per quiz outcome bucket.
+      // Replace the `src` value with the real hosted video file once each is filmed
+      // (e.g. "/videos/testimonial-teens.mp4"), and the placeholder box will
+      // automatically swap for a real playable video.
+      const testimonialVideos = {
+        juniors: { label: "A Junior's Story", src: "" },
+        teens: { label: "A Teen's Story", src: "" },
+        "women-beginner": { label: "A Beginner Woman's Story", src: "" },
+        "women-experienced": { label: "An Experienced Woman's Story", src: "" },
+        "men-beginner": { label: "A Beginner Man's Story", src: "" },
+        "men-experienced": { label: "An Experienced Man's Story", src: "" },
+      };
+
       function computeRecommendation() {
         const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
         if (quizAnswers.age === "kids") {
@@ -542,6 +570,7 @@ const icons: Record<string, string> = {
             title: "Junior BJJ Classes",
             desc: "Perfect for children aged 5–10. Fun, safe, play-based classes that build confidence and focus, on weekday evenings.",
             matchers: [{ keyword: "junior", days: weekdays }],
+            videoSlug: "juniors",
           };
         }
         if (quizAnswers.age === "teens") {
@@ -550,6 +579,7 @@ const icons: Record<string, string> = {
             title: "Teen BJJ Classes",
             desc: "Designed for 10–15 year olds, building resilience, strength and positive friendships, on weekday evenings.",
             matchers: [{ keyword: "teen", days: weekdays }],
+            videoSlug: "teens",
           };
         }
         if (quizAnswers.gender === "female" && quizAnswers.exp === "beginner") {
@@ -564,6 +594,7 @@ const icons: Record<string, string> = {
               { keyword: "foundations", day: "Tuesday", band: "evening", exclude: "mma" },
               { keyword: "foundations", day: "Thursday", band: "evening", exclude: "mma" },
             ],
+            videoSlug: "women-beginner",
           };
         }
         if (quizAnswers.exp === "experienced") {
@@ -575,10 +606,12 @@ const icons: Record<string, string> = {
               ? "As an experienced grappler you're welcome at any adult class on the timetable — Foundations, All Levels, Sparring and early-morning Wrestling included."
               : "As an experienced grappler you're welcome at any adult class on the timetable — Foundations, All Levels, Sparring, early-morning Wrestling and our Women's Only Class included.",
             matchers: isMale ? [{ all: true, exclude: "women only" }] : [{ all: true }],
+            videoSlug: isMale ? "men-experienced" : "women-experienced",
           };
         }
         return {
           filter: "adults",
+          videoSlug: "men-beginner",
           title: "Foundations BJJ",
           desc: "The perfect starting point — a structured, beginner-friendly introduction to real Jiu Jitsu skills, in both Gi and No-Gi.",
           matchers: [{ keyword: "foundations", exclude: "mma" }],
@@ -594,6 +627,24 @@ const icons: Record<string, string> = {
         const seeTimesBtn = document.getElementById("quiz-see-times");
         if (seeTimesBtn) seeTimesBtn.setAttribute("data-rec-filter", rec.filter);
         if (seeTimesBtn) seeTimesBtn.setAttribute("data-rec-matchers", JSON.stringify(rec.matchers));
+
+        const videoWrap = document.getElementById("quiz-video-wrap");
+        const videoEl = document.getElementById("quiz-video-el");
+        const videoSourceEl = document.getElementById("quiz-video-source");
+        const videoPlaceholder = document.getElementById("quiz-video-placeholder");
+        const videoLabelEl = document.getElementById("quiz-video-label");
+        const video = testimonialVideos[rec.videoSlug] || { label: "", src: "" };
+        if (videoWrap) videoWrap.setAttribute("data-video-slug", rec.videoSlug || "");
+        if (videoLabelEl) videoLabelEl.textContent = video.label;
+        if (video.src) {
+          if (videoSourceEl) videoSourceEl.setAttribute("src", video.src);
+          if (videoEl) { videoEl.load(); videoEl.classList.remove("hidden"); }
+          if (videoPlaceholder) videoPlaceholder.classList.add("hidden");
+        } else {
+          if (videoEl) videoEl.classList.add("hidden");
+          if (videoPlaceholder) videoPlaceholder.classList.remove("hidden");
+        }
+
         showQuizStep("result");
       }
 
