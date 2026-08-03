@@ -200,6 +200,18 @@ const programmes = [
       closeBtn.addEventListener("click", closeModal);
       modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+      // Auto-open a programme's modal when arriving via ?open=<slug> (e.g. from Home page Learn More links)
+      const params = new URLSearchParams(window.location.search);
+      const openSlug = params.get("open");
+      if (openSlug) {
+        const targetCard = document.querySelector('.programme-card-clickable[data-slug="' + openSlug + '"]');
+        if (targetCard) {
+          openModal(targetCard);
+          // Clean the URL so a refresh/back doesn't keep re-opening it
+          history.replaceState(null, "", window.location.pathname);
+        }
+      }
     });
   </script>
 </Layout>
