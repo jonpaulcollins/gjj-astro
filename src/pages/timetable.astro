@@ -607,9 +607,6 @@ const icons: Record<string, string> = {
               .map((p) => p.closest("[data-cat]"));
             matches.forEach((row) => {
               row.classList.add("ring-4", "ring-brand-red", "ring-offset-2", "ring-offset-zinc-950");
-              setTimeout(() => {
-                row.classList.remove("ring-4", "ring-brand-red", "ring-offset-2", "ring-offset-zinc-950");
-              }, 3000);
             });
             if (matches[0]) matches[0].scrollIntoView({ behavior: "smooth", block: "center" });
           }, 500);
