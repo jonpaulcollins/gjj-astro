@@ -567,11 +567,14 @@ const icons: Record<string, string> = {
           };
         }
         if (quizAnswers.exp === "experienced") {
+          const isMale = quizAnswers.gender === "male";
           return {
             filter: "adults",
             title: "All Adult Sessions",
-            desc: "As an experienced grappler you're welcome at any adult class on the timetable — Foundations, All Levels, Sparring and early-morning Wrestling included.",
-            matchers: [{ all: true }],
+            desc: isMale
+              ? "As an experienced grappler you're welcome at any adult class on the timetable — Foundations, All Levels, Sparring and early-morning Wrestling included."
+              : "As an experienced grappler you're welcome at any adult class on the timetable — Foundations, All Levels, Sparring, early-morning Wrestling and our Women's Only Class included.",
+            matchers: isMale ? [{ all: true, exclude: "women only" }] : [{ all: true }],
           };
         }
         return {
@@ -646,7 +649,10 @@ const icons: Record<string, string> = {
               if (text.includes("mma")) return false;
               if (text.includes("blue-light") || text.includes("blue light")) return false;
               return matchers.some((m) => {
-                if (m.all) return cat === "adults";
+                if (m.all) {
+                  if (m.exclude && text.includes(m.exclude)) return false;
+                  return cat === "adults";
+                }
                 if (!text.includes(m.keyword)) return false;
                 if (m.exclude && text.includes(m.exclude)) return false;
                 if (m.day && day !== m.day) return false;
