@@ -556,11 +556,13 @@ const icons: Record<string, string> = {
           return {
             filter: "adults",
             title: "Women's Only Class + Foundations BJJ",
-            desc: "Join the UK's biggest and most welcoming women's team, plus our beginner-friendly Foundations lunchtime sessions on Monday and Wednesday.",
+            desc: "Join the UK's biggest and most welcoming women's team, plus our beginner-friendly Foundations sessions — lunchtime Monday & Wednesday, or evenings Tuesday & Thursday.",
             matchers: [
               { keyword: "women only" },
               { keyword: "foundations", day: "Monday", band: "noon", exclude: "mma" },
               { keyword: "foundations", day: "Wednesday", band: "noon", exclude: "mma" },
+              { keyword: "foundations", day: "Tuesday", band: "evening", exclude: "mma" },
+              { keyword: "foundations", day: "Thursday", band: "evening", exclude: "mma" },
             ],
           };
         }
