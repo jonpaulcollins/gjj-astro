@@ -534,20 +534,21 @@ const icons: Record<string, string> = {
       document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeQuiz(); });
 
       function computeRecommendation() {
+        const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
         if (quizAnswers.age === "kids") {
           return {
             filter: "kids",
             title: "Junior BJJ Classes",
-            desc: "Perfect for children aged 5–10. Fun, safe, play-based classes that build confidence and focus.",
-            matchers: [{ keyword: "junior" }],
+            desc: "Perfect for children aged 5–10. Fun, safe, play-based classes that build confidence and focus, on weekday evenings.",
+            matchers: [{ keyword: "junior", days: weekdays }],
           };
         }
         if (quizAnswers.age === "teens") {
           return {
             filter: "kids",
             title: "Teen BJJ Classes",
-            desc: "Designed for 10–15 year olds, building resilience, strength and positive friendships.",
-            matchers: [{ keyword: "teen" }],
+            desc: "Designed for 10–15 year olds, building resilience, strength and positive friendships, on weekday evenings.",
+            matchers: [{ keyword: "teen", days: weekdays }],
           };
         }
         if (quizAnswers.gender === "female" && quizAnswers.exp === "beginner") {
@@ -559,7 +560,6 @@ const icons: Record<string, string> = {
               { keyword: "women only" },
               { keyword: "foundations", day: "Tuesday", exclude: "mma" },
               { keyword: "foundations", day: "Thursday", exclude: "mma" },
-              { keyword: "wrestling" },
             ],
           };
         }
@@ -638,11 +638,15 @@ const icons: Record<string, string> = {
               const day = row.getAttribute("data-day") || "";
               const p = row.querySelector("p");
               const text = p ? p.textContent.toLowerCase() : "";
+              // Global exclusions: never highlight MMA or Blue-Light classes.
+              if (text.includes("mma")) return false;
+              if (text.includes("blue-light") || text.includes("blue light")) return false;
               return matchers.some((m) => {
                 if (m.all) return cat === "adults";
                 if (!text.includes(m.keyword)) return false;
                 if (m.exclude && text.includes(m.exclude)) return false;
                 if (m.day && day !== m.day) return false;
+                if (m.days && !m.days.includes(day)) return false;
                 return true;
               });
             });
