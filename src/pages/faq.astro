@@ -48,6 +48,21 @@ const schema = [
               <div class="faq-panel overflow-hidden transition-all duration-300 max-h-0">
                 <div class="text-white/60 leading-relaxed space-y-4 pb-5">
                   <p>{f.a}</p>
+                  {f.video && (
+                    <!-- Testimonial video placeholder: swap the <source src> for the real file once filmed. -->
+                    <div class="relative w-full max-w-md aspect-video bg-black border border-white/10 rounded-lg overflow-hidden flex items-center justify-center">
+                      <video class="w-full h-full object-cover hidden" controls playsinline>
+                        {f.video.src && <source src={f.video.src} type="video/mp4" />}
+                      </video>
+                      <div class="flex flex-col items-center gap-2 text-white/50 p-6 text-center">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-brand-red">
+                          <circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4Z" fill="currentColor" stroke="none"/>
+                        </svg>
+                        <span class="text-xs font-bold uppercase tracking-widest">{f.video.label}</span>
+                        <span class="text-[10px] uppercase tracking-widest text-white/30">Testimonial video coming soon</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
