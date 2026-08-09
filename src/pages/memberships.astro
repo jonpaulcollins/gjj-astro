@@ -143,26 +143,55 @@ const compareRows = [
       <!-- COMPARE PLANS -->
       <div class="max-w-3xl mx-auto">
         <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-4 text-white text-center">Compare Plans</h3>
-        <table class="w-full text-left border-collapse">
-          <thead>
-            <tr class="border-b border-white/10">
-              <th class="py-4 px-6 text-white/60 font-bold uppercase tracking-widest text-sm">Feature</th>
-              <th class="py-4 px-6 text-yellow-500 font-bold uppercase tracking-widest text-sm text-center">Gold</th>
-              <th class="py-4 px-6 text-gray-400 font-bold uppercase tracking-widest text-sm text-center">Silver</th>
-              <th class="py-4 px-6 text-slate-500 font-bold uppercase tracking-widest text-sm text-center">Platinum</th>
-            </tr>
-          </thead>
-          <tbody class="text-white/80 font-body text-base">
-            {compareRows.map((r) => (
-              <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
-                <td class="py-4 px-6">{r.feature}</td>
-                <td class="py-4 px-6 text-center text-xl">{r.gold === true ? <span class="text-brand-red">✓</span> : r.gold === false ? <span class="text-white/30">✗</span> : r.gold}</td>
-                <td class="py-4 px-6 text-center text-xl">{r.silver === true ? <span class="text-brand-red">✓</span> : r.silver === false ? <span class="text-white/30">✗</span> : r.silver}</td>
-                <td class="py-4 px-6 text-center text-xl">{r.platinum === true ? <span class="text-brand-red">✓</span> : r.platinum === false ? <span class="text-white/30">✗</span> : r.platinum}</td>
+
+        <!-- Desktop / tablet table -->
+        <div class="hidden md:block overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-white/10">
+                <th class="py-4 px-6 text-white/60 font-bold uppercase tracking-widest text-sm">Feature</th>
+                <th class="py-4 px-6 text-yellow-500 font-bold uppercase tracking-widest text-sm text-center">Gold</th>
+                <th class="py-4 px-6 text-gray-400 font-bold uppercase tracking-widest text-sm text-center">Silver</th>
+                <th class="py-4 px-6 text-slate-500 font-bold uppercase tracking-widest text-sm text-center">Platinum</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody class="text-white/80 font-body text-base">
+              {compareRows.map((r) => (
+                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <td class="py-4 px-6">{r.feature}</td>
+                  <td class="py-4 px-6 text-center text-xl">{r.gold === true ? <span class="text-brand-red">✓</span> : r.gold === false ? <span class="text-white/30">✗</span> : r.gold}</td>
+                  <td class="py-4 px-6 text-center text-xl">{r.silver === true ? <span class="text-brand-red">✓</span> : r.silver === false ? <span class="text-white/30">✗</span> : r.silver}</td>
+                  <td class="py-4 px-6 text-center text-xl">{r.platinum === true ? <span class="text-brand-red">✓</span> : r.platinum === false ? <span class="text-white/30">✗</span> : r.platinum}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mobile: one stacked card per plan -->
+        <div class="md:hidden space-y-4">
+          {[
+            { key: "gold", label: "Gold", color: "text-yellow-500", border: "border-yellow-500/30" },
+            { key: "silver", label: "Silver", color: "text-gray-400", border: "border-gray-400/30" },
+            { key: "platinum", label: "Platinum", color: "text-slate-500", border: "border-slate-500/30" },
+          ].map((plan) => (
+            <div class={`border ${plan.border} rounded-lg overflow-hidden`}>
+              <div class="bg-white/5 py-3 px-4">
+                <span class={`font-black uppercase tracking-widest text-sm ${plan.color}`}>{plan.label}</span>
+              </div>
+              <ul class="divide-y divide-white/5">
+                {compareRows.map((r) => (
+                  <li class="flex items-center justify-between py-3 px-4 text-sm">
+                    <span class="text-white/70 font-body">{r.feature}</span>
+                    <span class="font-bold text-white/90">
+                      {r[plan.key] === true ? <span class="text-brand-red text-lg">✓</span> : r[plan.key] === false ? <span class="text-white/30 text-lg">✗</span> : r[plan.key]}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
