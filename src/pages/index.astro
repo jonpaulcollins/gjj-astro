@@ -85,6 +85,7 @@ const teamShowcase = [
     title: "Adults Submission Grappling/NoGi (age 15+)",
     image: "/images/team-adults-nogi.png",
     href: "/classes?open=all-levels",
+    highlight: "15 No-Gi & Submission Grappling classes every week — more than any other club in the area",
   },
   {
     title: "Juniors & Teens BJJ & Submission Grappling (age 5-15)",
@@ -463,7 +464,14 @@ const gallery = [
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 flex flex-col md:flex-row md:items-end md:justify-between gap-4 p-6 md:p-10">
-          <h2 class="text-2xl md:text-4xl font-black uppercase max-w-2xl leading-tight">{t.title}</h2>
+          <div class="max-w-2xl">
+            {t.highlight && (
+              <p class="inline-block bg-brand-red/90 text-white text-xs md:text-sm font-bold uppercase tracking-widest px-3 py-1.5 rounded mb-3">
+                {t.highlight}
+              </p>
+            )}
+            <h2 class="text-2xl md:text-4xl font-black uppercase leading-tight">{t.title}</h2>
+          </div>
           <span class="inline-block bg-brand-red px-6 py-3 font-bold rounded group-hover:bg-red-700 transition-colors whitespace-nowrap w-fit">
             LEARN MORE →
           </span>
