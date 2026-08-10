@@ -458,7 +458,7 @@ const gallery = [
   <!-- TEAM SHOWCASE -->
   {teamShowcase.map((t) => (
     <a href={t.href} class="group relative block w-full overflow-hidden cursor-pointer">
-      <div class="relative h-[420px] md:h-[600px]">
+      <div class="relative h-[480px] md:h-[600px]">
         <img
           src={t.image}
           alt={t.title}
@@ -469,7 +469,7 @@ const gallery = [
         <div class="absolute bottom-0 left-0 right-0 flex flex-col md:flex-row md:items-end md:justify-between gap-4 p-6 md:p-10">
           <div class="max-w-2xl">
             {t.highlight && (
-              <p class="inline-block bg-brand-red/90 text-white text-xs md:text-sm font-bold uppercase tracking-widest px-3 py-1.5 rounded mb-3">
+              <p class="block md:inline-block text-brand-red md:text-white text-xs md:text-sm font-bold uppercase tracking-wide md:tracking-widest md:bg-brand-red/90 md:px-3 md:py-1.5 md:rounded mb-2 md:mb-3 leading-snug">
                 {t.highlight}
               </p>
             )}
