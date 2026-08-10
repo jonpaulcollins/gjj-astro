@@ -472,10 +472,15 @@ const gallery = [
           loading="lazy"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+        {t.highlight && (
+          <p class="md:hidden absolute top-4 left-4 max-w-[85%] bg-brand-red text-white text-xs font-bold uppercase tracking-wide leading-snug px-3 py-2 rounded shadow-lg">
+            {t.highlight}
+          </p>
+        )}
         <div class="absolute bottom-0 left-0 right-0 flex flex-col md:flex-row md:items-end md:justify-between gap-4 p-6 md:p-10">
           <div class="max-w-2xl">
             {t.highlight && (
-              <p class="block md:inline-block text-brand-red md:text-white text-xs md:text-sm font-bold uppercase tracking-wide md:tracking-widest md:bg-brand-red/90 md:px-3 md:py-1.5 md:rounded mb-2 md:mb-3 leading-snug">
+              <p class="hidden md:inline-block bg-brand-red/90 text-white text-sm font-bold uppercase tracking-widest px-3 py-1.5 rounded mb-3">
                 {t.highlight}
               </p>
             )}
