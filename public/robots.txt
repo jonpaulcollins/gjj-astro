@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://guildfordbjj.com/sitemap-index.xml
+Sitemap: https://www.guildfordbjj.com/sitemap-index.xml

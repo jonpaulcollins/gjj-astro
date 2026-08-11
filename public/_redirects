@@ -1,0 +1,10 @@
+# Zero-loss SEO migration redirects — old guildfordbjj.com (Wix) URLs → new site
+# Every other old URL (/, /timetable, /classes, /memberships, /contact, /faq, /privacy-policy)
+# keeps the exact same path on the new site, so no redirect entry is needed for those.
+
+# Duplicate timetable page Google had indexed (cannibalisation risk) — merge into canonical
+/copy-of-timetable  /timetable  301
+
+# This URL is actually the Child Protection Policy on the old site (leftover "copy of privacy
+# policy" slug from when it was duplicated in Wix) — NOT a privacy policy duplicate.
+/copy-of-privacy-policy  /child-protection-policy  301
