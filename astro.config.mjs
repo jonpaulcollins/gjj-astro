@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://guildfordbjj.com',
-  integrations: [tailwind()],
+  site: 'https://www.guildfordbjj.com',
+  integrations: [tailwind(), sitemap()],
 });
