@@ -1,0 +1,135 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: site.domain + "/" },
+    { "@type": "ListItem", position: 2, name: "Contact", item: site.domain + "/contact" },
+  ],
+};
+---
+<Layout
+  title="Contact Us — Guildford Jiu Jitsu"
+  description="Get in touch with Guildford Jiu Jitsu. Find our address, phone, email, and claim your free trial class at our Bridge Street academy in Guildford, Surrey."
+  path="/contact"
+  schema={schema}
+>
+  <section class="bg-black py-16 text-center">
+    <div class="mx-auto max-w-3xl px-4">
+      <p class="text-brand-red font-bold tracking-[0.3em] uppercase text-xs mb-4">Get In Touch</p>
+      <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-6">Contact <span class="text-brand-red">Guildford Jiu Jitsu</span></h1>
+      <p class="text-white/70 text-lg">
+        Questions about classes, memberships, or ready to claim your free trial?
+        Find us on Bridge Street in the heart of Guildford, or reach out below.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-5xl px-4 md:px-8 grid md:grid-cols-2 gap-12">
+      <!-- Visit us -->
+      <div class="space-y-8">
+        <div>
+          <h2 class="text-2xl font-black uppercase tracking-tight mb-4">Visit Us</h2>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Guildford+Jiu+Jitsu+1-2+Bridge+Street+Guildford+GU1+4RY"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-start gap-4 group"
+          >
+            <span class="p-3 bg-brand-red rounded-full flex-shrink-0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </span>
+            <span>
+              <h3 class="font-bold uppercase tracking-widest text-sm mb-1 text-white group-hover:text-brand-red transition-colors">Our Academy</h3>
+              <p class="text-white/80">
+                {site.address.unit}<br />
+                {site.address.street}<br />
+                {site.address.locality}, {site.address.region} {site.address.postalCode}
+              </p>
+              <p class="text-white/50 text-sm mt-1">Get directions →</p>
+            </span>
+          </a>
+        </div>
+
+        <a href={`tel:${site.phone}`} class="flex items-start gap-4">
+          <span class="p-3 bg-brand-red rounded-full flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </span>
+          <span>
+            <h3 class="font-bold uppercase tracking-widest text-sm mb-1 text-white">Call Us</h3>
+            <p class="text-lg text-white/80">{site.phoneDisplay}</p>
+          </span>
+        </a>
+
+        <a href={`mailto:${site.email}`} class="flex items-start gap-4">
+          <span class="p-3 bg-brand-red rounded-full flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
+              <path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6Zm-2 0-8 5-8-5"/>
+            </svg>
+          </span>
+          <span>
+            <h3 class="font-bold uppercase tracking-widest text-sm mb-1 text-white">Email Us</h3>
+            <p class="text-lg text-white/80">{site.email}</p>
+          </span>
+        </a>
+
+        <a
+          href={`https://wa.me/${site.ghl.whatsappNumber}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-start gap-4 p-5 bg-zinc-950 rounded-xl border border-white/10 hover:bg-white/5 transition-colors group cursor-pointer"
+        >
+          <span class="p-3 bg-white text-black rounded-full group-hover:scale-110 transition-transform flex-shrink-0">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+              <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.12-2.9-6.98A9.82 9.82 0 0 0 12.04 2Z"/>
+            </svg>
+          </span>
+          <span>
+            <p class="font-bold uppercase tracking-widest text-sm mb-1 text-white">WhatsApp Us</p>
+            <p class="text-white/70 text-sm">Click to chat now, or leave your number and we'll message you back.</p>
+          </span>
+        </a>
+
+        <div class="pt-4">
+          <a href="/#free-trial" class="inline-block bg-brand-red px-8 py-4 font-bold uppercase tracking-widest rounded hover:bg-red-700 transition-transform hover:scale-105">
+            Claim Your Free Trial →
+          </a>
+        </div>
+      </div>
+
+      <!-- Enquiry form -->
+      <div>
+        <h2 class="text-2xl font-black uppercase tracking-tight mb-4">Send Us A Message</h2>
+        <div class="w-full bg-transparent rounded-2xl overflow-hidden" style="height: 678px;">
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/49vJfgTXS5a5oJ6a4Uka"
+            style="width:100%;height:100%;border:none;border-radius:4px"
+            id="inline-contact-49vJfgTXS5a5oJ6a4Uka"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Web Enquiry Form"
+            data-height="678"
+            data-layout-iframe-id="inline-contact-49vJfgTXS5a5oJ6a4Uka"
+            data-form-id="49vJfgTXS5a5oJ6a4Uka"
+            title="Contact form"
+          ></iframe>
+        </div>
+        <script src="https://link.msgsndr.com/js/form_embed.js" is:inline></script>
+      </div>
+    </div>
+  </section>
+</Layout>
