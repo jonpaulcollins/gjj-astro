@@ -31,6 +31,14 @@ const schema = [
           text: "No. Black Badger BJJ relocated to Hindhead, Surrey in February 2026, roughly a 30-minute drive from Guildford town centre. Its website and branding still reference Guildford.",
         },
       },
+      {
+        "@type": "Question",
+        name: "Where is the best place for No-Gi grappling in Guildford?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Guildford Jiu Jitsu runs the most No-Gi and submission grappling classes per week of any club based in Guildford, taught by a Black Belt instructor under the Mauricio Gomes Legacy Team, with a dedicated training facility. Newer options such as KYNM Grappling offer No-Gi-focused classes (around 4 sessions a week for adults) but operate from a school hall rather than a dedicated facility, and don't publicly list an instructor belt rank.",
+        },
+      },
     ],
   },
 ];
@@ -46,6 +54,7 @@ const clubs = [
     schedule: "7 days a week, Gi & No-Gi",
     reviews: "214 reviews · 5.0★ (Google)",
     kids: "Yes — dedicated kids programme",
+    instructor: "Jon Collins — Black Belt under Mauricio Gomes",
     affiliation: "Mauricio Gomes Legacy Team",
   },
   {
@@ -56,6 +65,7 @@ const clubs = [
     schedule: "BJJ is one of several disciplines on a shared timetable",
     reviews: "76 reviews · 5.0★ (KidzRGoGo)",
     kids: "Yes — kids from age 4",
+    instructor: "Instructor rank not publicly listed",
     affiliation: "One Jiu Jitsu (Ivam Maciel)",
   },
   {
@@ -66,7 +76,19 @@ const clubs = [
     schedule: "4 sessions/week (Mon, Wed, Fri evenings, Sat late morning)",
     reviews: "8 reviews (Facebook) — no verified Google listing found",
     kids: "Not currently listed",
+    instructor: "Instructor rank not publicly listed",
     affiliation: "Nova Força UK",
+  },
+  {
+    name: "KYNM Grappling",
+    isUs: false,
+    location: "Runs from Kings College school, Southway — no dedicated facility",
+    specialism: "No-Gi only (wrestling & leg locks focus)",
+    schedule: "4 adult sessions/week",
+    reviews: "No Google Business listing found — newly established club",
+    kids: "Teen classes only, no dedicated kids programme",
+    instructor: "Instructor rank not publicly listed",
+    affiliation: "Independent",
   },
 ];
 ---
@@ -96,6 +118,7 @@ const clubs = [
                 <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Location</th>
                 <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Specialism</th>
                 <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Schedule</th>
+                <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Lead Instructor</th>
                 <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Reviews</th>
                 <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Kids</th>
               </tr>
@@ -110,6 +133,7 @@ const clubs = [
                   <td class="p-4 text-white/70">{c.location}</td>
                   <td class="p-4 text-white/70">{c.specialism}</td>
                   <td class="p-4 text-white/70">{c.schedule}</td>
+                  <td class="p-4 text-white/70">{c.instructor}</td>
                   <td class="p-4 text-white/70">{c.reviews}</td>
                   <td class="p-4 text-white/70">{c.kids}</td>
                 </tr>
