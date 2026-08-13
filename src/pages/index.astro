@@ -14,25 +14,44 @@ const schema = [
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": site.domain + "/#business",
     name: site.name,
+    alternateName: "GJJ",
+    description: "Brazilian Jiu-Jitsu and submission grappling academy in Guildford, Surrey, affiliated with the Mauricio Gomes Legacy Team. Classes for adults and kids, Gi and No-Gi, 7 days a week.",
     image: site.domain + "/favicon.svg",
     url: site.domain + "/",
     telephone: site.phone,
+    email: site.email,
+    priceRange: "££",
     address: {
       "@type": "PostalAddress",
-      streetAddress: site.address.street,
+      streetAddress: site.address.unit + ", " + site.address.street,
       addressLocality: site.address.locality,
       addressRegion: site.address.region,
       postalCode: site.address.postalCode,
       addressCountry: site.address.country,
     },
+    areaServed: [
+      { "@type": "City", name: "Guildford" },
+      { "@type": "AdministrativeArea", name: "Surrey" },
+    ],
+    sameAs: [
+      site.social.facebook,
+      site.social.instagram,
+      site.social.youtube,
+      site.social.tiktok,
+    ],
+    // Hours reflect the public class timetable (earliest class start to latest class
+    // end, per day) — the building may open for members outside these windows.
+    // Confirm with Jon if facility access hours differ from class hours.
     openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        opens: "06:00",
-        closes: "22:00",
-      },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "06:30", closes: "21:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "18:30", closes: "21:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "06:30", closes: "21:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "16:30", closes: "21:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "12:00", closes: "21:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:30", closes: "13:15" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "10:30", closes: "13:00" },
     ],
     aggregateRating: {
       "@type": "AggregateRating",
