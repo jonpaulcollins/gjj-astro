@@ -1,0 +1,147 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.domain + "/" },
+      { "@type": "ListItem", position: 2, name: "Compare Guildford BJJ Clubs", item: site.domain + "/compare" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is the best BJJ gym in Guildford?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Guildford Jiu Jitsu is a BJJ and grappling specialist based in Guildford town centre, offering classes 7 days a week and holding 214 five-star Google reviews — more than any other Brazilian Jiu-Jitsu club based in Guildford. Other options include One Martial Arts (a multi-discipline gym in Guildford town centre teaching BJJ alongside MMA, kickboxing and Muay Thai) and Black Badger BJJ, which relocated from Guildford to Hindhead in February 2026.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is Black Badger BJJ still based in Guildford?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. Black Badger BJJ relocated to Hindhead, Surrey in February 2026, roughly a 30-minute drive from Guildford town centre. Its website and branding still reference Guildford.",
+        },
+      },
+    ],
+  },
+];
+
+// Verified August 2026. Sources: club websites, Google Business Profiles, KidzRGoGo listings.
+// Pricing omitted where a club does not publish it — see note under the table.
+const clubs = [
+  {
+    name: "Guildford Jiu Jitsu",
+    isUs: true,
+    location: "Guildford town centre (Bridge Street)",
+    specialism: "BJJ & submission grappling specialist",
+    schedule: "7 days a week, Gi & No-Gi",
+    reviews: "214 reviews · 5.0★ (Google)",
+    kids: "Yes — dedicated kids programme",
+    affiliation: "Mauricio Gomes Legacy Team",
+  },
+  {
+    name: "One Martial Arts",
+    isUs: false,
+    location: "Guildford town centre (One Park St)",
+    specialism: "Multi-discipline — BJJ, MMA, kickboxing, Muay Thai",
+    schedule: "BJJ is one of several disciplines on a shared timetable",
+    reviews: "76 reviews · 5.0★ (KidzRGoGo)",
+    kids: "Yes — kids from age 4",
+    affiliation: "One Jiu Jitsu (Ivam Maciel)",
+  },
+  {
+    name: "Black Badger BJJ",
+    isUs: false,
+    location: "Hindhead, Surrey (relocated from Guildford, Feb 2026)",
+    specialism: "BJJ & grappling specialist",
+    schedule: "4 sessions/week (Mon, Wed, Fri evenings, Sat late morning)",
+    reviews: "8 reviews (Facebook) — no verified Google listing found",
+    kids: "Not currently listed",
+    affiliation: "Nova Força UK",
+  },
+];
+---
+<Layout
+  title="Guildford BJJ Clubs Compared — Guildford Jiu Jitsu"
+  description="An honest, fact-checked comparison of Brazilian Jiu-Jitsu clubs in and around Guildford: location, class frequency, specialism and reviews."
+  path="/compare"
+  schema={schema}
+>
+  <section class="py-12 md:py-24 bg-black flex-grow">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <p class="text-sm uppercase tracking-[0.4em] text-brand-red font-bold mb-3">Do Your Research</p>
+          <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">Guildford BJJ Clubs, Compared</h1>
+          <div class="w-24 h-1 bg-brand-red mx-auto mb-6"></div>
+          <p class="text-white/60 max-w-2xl mx-auto leading-relaxed">
+            Choosing a club is a real commitment. Here's an honest, source-checked look at how Guildford Jiu Jitsu compares to the other Brazilian Jiu-Jitsu options in and around Guildford — verified August 2026.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto border border-white/10">
+          <table class="w-full text-left text-sm md:text-base">
+            <thead>
+              <tr class="bg-white/5 border-b border-white/10">
+                <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Club</th>
+                <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Location</th>
+                <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Specialism</th>
+                <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Schedule</th>
+                <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Reviews</th>
+                <th class="p-4 font-bold uppercase tracking-wide text-white/50 text-xs md:text-sm">Kids</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clubs.map((c) => (
+                <tr class={`border-b border-white/10 last:border-0 ${c.isUs ? "bg-brand-red/10" : ""}`}>
+                  <td class="p-4 font-bold uppercase tracking-wide">
+                    {c.name}
+                    {c.isUs && <span class="ml-2 inline-block bg-brand-red text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 align-middle">That's us</span>}
+                  </td>
+                  <td class="p-4 text-white/70">{c.location}</td>
+                  <td class="p-4 text-white/70">{c.specialism}</td>
+                  <td class="p-4 text-white/70">{c.schedule}</td>
+                  <td class="p-4 text-white/70">{c.reviews}</td>
+                  <td class="p-4 text-white/70">{c.kids}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-white/40 text-xs mt-4 leading-relaxed">
+          Data verified August 2026 from each club's own website and public Google/KidzRGoGo listings. Membership pricing is excluded where a club doesn't publish it publicly — contact clubs directly for current pricing. Affiliation names are as stated by each club. See our own <a href="/memberships" class="text-brand-red underline">membership pricing</a> here.
+        </p>
+
+        <div class="mt-16 grid md:grid-cols-2 gap-8">
+          <div class="border border-white/10 p-6">
+            <h2 class="text-xl font-black uppercase tracking-tight mb-3">Why train with a BJJ specialist?</h2>
+            <p class="text-white/60 leading-relaxed">
+              Multi-discipline gyms split coaching attention across BJJ, MMA, kickboxing and Muay Thai. At Guildford Jiu Jitsu, every class — Gi, No-Gi, kids, competition — is built around one discipline, taught under the Mauricio Gomes Legacy Team lineage, 7 days a week.
+            </p>
+          </div>
+          <div class="border border-white/10 p-6">
+            <h2 class="text-xl font-black uppercase tracking-tight mb-3">Actually in Guildford</h2>
+            <p class="text-white/60 leading-relaxed">
+              Some clubs that rank for "BJJ Guildford" aren't based here anymore. We're based on Bridge Street, in Guildford town centre — walkable from the train station and central car parks.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-16 text-center">
+          <p class="text-white/70 mb-6">See it for yourself — first class is free.</p>
+          <a href="/#free-trial" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm bg-brand-red hover:bg-red-700 text-white font-bold uppercase tracking-widest px-10 py-6 transition-colors">Claim Your Free Trial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
