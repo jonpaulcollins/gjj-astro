@@ -15,8 +15,38 @@ const schema = {
 const steps = ["Book Your Free Trial", "Arrive 10 Minutes Early", "Meet Your Coach", "Enjoy Your First Class", "Leave Smiling"];
 
 const quickFaqs = [
-  "Do I need to be fit?", "Am I too old?", "What should I wear?", "Can I start as a complete beginner?",
-  "Is there parking?", "How much does it cost after my trial?", "How long are classes?", "Can my child try first?",
+  {
+    q: "Do I need to be fit?",
+    a: "Not at all — many members start with zero fitness background. BJJ itself gets you fit, and training is scaled to your level so you're always challenged but never overwhelmed.",
+  },
+  {
+    q: "Am I too old?",
+    a: "Never too late — we have members starting in their 40s, 50s and 60s. BJJ relies on leverage and technique, not raw athleticism, so your coach scales intensity and partners to suit you.",
+  },
+  {
+    q: "What should I wear?",
+    a: "Comfortable gym clothes — shorts with no zips or buttons, and a sports t-shirt. No gi or equipment needed for your free trial.",
+  },
+  {
+    q: "Can I start as a complete beginner?",
+    a: "Yes — our Foundations Classes are built for zero-experience starters, and everyone finds their own challenge level, even training alongside Black Belts.",
+  },
+  {
+    q: "Is there parking?",
+    a: "Yes — 18 free dedicated car parking spaces at the end of Phase Passage, offered on a first come, first served basis, open half an hour before every class.",
+  },
+  {
+    q: "How much does it cost after my trial?",
+    a: "Flexible monthly memberships from £65 for adults and £55 for kids, with family discounts available. Get in touch and we'll walk you through the packages.",
+  },
+  {
+    q: "How long are classes?",
+    a: "60 minutes for adults, 45–55 minutes for children. Head Coach Jon Collins structures the majority of his Foundations classes to last exactly one hour, eliminating dead time — passive instruction, static drilling, unrelated warm-ups — so you get a significant amount of live training packed into that window without cognitive overload.",
+  },
+  {
+    q: "Can my child try first?",
+    a: "Yes — kids get the same completely free trial class as adults, no obligation, so they can experience a class before you decide.",
+  },
 ];
 
 const badges = ["Beginners Encouraged", "Free Trial Available", "Friendly Coaches", "All Fitness Levels", "Ages 5+", "7 Days Per Week", "Gi & NoGi Everyday", "Train Morning, Noon & Night", "To Suit Any Budget"];
@@ -288,6 +318,43 @@ const icons: Record<string, string> = {
     </div>
   </section>
 
+  <!-- WHY 60-MINUTE CLASSES -->
+  <section class="py-16 md:py-24 bg-black border-b border-white/5">
+    <div class="mx-auto max-w-4xl px-4 md:px-8">
+      <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-8">Why Our Foundations Classes Are 60 Minutes</h2>
+      <div class="text-white/70 leading-relaxed space-y-4 mb-12 max-w-3xl mx-auto">
+        <p>In a typical BJJ gym, a coach can spend 15 to 30 minutes demonstrating a technique while students sit and watch, followed by static, non-resistant drilling. At Guildford Jiu-Jitsu, we've completely removed this tradition of "dead-drilling" — learning BJJ this way is a bit like learning to swim on dry land. With no time wasted sitting through lectures or practising on a fully compliant partner, our members don't need a two-hour class to get real training in.</p>
+        <p>Our class format relies entirely on representative game design — members learn by immediately engaging in live grappling games, structured by specific rules and constraints. An hour-long Foundations class at Guildford Jiu Jitsu maximises learning efficiency for three reasons:</p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6 mb-12">
+        <div class="text-center flex flex-col items-center p-6 bg-zinc-950 border border-white/5 rounded-xl">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-brand-red mb-4">
+            <path d="m13 2-2 2.5h3L12 7"/><path d="M10 14 8 21l8-4-2-3"/><path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7Z"/>
+          </svg>
+          <h3 class="font-black uppercase tracking-tight mb-2">The Brain Fatigues First</h3>
+          <p class="text-sm text-white/60">Solving real-time tactical problems is mentally demanding in a way that repeating a compliant movement isn't. Capping Foundations at one hour prevents cognitive overload, so students stay sharp and attentive throughout.</p>
+        </div>
+        <div class="text-center flex flex-col items-center p-6 bg-zinc-950 border border-white/5 rounded-xl">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-brand-red mb-4">
+            <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/>
+          </svg>
+          <h3 class="font-black uppercase tracking-tight mb-2">Always Active Grappling</h3>
+          <p class="text-sm text-white/60">Live, hands-on training is at the centre of everything we do. Because students spend nearly the full 60 minutes actively grappling, they get the same number of live rounds in one hour as you'd find across two or more traditional 90-minute classes.</p>
+        </div>
+        <div class="text-center flex flex-col items-center p-6 bg-zinc-950 border border-white/5 rounded-xl">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-brand-red mb-4">
+            <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/>
+          </svg>
+          <h3 class="font-black uppercase tracking-tight mb-2">Faster Recovery</h3>
+          <p class="text-sm text-white/60">Capping the Foundations class at 60 minutes reduces physical wear and tear and lets recovery start sooner — so hobbyists and competitors alike can return the next day without being overly exhausted or at risk of injury.</p>
+        </div>
+      </div>
+
+      <p class="text-center text-white/50 text-sm max-w-2xl mx-auto">Our Submission Grappling and All Levels classes run longer, giving extra time to incorporate leg-locking and wrestling games into the session.</p>
+    </div>
+  </section>
+
   <!-- NOT SURE WHICH CLASS -->
   <section id="help-choose" class="py-16 md:py-24 bg-brand-red text-white text-center">
     <div class="mx-auto max-w-4xl px-4">
@@ -418,10 +485,21 @@ const icons: Record<string, string> = {
   <section class="bg-zinc-950 py-16 md:py-24">
     <div class="mx-auto max-w-3xl px-4 md:px-8">
       <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
-      <div class="grid sm:grid-cols-2 gap-3">
-        {quickFaqs.map((q) => (
-          <a href="/faq" class="block bg-black border border-white/10 rounded px-4 py-3 text-sm font-semibold hover:border-brand-red transition-colors">{q}</a>
+      <div class="border-t border-white/10">
+        {quickFaqs.map((item, i) => (
+          <div class="tt-faq-item border-b border-white/10">
+            <button type="button" class="tt-faq-toggle w-full flex items-center justify-between py-5 text-left gap-4 group" data-index={i}>
+              <span class="text-sm md:text-base font-bold group-hover:text-brand-red transition-colors">{item.q}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tt-faq-icon w-5 h-5 flex-shrink-0 transition-transform"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            </button>
+            <div class="tt-faq-panel overflow-hidden transition-all duration-300 max-h-0">
+              <p class="text-white/60 leading-relaxed pb-5">{item.a}</p>
+            </div>
+          </div>
         ))}
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/faq" class="text-sm font-bold text-brand-red hover:underline">See the full FAQ →</a>
       </div>
     </div>
   </section>
@@ -466,6 +544,22 @@ const icons: Record<string, string> = {
 
   <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
+      // Timetable page quick-FAQ accordion
+      document.querySelectorAll(".tt-faq-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const panel = btn.nextElementSibling;
+          const icon = btn.querySelector(".tt-faq-icon");
+          const isOpen = panel.style.maxHeight && panel.style.maxHeight !== "0px";
+          if (isOpen) {
+            panel.style.maxHeight = "0px";
+            icon.style.transform = "rotate(0deg)";
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            icon.style.transform = "rotate(45deg)";
+          }
+        });
+      });
+
       // Filter tabs (desktop grid + mobile panels)
       const filterBtns = document.querySelectorAll(".tt-filter-btn");
       filterBtns.forEach((btn) => {
