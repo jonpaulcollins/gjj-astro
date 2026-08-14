@@ -6,9 +6,16 @@ import { site } from "../data/site";
 import { programmes } from "../data/programmes";
 
 const podiumDir = path.join(process.cwd(), "public", "images", "podium");
-const podiumImages = fs.existsSync(podiumDir)
+// Sort first so the order is stable across builds, then interleave with a
+// stride so photos from the same event/upload batch (which sort next to each
+// other alphabetically) get spread out instead of clumping together.
+const podiumSorted = fs.existsSync(podiumDir)
   ? fs.readdirSync(podiumDir).filter((f) => /\.(jpe?g|png|webp)$/i.test(f)).sort()
   : [];
+const PODIUM_STRIDE = 7;
+const podiumImages = Array.from({ length: PODIUM_STRIDE }, (_, bucket) =>
+  podiumSorted.filter((_, i) => i % PODIUM_STRIDE === bucket)
+).flat();
 
 const schema = {
   "@context": "https://schema.org",
