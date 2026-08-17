@@ -15,6 +15,7 @@ export const site = {
   social: {
     facebook: "https://facebook.com/GuildfordBJJ",
     instagram: "https://instagram.com/guildford.bjj",
+    instagramWomens: "https://www.instagram.com/guildford.bjj.women/",
     youtube: "https://youtube.com/@GuildfordBJJ",
     tiktok: "https://tiktok.com/@guildford.bjj",
   },
