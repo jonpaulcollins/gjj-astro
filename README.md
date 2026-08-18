@@ -87,3 +87,8 @@ time. Every page has:
 `astro.config.mjs` sets `site: 'https://guildfordbjj.com'` (no www). Confirm
 which is the actual primary domain (www vs. non-www) before launch — this
 was flagged as unresolved during the GHL build and applies here too.
+
+
+Deploy pipeline verified 2026-08-18.
+
+Deploy pipeline verified 2026-08-18.
