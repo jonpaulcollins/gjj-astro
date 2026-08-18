@@ -76,6 +76,9 @@ const programmes = [
     tagline: "JIU-JITSU IS A SUPERPOWER!",
     bullets: ["Build Confidence", "Strengthen Body & Mind", "Learn Real Self Defence"],
     href: "/classes?open=foundations",
+    ctaLabel: "BEGINNERS LEARN MORE",
+    href2: "/classes?open=all-levels",
+    ctaLabel2: "EXPERIENCED LEARN MORE",
     image: "/images/programme-adults-superpower.jpg",
   },
   {
@@ -280,24 +283,48 @@ const gallery = [
   <section class="bg-white/5 py-20">
     <div class="mx-auto max-w-7xl px-4 md:px-8 grid md:grid-cols-3 gap-8">
       {programmes.map((p) => (
-        <a href={p.href} class="group relative overflow-hidden bg-black border border-white/10 rounded-2xl flex flex-col shadow-sm transition-all duration-300 hover:border-brand-red/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] hover:-translate-y-1 cursor-pointer">
-          <div class="overflow-hidden">
-            <img
-              src={p.image}
-              alt={p.title}
-              class="w-full h-56 object-cover object-[center_18%] transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-              loading="lazy"
-            />
+        p.href2 ? (
+          <div class="group relative overflow-hidden bg-black border border-white/10 rounded-2xl flex flex-col shadow-sm transition-all duration-300 hover:border-brand-red/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] hover:-translate-y-1">
+            <div class="overflow-hidden">
+              <img
+                src={p.image}
+                alt={p.title}
+                class="w-full h-56 object-cover object-[center_18%] transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <p class="text-brand-red font-bold text-sm mb-2">{p.tagline}</p>
+              <h3 class="text-xl md:text-2xl font-black tracking-tight mb-4">{p.title}</h3>
+              <ul class="space-y-1 text-white/80 mb-6">
+                {p.bullets.map((b) => <li class="flex items-center gap-2"><span class="text-brand-red">✓</span> {b}</li>)}
+              </ul>
+              <div class="mt-auto flex flex-col gap-2">
+                <a href={p.href} class="w-full inline-flex items-center justify-center bg-brand-red hover:bg-red-700 text-white font-bold uppercase tracking-widest text-sm rounded-md border border-white/20 py-2.5 transition-colors">{p.ctaLabel}</a>
+                <a href={p.href2} class="w-full inline-flex items-center justify-center bg-black hover:bg-zinc-800 text-white font-bold uppercase tracking-widest text-sm rounded-md border border-white/20 py-2.5 transition-colors">{p.ctaLabel2}</a>
+              </div>
+            </div>
           </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <p class="text-brand-red font-bold text-sm mb-2">{p.tagline}</p>
-            <h3 class="text-xl md:text-2xl font-black tracking-tight mb-4">{p.title}</h3>
-            <ul class="space-y-1 text-white/80 mb-6">
-              {p.bullets.map((b) => <li class="flex items-center gap-2"><span class="text-brand-red">✓</span> {b}</li>)}
-            </ul>
-            <span class="mt-auto w-full inline-flex items-center justify-center bg-brand-red group-hover:bg-red-700 text-white font-bold uppercase tracking-widest text-sm rounded-md border border-white/20 py-2.5 transition-colors">LEARN MORE</span>
-          </div>
-        </a>
+        ) : (
+          <a href={p.href} class="group relative overflow-hidden bg-black border border-white/10 rounded-2xl flex flex-col shadow-sm transition-all duration-300 hover:border-brand-red/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] hover:-translate-y-1 cursor-pointer">
+            <div class="overflow-hidden">
+              <img
+                src={p.image}
+                alt={p.title}
+                class="w-full h-56 object-cover object-[center_18%] transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <p class="text-brand-red font-bold text-sm mb-2">{p.tagline}</p>
+              <h3 class="text-xl md:text-2xl font-black tracking-tight mb-4">{p.title}</h3>
+              <ul class="space-y-1 text-white/80 mb-6">
+                {p.bullets.map((b) => <li class="flex items-center gap-2"><span class="text-brand-red">✓</span> {b}</li>)}
+              </ul>
+              <span class="mt-auto w-full inline-flex items-center justify-center bg-brand-red group-hover:bg-red-700 text-white font-bold uppercase tracking-widest text-sm rounded-md border border-white/20 py-2.5 transition-colors">LEARN MORE</span>
+            </div>
+          </a>
+        )
       ))}
     </div>
   </section>
