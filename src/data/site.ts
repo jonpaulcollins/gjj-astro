@@ -17,7 +17,7 @@ export const site = {
     instagram: "https://instagram.com/guildford.bjj",
     instagramWomens: "https://www.instagram.com/guildford.bjj.women/",
     youtube: "https://youtube.com/@GuildfordBJJ",
-    tiktok: "https://tiktok.com/@guildford.bjj",
+    tiktok: "https://www.tiktok.com/@guildfordbjj",
   },
   // Free-trial form embed is live directly in src/pages/index.astro (#free-trial section).
   // TODO: calendar/timetable widget embed still needed.
