@@ -103,6 +103,7 @@ const teamShowcase = [
     image: "/images/team-adults-bjj-v3.jpg",
     href: "/classes?open=foundations",
     highlight: "More BJJ classes each week than any other club in the area",
+    objectPos: "object-[center_20%] md:object-center",
   },
   {
     title: "Adults Submission Grappling/NoGi (age 15+)",
@@ -514,7 +515,7 @@ const gallery = [
         <img
           src={t.image}
           alt={t.title}
-          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          class={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${t.objectPos ?? "object-center"}`}
           loading="lazy"
         />
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
