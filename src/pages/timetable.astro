@@ -26,7 +26,11 @@ const schema = {
   ],
 };
 
-const steps = ["Book Your Free Trial", "Arrive 10 Minutes Early", "Meet Your Coach", "Enjoy Your First Class", "Leave Smiling"];
+const steps = [
+  "Claim your free trial today. We\'ll message you via WhatsApp or text to book, send your confirmation & full joining instructions.",
+  "We will greet you on the day, show you around, and make sure you have everything you need to enjoy your first class.",
+  "You\'ll leave smiling and invigorated - having taken your first step on your Jiu Jitsu journey.",
+];
 
 const quickFaqs = [
   {
@@ -521,12 +525,13 @@ const icons: Record<string, string> = {
 
   <!-- YOUR FIRST CLASS IS EASY -->
   <section class="mx-auto max-w-4xl px-4 md:px-8 py-16 md:py-24">
-    <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-10">Your First Class Is Easy</h2>
-    <ol class="grid sm:grid-cols-5 gap-6 text-center">
+    <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-2">Your First Class - Simplified</h2>
+    <p class="text-brand-red font-bold tracking-[0.2em] uppercase text-xs text-center mb-10">Easy As One Two Three</p>
+    <ol class="grid sm:grid-cols-3 gap-8 text-center">
       {steps.map((s, i) => (
         <li>
-          <div class="w-10 h-10 rounded-full bg-brand-red text-white font-black flex items-center justify-center mx-auto mb-3">{i + 1}</div>
-          <p class="text-sm font-semibold">{s}</p>
+          <div class="w-10 h-10 rounded-full bg-brand-red text-white font-black flex items-center justify-center mx-auto mb-4">{i + 1}</div>
+          <p class="text-sm text-white/70 leading-relaxed">{s}</p>
         </li>
       ))}
     </ol>
