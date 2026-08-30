@@ -3,6 +3,20 @@
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
 import { pullQuotes, studentStories } from "../data/testimonials";
+import fs from "node:fs";
+import path from "node:path";
+
+const grapplingDir = path.join(process.cwd(), "public", "images", "grappling");
+// Sort files so the order is stable across builds, then interleave with a
+// stride so photos from the same event/upload batch (which sort next to each
+// other alphabetically) get spread out instead of clumping together.
+const grapplingSorted = fs.existsSync(grapplingDir)
+  ? fs.readdirSync(grapplingDir).filter((f) => /\.(jpe?g|png|webp)$/i.test(f)).sort()
+  : [];
+const GRAPPLING_STRIDE = 7;
+const grapplingImages = Array.from({ length: GRAPPLING_STRIDE }, (_, bucket) =>
+  grapplingSorted.filter((_, i) => i % GRAPPLING_STRIDE === bucket)
+).flat();
 
 const schema = [
   {
@@ -181,20 +195,7 @@ const coaches = [
   },
 ];
 
-const gallery = [
-  { caption: "Our Amazing Women's Team", image: "https://static.wixstatic.com/media/eb8f02_47929d99c4164dbd952a43cc4c0ba485~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_47929d99c4164dbd952a43cc4c0ba485~mv2.jpg" },
-  { caption: "Tom Hardy Visits Guildford Jiu Jitsu", image: "https://static.wixstatic.com/media/eb8f02_09229b5f8d73471d90f144c459ffa084~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_09229b5f8d73471d90f144c459ffa084~mv2.jpg" },
-  { caption: "Belt Promotions with Master Mauricio", image: "https://static.wixstatic.com/media/eb8f02_5bfc552ef1014b049a5542b36c077da1~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_5bfc552ef1014b049a5542b36c077da1~mv2.jpg" },
-  { caption: "Lunchtime Crew in the Gi", image: "https://static.wixstatic.com/media/eb8f02_ffa16a97efd2463bafd4a5062e7c7539~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_ffa16a97efd2463bafd4a5062e7c7539~mv2.jpg" },
-  { caption: "The Boss - Master Mauricio Gomes", image: "https://static.wixstatic.com/media/eb8f02_ed93f80df38d4ffc903fab78b9381f41~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_ed93f80df38d4ffc903fab78b9381f41~mv2.jpg" },
-  { caption: "Submission Grappling Everyday", image: "https://static.wixstatic.com/media/eb8f02_b49141909e244e9a97221ef4bb5382c0~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_b49141909e244e9a97221ef4bb5382c0~mv2.jpg" },
-  { caption: "Kids BJJ Classes", image: "https://static.wixstatic.com/media/eb8f02_fcfb5217a3b74c84af0bb98f290489d9~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_fcfb5217a3b74c84af0bb98f290489d9~mv2.jpg" },
-  { caption: "Competition Team Training", image: "https://static.wixstatic.com/media/eb8f02_a5c082ba3d834845b364a8f01f6cdf43~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_a5c082ba3d834845b364a8f01f6cdf43~mv2.jpg" },
-  { caption: "Back When They Were White Belts", image: "https://static.wixstatic.com/media/eb8f02_fcaef2893141489fa823f0135c691548~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_fcaef2893141489fa823f0135c691548~mv2.jpg" },
-  { caption: "Training in the Gi", image: "https://static.wixstatic.com/media/eb8f02_e94d56beca604aa59c9da4f795d006b9~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_e94d56beca604aa59c9da4f795d006b9~mv2.jpg" },
-  { caption: "Grading Day Celebrations", image: "https://static.wixstatic.com/media/eb8f02_cb27a61b919f4ee0912982c37905e3bd~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_cb27a61b919f4ee0912982c37905e3bd~mv2.jpg" },
-  { caption: "Women Only Classes", image: "https://static.wixstatic.com/media/eb8f02_88a427a4a0664a93b918be25c2ed69e3~mv2.jpg/v1/fill/w_600,h_600,q_90,enc_avif,quality_auto/eb8f02_88a427a4a0664a93b918be25c2ed69e3~mv2.jpg" },
-];
+
 ---
 <Layout
   title="Guildford Jiu Jitsu — A Stronger You Starts Here"
@@ -465,6 +466,19 @@ const gallery = [
     .client-logo.is-active {
       filter: grayscale(0) !important;
       opacity: 1 !important;
+    }
+    #grappling-track {
+      animation: grappling-scroll 60s linear infinite;
+    }
+    #grappling-marquee:hover #grappling-track {
+      animation-play-state: paused;
+    }
+    @keyframes grappling-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #grappling-track { animation: none; }
     }
   </style>
 
@@ -989,27 +1003,28 @@ const gallery = [
   </script>
 
   <!-- GALLERY -->
-  <section class="mx-auto max-w-7xl px-4 md:px-8 py-20">
-    <h2 class="text-2xl md:text-4xl font-black tracking-tighter text-center mb-2">GRAPPLERS GALLERY</h2>
-    <div class="w-16 h-1 bg-brand-red mx-auto mb-10"></div>
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
-      {gallery.map((g) => (
-        <div class="group relative aspect-square overflow-hidden bg-zinc-900 cursor-pointer rounded-xl">
-          <img
-            src={g.image}
-            alt={g.caption}
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
-            <p class="text-white font-black uppercase tracking-widest text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-              {g.caption}
-            </p>
-          </div>
+  {grapplingImages.length > 0 && (
+    <section class="py-16 md:py-24 bg-black border-b border-white/5 overflow-hidden">
+      <div class="mx-auto max-w-4xl px-4 md:px-8 text-center mb-10">
+        <h2 class="text-2xl md:text-4xl font-black tracking-tighter text-center mb-2">GRAPPLERS GALLERY</h2>
+        <div class="w-16 h-1 bg-brand-red mx-auto"></div>
+      </div>
+
+      <div id="grappling-marquee" class="relative w-full overflow-hidden group">
+        <div id="grappling-track" class="flex gap-3 md:gap-4 w-max">
+          {[...grapplingImages, ...grapplingImages].map((img, i) => (
+            <img
+              src={`/images/grappling/${img}`}
+              alt="Guildford Jiu Jitsu grappling session"
+              class="w-40 h-40 md:w-56 md:h-56 rounded-lg object-cover border border-white/10 flex-shrink-0"
+              loading="lazy"
+              decoding="async"
+            />
+          ))}
         </div>
-      ))}
-    </div>
-  </section>
+      </div>
+    </section>
+  )}
 
   <!-- FREE TRIAL / CONTACT -->
   <section id="free-trial" class="bg-brand-red/10 py-20">
