@@ -26,7 +26,11 @@ const schema = {
   ],
 };
 
-const steps = ["Book Your Free Trial", "Arrive 10 Minutes Early", "Meet Your Coach", "Enjoy Your First Class", "Leave Smiling"];
+const steps = [
+  "Claim your free trial today. We\'ll message you via WhatsApp or text to book, send your confirmation & full joining instructions.",
+  "We will greet you on the day, show you around, and make sure you have everything you need to enjoy your first class.",
+  "You\'ll leave smiling and invigorated - having taken your first step on your Jiu Jitsu journey.",
+];
 
 const quickFaqs = [
   {
@@ -357,7 +361,7 @@ const icons: Record<string, string> = {
       <div class="grid sm:grid-cols-3 gap-6 mb-12">
         <div class="text-center flex flex-col items-center p-6 bg-zinc-950 border border-white/5 rounded-xl">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-brand-red mb-4">
-            <path d="m13 2-2 2.5h3L12 7"/><path d="M10 14 8 21l8-4-2-3"/><path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7Z"/>
+            <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M19.967 17.484A4 4 0 0 1 18 18"/>
           </svg>
           <h3 class="font-black uppercase tracking-tight mb-2">The Brain Fatigues First</h3>
           <p class="text-sm text-white/60">Solving real-time tactical problems is mentally demanding in a way that repeating a compliant movement isn't. Capping Foundations at one hour prevents cognitive overload, so students stay sharp and attentive throughout.</p>
@@ -521,12 +525,13 @@ const icons: Record<string, string> = {
 
   <!-- YOUR FIRST CLASS IS EASY -->
   <section class="mx-auto max-w-4xl px-4 md:px-8 py-16 md:py-24">
-    <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-10">Your First Class Is Easy</h2>
-    <ol class="grid sm:grid-cols-5 gap-6 text-center">
+    <h2 class="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter mb-2">Your First Class - Simplified</h2>
+    <p class="text-brand-red font-bold tracking-[0.2em] uppercase text-xs text-center mb-10">Easy As One Two Three</p>
+    <ol class="grid sm:grid-cols-3 gap-8 text-center">
       {steps.map((s, i) => (
         <li>
-          <div class="w-10 h-10 rounded-full bg-brand-red text-white font-black flex items-center justify-center mx-auto mb-3">{i + 1}</div>
-          <p class="text-sm font-semibold">{s}</p>
+          <div class="w-10 h-10 rounded-full bg-brand-red text-white font-black flex items-center justify-center mx-auto mb-4">{i + 1}</div>
+          <p class="text-sm text-white/70 leading-relaxed">{s}</p>
         </li>
       ))}
     </ol>
