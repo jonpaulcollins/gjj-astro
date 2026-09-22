@@ -7,9 +7,10 @@ interface Props {
   description: string;
   path: string; // e.g. "/", "/timetable"
   schema?: Record<string, any> | Record<string, any>[];
+  noindex?: boolean; // hidden pages (e.g. /free-trial/*) — not for public search results
 }
 
-const { title, description, path, schema } = Astro.props;
+const { title, description, path, schema, noindex } = Astro.props;
 const canonicalUrl = new URL(path, Astro.site).toString();
 const schemaJson = schema ? JSON.stringify(schema) : null;
 ---
@@ -17,6 +18,7 @@ const schemaJson = schema ? JSON.stringify(schema) : null;
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
+{noindex && <meta name="robots" content="noindex, nofollow, noarchive" />}
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content={title} />

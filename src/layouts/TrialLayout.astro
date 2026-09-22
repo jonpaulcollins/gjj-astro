@@ -1,0 +1,85 @@
+---
+// Minimal, self-contained layout for hidden /free-trial/* landing pages.
+// Deliberately does NOT use the site's Layout/Header/Footer — these pages
+// are conversion-focused booking destinations reached only via a direct
+// link (bot/WhatsApp), not the main site nav, so a full menu is a distraction
+// and a way out. Kept separate from Layout.astro on purpose: zero risk to
+// the rest of the site if something here needs changing later.
+import CookieConsent from "../components/CookieConsent.astro";
+import { site } from "../data/site";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string; // e.g. "/free-trial/juniors"
+}
+
+const { title, description, path } = Astro.props;
+const canonicalUrl = new URL(path, Astro.site).toString();
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#E11D2A" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <!-- Hidden page: found only via a direct link (bot/WhatsApp), never linked from
+         the site or the sitemap. This is belt-and-braces so it never gets indexed. -->
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body class="bg-black text-white font-sans antialiased">
+    <!-- Minimal top bar: logo only, links home, no nav menu, no distractions -->
+    <header class="bg-black border-b border-white/10">
+      <div class="mx-auto max-w-4xl flex items-center justify-between px-4 py-4 md:px-8">
+        <a href="/" class="flex items-center shrink-0">
+          <img src="/images/logo.png" alt={site.name} class="h-7 md:h-9 w-auto" />
+        </a>
+        <a
+          href={`tel:${site.phone}`}
+          class="text-xs sm:text-sm font-semibold tracking-wide text-white/70 hover:text-brand-red transition-colors"
+        >
+          {site.phoneDisplay}
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Minimal footer: no site nav, just the essentials -->
+    <footer class="bg-black border-t border-white/10 py-8">
+      <div class="mx-auto max-w-4xl px-4 md:px-8 text-center text-white/40 text-xs space-y-2">
+        <p>{site.name} &middot; {site.address.unit}, {site.address.street}, {site.address.locality}, {site.address.region} {site.address.postalCode}</p>
+        <p>
+          <a href="/child-protection-policy" class="underline hover:text-white/70">Child Protection Policy</a>
+          &middot;
+          <a href="/privacy-policy" class="underline hover:text-white/70">Privacy Policy</a>
+        </p>
+      </div>
+    </footer>
+
+    <CookieConsent />
+  </body>
+</html>

@@ -1,0 +1,85 @@
+---
+// HIDDEN PAGE — reached only via the GHL calendar's post-booking redirect
+// (set per-calendar in Calendar > Advanced > Form & Confirmation > Redirect URL,
+// e.g. /free-trial/thank-you?programme=juniors). Not in nav, not in sitemap.
+// One shared page for all programmes (Jon's call, 22 Sep 2026) — personalised
+// client-side from the ?programme= query param GHL is configured to pass.
+import Layout from "../../layouts/Layout.astro";
+---
+<Layout
+  title="You're Booked! — Guildford Jiu Jitsu"
+  description="Your free trial class is booked. Here's what to expect."
+  path="/free-trial/thank-you"
+  noindex={true}
+>
+  <section class="mx-auto max-w-2xl px-4 py-20 text-center">
+    <p class="text-brand-red font-bold tracking-[0.3em] uppercase text-xs mb-4">Booking Confirmed</p>
+    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-6">
+      You're <span class="text-brand-red">Booked!</span>
+    </h1>
+    <p id="programme-line" class="text-white/80 text-lg mb-10">
+      Thanks — your free trial is confirmed. We'll see you on the mats.
+    </p>
+
+    <div class="border-2 border-brand-red bg-brand-red/10 p-6 mb-8 text-left">
+      <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">One Thing Still To Do</h3>
+      <p class="text-white/80 mb-4">
+        If you haven't already registered on Coacha, please do it now — it's required before
+        you attend (H&amp;S policy, membership terms and consents), and it makes payment setup
+        easy if you decide to join after your trial.
+      </p>
+      <a
+        href="https://my.coacha.app/member_signup/1GEYSKWANJ"
+        target="_blank"
+        rel="noopener"
+        class="inline-block bg-brand-red px-6 py-3 font-bold uppercase tracking-widest text-xs rounded hover:bg-red-700 transition-colors"
+      >
+        Register On Coacha
+      </a>
+    </div>
+
+    <div class="border border-white/10 p-8 text-left space-y-6 mb-10">
+      <div>
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-1 text-brand-red">Where</h3>
+        <p class="text-white/70">1-2 Bridge Street, Guildford GU1 4RY — Lower Ground Floor</p>
+      </div>
+      <div>
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-1 text-brand-red">What To Bring</h3>
+        <p class="text-white/70">Comfortable clothes you (or your child) can move in, and a water bottle. No kit needed for the trial.</p>
+      </div>
+      <div>
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-1 text-brand-red">Arrive</h3>
+        <p class="text-white/70">A few minutes early so we can get you checked in and settled before the class starts.</p>
+      </div>
+      <div>
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-1 text-brand-red">Questions?</h3>
+        <p class="text-white/70">Call or WhatsApp us — <a href="tel:+447575572021" class="underline hover:text-white">+44 7575 572021</a></p>
+      </div>
+    </div>
+
+    <a href="/" class="inline-block bg-brand-red px-8 py-3 font-bold uppercase tracking-widest text-sm rounded hover:bg-red-700 transition-colors">
+      Visit Our Website
+    </a>
+  </section>
+
+  <script is:inline>
+    // Personalise the confirmation line from ?programme=<slug>, set per-calendar
+    // in GHL's redirect URL. Falls back to the generic line if absent/unrecognised.
+    (function () {
+      const names = {
+        juniors: "Junior BJJ (ages 5–10)",
+        teens: "Teen BJJ (ages 10–15)",
+        adults: "Adult Beginners BJJ",
+        experienced: "our Experienced Grapplers session",
+        womens: "the Women's Team",
+      };
+      const params = new URLSearchParams(window.location.search);
+      const key = params.get("programme");
+      const label = key && names[key];
+      if (label) {
+        document.getElementById("programme-line").textContent =
+          "Thanks — your " + label + " free trial is confirmed. We'll see you on the mats.";
+      }
+    })();
+  </script>
+</Layout>

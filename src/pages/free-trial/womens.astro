@@ -1,0 +1,127 @@
+---
+// HIDDEN LANDING PAGE — not in nav, not in sitemap (see astro.config.mjs filter).
+// Reached only via the direct link the AI assistant/WhatsApp sends for the
+// Women's Team Free Trial. Built from the Juniors template, G2a rollout —
+// see Cowork/Memory/BACKLOG.md.
+import Layout from "../../layouts/Layout.astro";
+import { pullQuotes, googleReviews } from "../../data/testimonials";
+
+const reviews = [googleReviews[2], googleReviews[4]]; // Romanas, David M
+// OPEN ITEM FOR JON: no women's-team-specific reviews exist in testimonials.ts
+// yet. Swap in a women's team quote if you have one — much stronger here.
+
+// Women's Team Free Trial calendar — id confirmed live via the GHL connector.
+const calendarId = "lP5IgRKDIVjF4nITglxV";
+---
+<Layout
+  title="Women's BJJ Free Trial \u2014 Guildford Jiu Jitsu"
+  description="Book your free Women's BJJ trial class in Guildford. Join one of the UK's largest Ladies Teams \u2014 over 50 women strong, in a welcoming, supportive, ego-free environment."
+  path="/free-trial/womens"
+  noindex={true}
+>
+  <!-- HERO -->
+  <section class="relative">
+    <div class="relative h-[46vh] min-h-[320px] md:h-[52vh]">
+      <img
+        src="/images/team-women.jpg"
+        alt="Women's BJJ Team at Guildford Jiu Jitsu"
+        class="absolute inset-0 w-full h-full object-cover object-top"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20"></div>
+    </div>
+    <div class="relative -mt-24 md:-mt-28 px-4">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-brand-red font-bold tracking-[0.3em] uppercase text-xs mb-3">Women Only &middot; Guildford</p>
+        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4">
+          Your Free<br /><span class="text-brand-red">Women's BJJ Trial</span>
+        </h1>
+        <p class="text-white/80 text-lg max-w-xl mx-auto">
+          One free class with one of the UK's largest Ladies Teams \u2014 over 50 women strong, and growing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="py-8 border-y border-white/10 mt-10 overflow-hidden">
+    <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 px-4 max-w-5xl mx-auto">
+      {pullQuotes.slice(0, 6).map((q) => (
+        <span class="text-white/40 text-xs md:text-sm font-bold uppercase tracking-widest">{q}</span>
+      ))}
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-6 text-center">What To Expect</h2>
+    <p class="text-white/70 leading-relaxed text-center mb-10">
+      A strong contingent of women training at a BJJ gym is a sign of a welcoming, safe, ego-checked
+      environment \u2014 and that's exactly what you'll find here. Build physical confidence, fitness and energy
+      alongside a genuinely supportive community.
+    </p>
+    <div class="grid sm:grid-cols-2 gap-6">
+      <div class="border border-white/10 p-6">
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">When</h3>
+        <p class="text-white/70">Women Only, Sunday 10:30\u201311:45am. Many of the team also train our weekday Foundations classes (from 6:30pm, especially Tue &amp; Thu).</p>
+      </div>
+      <div class="border border-white/10 p-6">
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Who</h3>
+        <p class="text-white/70">Women of any age or experience level. Complete beginners welcome \u2014 no experience necessary.</p>
+      </div>
+      <div class="border border-white/10 p-6">
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">What To Bring</h3>
+        <p class="text-white/70">Comfortable clothes you can move in (t-shirt &amp; shorts/joggers) and a water bottle. No kit required for the trial.</p>
+      </div>
+      <div class="border border-white/10 p-6">
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Where</h3>
+        <p class="text-white/70">1-2 Bridge Street, Guildford GU1 4RY \u2014 Lower Ground Floor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACH -->
+  <section class="bg-white/5 py-16">
+    <div class="mx-auto max-w-3xl px-4 flex flex-col sm:flex-row items-center gap-8">
+      <img src="/images/coach-jon-collins.jpg" alt="Head Coach Jon Collins" class="w-32 h-32 rounded-full object-cover shrink-0" loading="lazy" />
+      <div>
+        <p class="text-brand-red font-bold tracking-[0.2em] uppercase text-xs mb-2">Head Coach</p>
+        <h3 class="text-xl font-black uppercase tracking-tight mb-2">Jon Collins</h3>
+        <p class="text-white/70 leading-relaxed">
+          "Our Women's Team is one of the biggest and most established in the UK \u2014 come and see why so many
+          women make it their regular class, not just a one-off."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-8 text-center">What Our Members Say</h2>
+    <div class="grid sm:grid-cols-2 gap-6">
+      {reviews.map((r) => (
+        <div class="border border-white/10 p-6">
+          <p class="text-white/80 italic leading-relaxed mb-4">&ldquo;{r.text}&rdquo;</p>
+          <p class="text-white/40 text-sm font-bold uppercase tracking-wide">{r.name} &middot; Google Review</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- BOOKING WIDGET -->
+  <section id="book" class="bg-black py-16">
+    <div class="mx-auto max-w-2xl px-4">
+      <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-2 text-center">Book Your Free Trial</h2>
+      <p class="text-white/60 text-center mb-8">Pick a time below \u2014 it takes less than a minute.</p>
+      <div class="w-full bg-white rounded-2xl overflow-hidden" style="min-height: 700px;">
+        <iframe
+          src={`https://api.leadconnectorhq.com/widget/booking/${calendarId}`}
+          style="width:100%;height:100%;min-height:700px;border:none;"
+          scrolling="no"
+          id="womens-free-trial-booking"
+          title="Book your Women's BJJ free trial"
+        ></iframe>
+      </div>
+      <script src="https://link.msgsndr.com/js/form_embed.js" is:inline></script>
+    </div>
+  </section>
+</Layout>

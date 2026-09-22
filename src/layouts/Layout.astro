@@ -10,9 +10,10 @@ interface Props {
   description: string;
   path: string;
   schema?: Record<string, any> | Record<string, any>[];
+  noindex?: boolean; // hidden pages (e.g. /free-trial/*) — not for public search results
 }
 
-const { title, description, path, schema } = Astro.props;
+const { title, description, path, schema, noindex } = Astro.props;
 ---
 <!doctype html>
 <html lang="en-GB">
@@ -29,7 +30,7 @@ const { title, description, path, schema } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <SEO title={title} description={description} path={path} schema={schema} />
+    <SEO title={title} description={description} path={path} schema={schema} noindex={noindex} />
   </head>
   <body class="bg-black text-white font-sans antialiased">
     <Header />

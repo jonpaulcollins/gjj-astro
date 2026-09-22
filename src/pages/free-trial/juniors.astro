@@ -1,0 +1,146 @@
+---
+// HIDDEN LANDING PAGE — not in nav, not in sitemap (see astro.config.mjs filter).
+// Reached only via the direct link the AI assistant/WhatsApp sends for the
+// Juniors Free Trial. Pilot build for G2a — see Cowork/Memory/BACKLOG.md.
+import Layout from "../../layouts/Layout.astro";
+import { pullQuotes, googleReviews } from "../../data/testimonials";
+
+const reviews = [googleReviews[0], googleReviews[4]]; // George Kershaw (trial-specific), David M
+
+// Juniors Free Trial calendar — Jon confirmed the working booking widget URL
+// (Tue 22 Sep 2026) uses the calendar ID, not the widgetSlug:
+// https://api.leadconnectorhq.com/widget/booking/eRscZgVhiP6Kbrbrb3RH
+const calendarId = "eRscZgVhiP6Kbrbrb3RH";
+---
+<Layout
+  title="Junior BJJ Free Trial (Ages 5–10) — Guildford Jiu Jitsu"
+  description="Book your child's free Junior BJJ trial class in Guildford. Ages 5–10, Mon/Wed/Thu 4:30–5:15pm. Confidence, focus and friendships in a safe, fun environment."
+  path="/free-trial/juniors"
+  noindex={true}
+>
+  <!-- HERO -->
+  <section class="relative">
+    <div class="relative h-[46vh] min-h-[320px] md:h-[52vh]">
+      <img
+        src="/images/team-juniors-teens.png"
+        alt="Junior BJJ class at Guildford Jiu Jitsu"
+        class="absolute inset-0 w-full h-full object-cover object-top"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20"></div>
+    </div>
+    <div class="relative -mt-24 md:-mt-28 px-4">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-brand-red font-bold tracking-[0.3em] uppercase text-xs mb-3">Ages 5–10 &middot; Guildford</p>
+        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4">
+          Your Child's Free<br /><span class="text-brand-red">Junior BJJ Trial</span>
+        </h1>
+        <p class="text-white/80 text-lg max-w-xl mx-auto">
+          One free class. No pressure, no commitment — just a fun, safe first taste of Jiu Jitsu with our Junior team.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="py-8 border-y border-white/10 mt-10 overflow-hidden">
+    <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 px-4 max-w-5xl mx-auto">
+      {pullQuotes.slice(0, 6).map((q) => (
+        <span class="text-white/40 text-xs md:text-sm font-bold uppercase tracking-widest">{q}</span>
+      ))}
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-6 text-center">What To Expect</h2>
+    <p class="text-white/70 leading-relaxed text-center mb-10">
+      Help your child build self-confidence, focus and friendships in a safe, fun and supportive environment.
+      Our Junior classes are play-based, not lecture-based — your child won't run laps or sit around waiting
+      for their turn, and they won't be stuck listening to long-winded instruction either.
+    </p>
+    <div class="grid sm:grid-cols-2 gap-6">
+      <div class="border border-white/10 p-6">
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">When</h3>
+        <p class="text-white/70">Monday, Wednesday &amp; Thursday, 4:30–5:15pm</p>
+      </div>
+      <div class="border border-white/10 p-6">
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Who</h3>
+        <p class="text-white/70">Ages 5–10. Complete beginners welcome — most children who start have never trained before.</p>
+      </div>
+      <div class="border border-white/10 p-6">
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">What To Bring</h3>
+        <p class="text-white/70">Just comfortable clothes they can move in (t-shirt &amp; shorts/joggers) and a water bottle. No kit required for the trial.</p>
+      </div>
+      <div class="border border-white/10 p-6">
+        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Where</h3>
+        <p class="text-white/70">1-2 Bridge Street, Guildford GU1 4RY — Lower Ground Floor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACH -->
+  <section class="bg-white/5 py-16">
+    <div class="mx-auto max-w-3xl px-4 flex flex-col sm:flex-row items-center gap-8">
+      <img src="/images/coach-jon-collins.jpg" alt="Head Coach Jon Collins" class="w-32 h-32 rounded-full object-cover shrink-0" loading="lazy" />
+      <div>
+        <p class="text-brand-red font-bold tracking-[0.2em] uppercase text-xs mb-2">Head Coach</p>
+        <h3 class="text-xl font-black uppercase tracking-tight mb-2">Jon Collins</h3>
+        <p class="text-white/70 leading-relaxed">
+          "We know a play-based approach is the most effective way for kids to learn — and the most fun.
+          Come along, see the class for yourself, and let your child decide if they want to keep going.
+          No pressure either way."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-8 text-center">What Parents Say</h2>
+    <div class="grid sm:grid-cols-2 gap-6">
+      {reviews.map((r) => (
+        <div class="border border-white/10 p-6">
+          <p class="text-white/80 italic leading-relaxed mb-4">&ldquo;{r.text}&rdquo;</p>
+          <p class="text-white/40 text-sm font-bold uppercase tracking-wide">{r.name} &middot; Google Review</p>
+        </div>
+      ))}
+    </div>
+    <!--
+      OPEN ITEM FOR JON: these two Google reviews aren't Junior-specific (no kids'-class
+      reviews currently in testimonials.ts). If you've got a parent quote or a Junior
+      class photo/video you'd rather use, send it over and I'll swap it in — much
+      stronger than generic reviews on a kids' page.
+    -->
+  </section>
+
+  <!-- SAFETY -->
+  <section class="mx-auto max-w-3xl px-4 pb-16 text-center">
+    <p class="text-white/50 text-sm">
+      Your child's safety is our first priority. Read our
+      <a href="/child-protection-policy" class="underline hover:text-white">Child Protection Policy</a>.
+    </p>
+  </section>
+
+  <!-- BOOKING WIDGET -->
+  <!-- Jon, 22 Sep 2026 (revised same evening): booking comes first, no gate —
+       Coacha registration is chased as a follow-up step on the thank-you page
+       instead of required here. Still a hard requirement before the trial
+       itself, just asked for after booking rather than before it, to remove
+       friction from the "I want to book" moment. -->
+  <section id="book" class="bg-black py-16">
+    <div class="mx-auto max-w-2xl px-4">
+      <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-2 text-center">Book Your Free Trial</h2>
+      <p class="text-white/60 text-center mb-8">Pick a time below — it takes less than a minute.</p>
+      <div class="w-full bg-white rounded-2xl overflow-hidden" style="min-height: 700px;">
+        <iframe
+          src={`https://api.leadconnectorhq.com/widget/booking/${calendarId}`}
+          style="width:100%;height:100%;min-height:700px;border:none;"
+          scrolling="no"
+          id="juniors-free-trial-booking"
+          title="Book your Junior BJJ free trial"
+        ></iframe>
+      </div>
+      <script src="https://link.msgsndr.com/js/form_embed.js" is:inline></script>
+    </div>
+  </section>
+</Layout>
