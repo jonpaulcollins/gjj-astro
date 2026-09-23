@@ -1,116 +1,40 @@
 ---
-// HIDDEN LANDING PAGE — not in nav, not in sitemap (see astro.config.mjs filter).
-// Reached only via the direct link the AI assistant/WhatsApp sends for the
-// Juniors Free Trial. Pilot build for G2a — see Cowork/Memory/BACKLOG.md.
-import Layout from "../../layouts/Layout.astro";
-import { pullQuotes, googleReviews, studentStories } from "../../data/testimonials";
-import TrialProof from "../../components/trial/TrialProof.astro";
-import TrialBooking from "../../components/trial/TrialBooking.astro";
+// HIDDEN LANDING PAGE — noindex, not in sitemap, not linked from the site. Reached via the
+// direct link the AI assistant/WhatsApp sends. Layout + copy logic: components/trial/TrialPage.astro
+// (redesign Wed 23 Sep 2026 — see Cowork/Memory/trial-booking-worklog.md).
+import TrialPage from "../../components/trial/TrialPage.astro";
+import { googleReviews, studentStories, kidsParentReviews } from "../../data/testimonials";
+import { faqWhere, faqBringAdult, faqBringKids, faqIllness, faqAfter, faqRegister } from "../../data/trialPages";
 
-const reviews = [googleReviews[0], googleReviews[4]]; // George Kershaw (trial-specific), David M
-
-// Juniors Free Trial calendar — Jon confirmed the working booking widget URL
-// (Tue 22 Sep 2026) uses the calendar ID, not the widgetSlug:
-// https://api.leadconnectorhq.com/widget/booking/eRscZgVhiP6Kbrbrb3RH
-const calendarId = "eRscZgVhiP6Kbrbrb3RH";
+// PHOTO: trial-juniors-hero.jpg supplied by Jon, Wed 23 Sep 2026 (identifiable children — parental consent to be confirmed by Jon).
 ---
-<Layout
+<TrialPage
   title="Junior BJJ Free Trial (Ages 5–10) — Guildford Jiu Jitsu"
-  description="Book your child's free Junior BJJ trial class in Guildford. Ages 5–10, Mon/Wed/Thu 4:30–5:15pm. Confidence, focus and friendships in a safe, fun environment."
+  description="Book your child's free Junior BJJ trial class in Guildford. Ages 5–10. Safe, fun and play-based. Parents welcome to watch."
   path="/free-trial/juniors"
-  noindex={true}
->
-  <!-- HERO -->
-  <section class="relative" id="trial-hero">
-    <div class="relative h-[46vh] min-h-[320px] md:h-[52vh]">
-      <img
-        src="/images/team-juniors-teens.png"
-        alt="Junior BJJ class at Guildford Jiu Jitsu"
-        class="absolute inset-0 w-full h-full object-cover object-top"
-      />
-      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20"></div>
-    </div>
-    <div class="relative -mt-24 md:-mt-28 px-4">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-brand-red font-bold tracking-[0.3em] uppercase text-xs mb-3">Ages 5–10 &middot; Guildford</p>
-        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4">
-          Your Child's Free<br /><span class="text-brand-red">Junior BJJ Trial</span>
-        </h1>
-        <p class="text-white/80 text-lg max-w-xl mx-auto">
-          One free class. No pressure, no commitment — just a fun, safe first taste of Jiu Jitsu with our Junior team.
-        </p>
-        <a href="#book" class="mt-8 inline-flex items-center gap-2 bg-brand-red hover:bg-red-700 px-8 py-4 font-black uppercase tracking-widest text-sm transition-transform hover:scale-105">Book Your Free Trial <span aria-hidden="true">&darr;</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST STRIP -->
-  <section class="py-8 border-y border-white/10 mt-10 overflow-hidden">
-    <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 px-4 max-w-5xl mx-auto">
-      {pullQuotes.slice(0, 6).map((q) => (
-        <span class="text-white/40 text-xs md:text-sm font-bold uppercase tracking-widest">{q}</span>
-      ))}
-    </div>
-  </section>
-
-  <!-- WHAT TO EXPECT -->
-  <section class="mx-auto max-w-3xl px-4 py-16">
-    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-6 text-center">What To Expect</h2>
-    <p class="text-white/70 leading-relaxed text-center mb-10">
-      Help your child build self-confidence, focus and friendships in a safe, fun and supportive environment.
-      Our Junior classes are play-based, not lecture-based — your child won't run laps or sit around waiting
-      for their turn, and they won't be stuck listening to long-winded instruction either.
-    </p>
-    <div class="grid sm:grid-cols-2 gap-6">
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">When</h3>
-        <p class="text-white/70">Monday, Wednesday &amp; Thursday, 4:30–5:15pm</p>
-      </div>
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Who</h3>
-        <p class="text-white/70">Ages 5–10. Complete beginners welcome — most children who start have never trained before.</p>
-      </div>
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">What To Bring</h3>
-        <p class="text-white/70">Just comfortable clothes they can move in (t-shirt &amp; shorts/joggers) and a water bottle. No kit required for the trial.</p>
-      </div>
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Where</h3>
-        <p class="text-white/70">Guildford Jiu Jitsu, GU1 4RY. Entrance and parking are at the end of <strong class="text-white">Fays Passage, off Bedford Road</strong>. The pedestrian gate on Bridge Street is currently closed.</p>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Fays+Passage%2C+Guildford" target="_blank" rel="noopener" class="inline-block mt-2 text-sm text-brand-red underline hover:text-white">Open in Google Maps &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- COACH -->
-  <section class="bg-white/5 py-16">
-    <div class="mx-auto max-w-3xl px-4 flex flex-col sm:flex-row items-center gap-8">
-      <img src="/images/coach-jon-collins.jpg" alt="Head Coach Jon Collins" class="w-32 h-32 rounded-full object-cover shrink-0" loading="lazy" />
-      <div>
-        <p class="text-brand-red font-bold tracking-[0.2em] uppercase text-xs mb-2">Head Coach</p>
-        <h3 class="text-xl font-black uppercase tracking-tight mb-2">Jon Collins</h3>
-        <p class="text-white/70 leading-relaxed">
-          "We know a play-based approach is the most effective way for kids to learn — and the most fun.
-          Come along, see the class for yourself, and let your child decide if they want to keep going.
-          No pressure either way."
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOCIAL PROOF (TrialProof component, design pass 23 Sep 2026).
-       OPEN ITEM: generic Google reviews — swap in programme-specific ones when available. -->
-  <TrialProof heading="What Our Members Say" reviews={reviews} stories={[]} />
-
-  <!-- SAFETY -->
-  <section class="mx-auto max-w-3xl px-4 pb-16 text-center">
-    <p class="text-white/50 text-sm">
-      Your child's safety is our first priority. Read our
-      <a href="/child-protection-policy" class="underline hover:text-white">Child Protection Policy</a>.
-    </p>
-  </section>
-
-  <!-- BOOKING (TrialBooking component: no white box, how-it-works strip, mobile sticky CTA).
-       No pre-booking Coacha gate — registration link is sent after booking (Jon, 22 Sep 2026). -->
-  <TrialBooking calendarId={calendarId} label="Junior BJJ" kitLine="Comfy clothes they can move in and a water bottle — no kit needed." />
-</Layout>
+  calendarId="eRscZgVhiP6Kbrbrb3RH"
+  label="Junior BJJ"
+  kids={true}
+  eyebrow="Ages 5–10 · Guildford"
+  headlineTop="Your Child's Free"
+  headlineRed="Junior BJJ Class"
+  intro="A fun, safe first taste of Jiu Jitsu. Play-based, no experience needed, and you're welcome to watch."
+  heroImage="/images/trial-kids-hero-2.jpg"
+  heroAlt="Guildford Jiu Jitsu juniors with their medals on the competition podium"
+  heroPosition="center 30%"
+  trustQuote={{ text: "Jon and his instructors really look after the kids, making them feel very welcome and at ease, especially when new.", name: "Mark Watson" }}
+  steps={[
+    { title: "Arrive & Meet", text: "Arrive 10 minutes early. The coach will meet you both and settle your child in." },
+    { title: "Play-Based Class", text: "Games-based Jiu Jitsu. No lectures, no waiting around, no experience needed." },
+    { title: "Watch From Our Seats", text: "Parents are welcome to watch from our viewing area. We encourage it." },
+  ]}
+  coachQuote="We know a play-based approach is the most effective way for kids to learn, and the most fun. Come and watch, and let your child decide if they want to keep going. No pressure either way."
+  proofHeading="What Parents Say"
+  reviews={kidsParentReviews}
+  faqs={[
+    { q: "Can I watch?", a: "Yes, please do. We have a viewing area with seating for parents on the free trial. It's good for your peace of mind, and your child's." },
+    { q: "Is it safe?", a: "Classes are run by a DBS-checked, first-aid trained, insured head coach, and they're play-based and closely supervised. You can read our <a href='/child-protection-policy' target='_blank' rel='noopener' class='text-brand-red underline'>Child Protection Policy</a>." },
+    { q: "My child has never done a martial art, or is quite shy. Is that OK?", a: "Absolutely. Most children who start have never trained before. The class is games-based, so they're having fun before they realise they're learning." },
+    faqBringKids, faqIllness, faqWhere, faqRegister, faqAfter,
+  ]}
+/>

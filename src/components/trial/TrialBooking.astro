@@ -1,36 +1,22 @@
 ---
-// Booking section for the hidden /free-trial/* landing pages (G2a design pass, 23 Sep 2026).
-// - No white box around the widget (Jon, 22 Sep: "frustrating") — the GHL widget itself is
-//   styled black/brand-red in each calendar's Widget settings.
-// - "How it works" strip sets expectations and flags the Coacha registration step that
-//   follows booking (no pre-booking gate — Jon, 22 Sep).
-// - Mobile-only sticky "Book" bar that hides once the widget is on screen.
+// Booking section for the hidden /free-trial/* pages.
+// Redesign 23 Sep 2026 (research: Memory/research/booking-page-conversion-research.md):
+// - Widget sits high on the page (within ~2 phone screens); heading + friction-reducing microcopy.
+// - No white box around the widget (Jon, 22 Sep) — widget is styled black/red in GHL.
+// - FAQ link directly under the widget (Jon, 23 Sep) → main-site FAQ page.
+// - Mobile sticky "Book" bar, hidden while the hero or the widget is on screen.
 interface Props {
-  calendarId: string;   // GHL calendar ID (NOT the widget slug)
-  label: string;        // e.g. "Junior BJJ" — used in titles/aria
-  kitLine: string;      // what to bring, one short line
+  calendarId: string; // GHL calendar ID (NOT the widget slug)
+  label: string;      // e.g. "Junior BJJ"
 }
-const { calendarId, label, kitLine } = Astro.props;
-const steps = [
-  { n: "1", title: "Pick A Time", text: "Choose a class below — it takes less than a minute." },
-  { n: "2", title: "Register", text: "We'll send you a quick registration link for our health & safety details." },
-  { n: "3", title: "Turn Up & Train", text: kitLine },
-];
+const { calendarId, label } = Astro.props;
 ---
-<section id="book" class="bg-black py-16 border-t border-white/10 scroll-mt-20">
+<section id="book" class="bg-black pt-12 pb-10 border-t border-white/10 scroll-mt-20">
   <div class="mx-auto max-w-3xl px-4">
-    <p class="text-brand-red font-bold tracking-[0.3em] uppercase text-xs mb-3 text-center">Free &middot; No Commitment &middot; No Contract</p>
-    <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-10 text-center">Book Your <span class="text-brand-red">Free Trial</span></h2>
-
-    <ol class="grid sm:grid-cols-3 gap-4 mb-10">
-      {steps.map((s) => (
-        <li class="border border-white/10 p-5 text-center">
-          <span class="mx-auto mb-3 w-10 h-10 rounded-full bg-brand-red flex items-center justify-center font-black">{s.n}</span>
-          <h3 class="font-bold uppercase tracking-wide text-sm mb-1">{s.title}</h3>
-          <p class="text-white/60 text-sm leading-snug">{s.text}</p>
-        </li>
-      ))}
-    </ol>
+    <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-3 text-center">Choose Your <span class="text-brand-red">Class Time</span></h2>
+    <p class="text-white/70 text-center mb-8 text-sm md:text-base">
+      Takes about 60 seconds &middot; Free &middot; No card, no contract
+    </p>
 
     <div class="w-full" style="min-height: 700px;">
       <iframe
@@ -43,9 +29,13 @@ const steps = [
     </div>
     <script src="https://link.msgsndr.com/js/form_embed.js" is:inline></script>
 
-    <p class="text-white/50 text-sm text-center mt-6">
-      Questions first? Call or WhatsApp <a href="tel:+447575572021" class="underline hover:text-white">+44 7575 572021</a>
-    </p>
+    <div class="mt-6 text-center space-y-2 text-sm">
+      <p class="text-white/60">We'll send your confirmation and a quick registration link straight after you book.</p>
+      <p class="text-white/60">
+        Questions first? See our <a href="/faq" class="text-brand-red underline hover:text-white">FAQs</a>
+        or call / WhatsApp <a href="tel:+447575572021" class="underline hover:text-white">+44 7575 572021</a>
+      </p>
+    </div>
   </div>
 </section>
 
@@ -54,6 +44,7 @@ const steps = [
   href="#book"
   id="trial-sticky-cta"
   class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-brand-red text-white text-center font-black uppercase tracking-widest text-sm py-4 shadow-2xl transition-transform duration-300"
+  style="transform: translateY(100%)"
 >
   Book Your Free Trial
 </a>

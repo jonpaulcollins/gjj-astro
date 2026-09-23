@@ -41,10 +41,11 @@ const { heading, reviews, stories = [] } = Astro.props;
     </div>
   )}
 
-  <div class="grid md:grid-cols-2 gap-6">
+  <div class={`grid gap-6 ${reviews.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
     {reviews.map((r) => (
       <figure class="relative bg-white/[0.03] border border-white/10 border-l-4 border-l-brand-red p-8">
         <span class="absolute -top-4 left-6 text-6xl leading-none font-black text-brand-red select-none" aria-hidden="true">&ldquo;</span>
+        <p class="text-[#FBBC04] text-lg tracking-wider mb-3" aria-label="5 out of 5 stars">★★★★★</p>
         <blockquote class="text-white/85 text-lg leading-relaxed mb-5">{r.text}</blockquote>
         <figcaption class="flex items-center gap-3">
           <span class="w-9 h-9 rounded-full bg-brand-red flex items-center justify-center font-black text-sm">{r.name.charAt(0)}</span>

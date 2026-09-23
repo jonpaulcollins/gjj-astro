@@ -1,108 +1,39 @@
 ---
-// HIDDEN LANDING PAGE — not in nav, not in sitemap (see astro.config.mjs filter).
-// Reached only via the direct link the AI assistant/WhatsApp sends for the
-// Women's Team Free Trial. Built from the Juniors template, G2a rollout —
-// see Cowork/Memory/BACKLOG.md.
-import Layout from "../../layouts/Layout.astro";
-import { pullQuotes, googleReviews, studentStories } from "../../data/testimonials";
-import TrialProof from "../../components/trial/TrialProof.astro";
-import TrialBooking from "../../components/trial/TrialBooking.astro";
+// HIDDEN LANDING PAGE — noindex, not in sitemap, not linked from the site. Reached via the
+// direct link the AI assistant/WhatsApp sends. Layout + copy logic: components/trial/TrialPage.astro
+// (redesign Wed 23 Sep 2026 — see Cowork/Memory/trial-booking-worklog.md).
+import TrialPage from "../../components/trial/TrialPage.astro";
+import { googleReviews, studentStories, womensReviews } from "../../data/testimonials";
+import { faqWhere, faqBringAdult, faqBringKids, faqIllness, faqAfter, faqRegister } from "../../data/trialPages";
 
-const reviews = [googleReviews[2], googleReviews[4]]; // Romanas, David M
-// OPEN ITEM FOR JON: no women's-team-specific reviews exist in testimonials.ts
-// yet. Swap in a women's team quote if you have one — much stronger here.
-
-// Women's Team Free Trial calendar — id confirmed live via the GHL connector.
-const calendarId = "lP5IgRKDIVjF4nITglxV";
+// PHOTO: trial-womens-hero.jpg supplied by Jon, Wed 23 Sep 2026.
 ---
-<Layout
+<TrialPage
   title="Women's BJJ Free Trial — Guildford Jiu Jitsu"
-  description="Book your free Women's BJJ trial class in Guildford. Join one of the UK's largest Ladies Teams — over 50 women strong, in a welcoming, supportive, ego-free environment."
+  description="Book your free Women's BJJ trial class in Guildford. Women-only class, beginners welcome. One of the UK's largest Ladies Teams, over 50 women strong."
   path="/free-trial/womens"
-  noindex={true}
->
-  <!-- HERO -->
-  <section class="relative" id="trial-hero">
-    <div class="relative h-[46vh] min-h-[320px] md:h-[52vh]">
-      <img
-        src="/images/team-women.jpg"
-        alt="Women's BJJ Team at Guildford Jiu Jitsu"
-        class="absolute inset-0 w-full h-full object-cover object-top"
-      />
-      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20"></div>
-    </div>
-    <div class="relative -mt-24 md:-mt-28 px-4">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-brand-red font-bold tracking-[0.3em] uppercase text-xs mb-3">Women Only &middot; Guildford</p>
-        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4">
-          Your Free<br /><span class="text-brand-red">Women's BJJ Trial</span>
-        </h1>
-        <p class="text-white/80 text-lg max-w-xl mx-auto">
-          One free class with one of the UK's largest Ladies Teams — over 50 women strong, and growing.
-        </p>
-        <a href="#book" class="mt-8 inline-flex items-center gap-2 bg-brand-red hover:bg-red-700 px-8 py-4 font-black uppercase tracking-widest text-sm transition-transform hover:scale-105">Book Your Free Trial <span aria-hidden="true">&darr;</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST STRIP -->
-  <section class="py-8 border-y border-white/10 mt-10 overflow-hidden">
-    <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 px-4 max-w-5xl mx-auto">
-      {pullQuotes.slice(0, 6).map((q) => (
-        <span class="text-white/40 text-xs md:text-sm font-bold uppercase tracking-widest">{q}</span>
-      ))}
-    </div>
-  </section>
-
-  <!-- WHAT TO EXPECT -->
-  <section class="mx-auto max-w-3xl px-4 py-16">
-    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-6 text-center">What To Expect</h2>
-    <p class="text-white/70 leading-relaxed text-center mb-10">
-      A strong contingent of women training at a BJJ gym is a sign of a welcoming, safe, ego-checked
-      environment — and that's exactly what you'll find here. Build physical confidence, fitness and energy
-      alongside a genuinely supportive community.
-    </p>
-    <div class="grid sm:grid-cols-2 gap-6">
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">When</h3>
-        <p class="text-white/70">Women Only, Sunday 10:30–11:45am. Many of the team also train our weekday Foundations classes (from 6:30pm, especially Tue &amp; Thu).</p>
-      </div>
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Who</h3>
-        <p class="text-white/70">Women of any age or experience level. Complete beginners welcome — no experience necessary.</p>
-      </div>
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">What To Bring</h3>
-        <p class="text-white/70">Comfortable clothes you can move in (t-shirt &amp; shorts/joggers) and a water bottle. No kit required for the trial.</p>
-      </div>
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Where</h3>
-        <p class="text-white/70">Guildford Jiu Jitsu, GU1 4RY. Entrance and parking are at the end of <strong class="text-white">Fays Passage, off Bedford Road</strong>. The pedestrian gate on Bridge Street is currently closed.</p>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Fays+Passage%2C+Guildford" target="_blank" rel="noopener" class="inline-block mt-2 text-sm text-brand-red underline hover:text-white">Open in Google Maps &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- COACH -->
-  <section class="bg-white/5 py-16">
-    <div class="mx-auto max-w-3xl px-4 flex flex-col sm:flex-row items-center gap-8">
-      <img src="/images/coach-jon-collins.jpg" alt="Head Coach Jon Collins" class="w-32 h-32 rounded-full object-cover shrink-0" loading="lazy" />
-      <div>
-        <p class="text-brand-red font-bold tracking-[0.2em] uppercase text-xs mb-2">Head Coach</p>
-        <h3 class="text-xl font-black uppercase tracking-tight mb-2">Jon Collins</h3>
-        <p class="text-white/70 leading-relaxed">
-          "Our Women's Team is one of the biggest and most established in the UK — come and see why so many
-          women make it their regular class, not just a one-off."
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOCIAL PROOF (TrialProof component, design pass 23 Sep 2026).
-       OPEN ITEM: generic Google reviews — swap in programme-specific ones when available. -->
-  <TrialProof heading="What Our Members Say" reviews={reviews} stories={[studentStories[1]]} />
-
-  <!-- BOOKING (TrialBooking component: no white box, how-it-works strip, mobile sticky CTA).
-       No pre-booking Coacha gate — registration link is sent after booking (Jon, 22 Sep 2026). -->
-  <TrialBooking calendarId={calendarId} label="Women's BJJ" kitLine="Comfy clothes you can move in and a water bottle — no kit needed." />
-</Layout>
+  calendarId="lP5IgRKDIVjF4nITglxV"
+  label="Women's BJJ"
+  eyebrow="Women Only · Guildford"
+  headlineTop="Your Free"
+  headlineRed="Women's BJJ Class"
+  intro="Join one of the UK's largest Ladies Teams, over 50 women strong. Beginners very welcome."
+  heroImage="/images/trial-womens-hero.jpg"
+  heroAlt="Two Guildford Jiu Jitsu women's team members smiling with their competition medals"
+  heroPosition="center top"
+  trustQuote={{ text: "Guildford JiuJitsu ensures a very easy start if you are a female new to jiu jitsu.", name: "Hannah Johnson" }}
+  steps={[
+    { title: "Arrive & Meet", text: "Arrive 10 minutes early. We'll say hello and introduce you to the team." },
+    { title: "Women-Only Class", text: "A friendly, supportive class. Go at your own pace; no experience needed." },
+    { title: "Chat After", text: "Ask anything afterwards. No sales pitch, no pressure." },
+  ]}
+  coachQuote="Our Women's Team is one of the biggest and most established in the UK. Come and see why so many women make it their regular class, not just a one-off."
+  reviews={womensReviews}
+  stories={[studentStories[1]]}
+  faqs={[
+    { q: "Is the class women only?", a: "Yes. The Women's class is women only. Many of the team also train in our mixed weekday Foundations classes when they're ready." },
+    { q: "I've never trained and I'm not very fit. Is that OK?", a: "Absolutely. Most women who join have never done a martial art. You don't need to get fit first; you'll go at your own pace." },
+    { q: "Will I get hurt?", a: "Classes are supervised by a first-aid trained coach, and in Jiu Jitsu you can stop any exercise instantly by tapping." },
+    faqBringAdult, faqIllness, faqWhere, faqRegister, faqAfter,
+  ]}
+/>

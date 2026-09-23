@@ -1,4 +1,9 @@
 ---
+interface Props {
+  cta?: { label: string; href: string };
+  minimal?: boolean; // free-trial booking pages: logo + CTA only, no nav menu (Jon, 23 Sep 2026)
+}
+const { cta = { label: "CLAIM FREE TRIAL", href: "/#free-trial" }, minimal = false } = Astro.props;
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Timetable", href: "/timetable" },
@@ -18,7 +23,7 @@ const currentPath = Astro.url.pathname;
         class="h-6 sm:h-8 md:h-10 w-auto"
       />
     </a>
-    <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide">
+    {!minimal && <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide">
       {navItems.map((item) => (
         <a
           href={item.href}
@@ -29,15 +34,15 @@ const currentPath = Astro.url.pathname;
           {item.label.toUpperCase()}
         </a>
       ))}
-    </nav>
+    </nav>}
     <div class="flex items-center gap-2 sm:gap-3">
       <a
-        href="/#free-trial"
+        href={cta.href}
         class="bg-brand-red text-white px-2.5 sm:px-5 py-1.5 sm:py-2.5 text-[11px] sm:text-sm font-bold rounded hover:bg-red-700 transition-colors whitespace-nowrap"
       >
-        CLAIM FREE TRIAL
+        {cta.label}
       </a>
-      <button
+      {!minimal && <button
         id="mobile-menu-btn"
         type="button"
         class="lg:hidden inline-flex items-center justify-center w-11 h-11 shrink-0 rounded border border-white/10 text-white"
@@ -54,12 +59,12 @@ const currentPath = Astro.url.pathname;
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
-      </button>
+      </button>}
     </div>
   </div>
 
   <!-- Mobile menu panel -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 bg-black">
+  {!minimal && <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 bg-black">
     <nav class="flex flex-col px-4 py-2">
       {navItems.map((item) => (
         <a
@@ -72,7 +77,7 @@ const currentPath = Astro.url.pathname;
         </a>
       ))}
     </nav>
-  </div>
+  </div>}
 </header>
 
 <script is:inline>

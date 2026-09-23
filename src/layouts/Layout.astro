@@ -11,20 +11,25 @@ interface Props {
   path: string;
   schema?: Record<string, any> | Record<string, any>[];
   noindex?: boolean; // hidden pages (e.g. /free-trial/*) — not for public search results
+  // Optional override for the header's red button. Default (all normal pages) = CLAIM FREE TRIAL -> /#free-trial.
+  // Free-trial booking pages pass { label: "BOOK FREE TRIAL", href: "#book" } so the button scrolls to the
+  // booking widget instead of sending people away (Jon, 23 Sep 2026).
+  headerCta?: { label: string; href: string };
+  minimalHeader?: boolean; // hide the nav menu (free-trial booking pages)
 }
 
-const { title, description, path, schema, noindex } = Astro.props;
+const { title, description, path, schema, noindex, headerCta, minimalHeader } = Astro.props;
 ---
 <!doctype html>
 <html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <!-- Favicon: GJJ Legacy Team logo (Jon, Wed 23 Sep 2026). SVG link removed — old favicon.svg is retired; ?v=2 busts browser caches. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
+    <link rel="shortcut icon" href="/favicon.ico?v=2" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#E11D2A" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,7 +38,7 @@ const { title, description, path, schema, noindex } = Astro.props;
     <SEO title={title} description={description} path={path} schema={schema} noindex={noindex} />
   </head>
   <body class="bg-black text-white font-sans antialiased">
-    <Header />
+    <Header cta={headerCta} minimal={minimalHeader} />
     <main>
       <slot />
     </main>

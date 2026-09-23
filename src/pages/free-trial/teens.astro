@@ -1,116 +1,39 @@
 ---
-// HIDDEN LANDING PAGE — not in nav, not in sitemap (see astro.config.mjs filter).
-// Reached only via the direct link the AI assistant/WhatsApp sends for the
-// Teens Free Trial. Built from the Juniors template, G2a rollout — see
-// Cowork/Memory/BACKLOG.md.
-import Layout from "../../layouts/Layout.astro";
-import { pullQuotes, googleReviews, studentStories } from "../../data/testimonials";
-import TrialProof from "../../components/trial/TrialProof.astro";
-import TrialBooking from "../../components/trial/TrialBooking.astro";
+// HIDDEN LANDING PAGE — noindex, not in sitemap, not linked from the site. Reached via the
+// direct link the AI assistant/WhatsApp sends. Layout + copy logic: components/trial/TrialPage.astro
+// (redesign Wed 23 Sep 2026 — see Cowork/Memory/trial-booking-worklog.md).
+import TrialPage from "../../components/trial/TrialPage.astro";
+import { googleReviews, studentStories, kidsParentReviews } from "../../data/testimonials";
+import { faqWhere, faqBringAdult, faqBringKids, faqIllness, faqAfter, faqRegister } from "../../data/trialPages";
 
-const reviews = [googleReviews[5], googleReviews[7]]; // Sarah J, Chris W
-// OPEN ITEM FOR JON: no teen-specific reviews exist in testimonials.ts yet —
-// same gap as the Juniors page. Swap in a teen/parent quote if you have one.
-
-// Teens Free Trial calendar — id confirmed live via the GHL connector.
-const calendarId = "k7KTN4zLe1ZGJZjYF8sC";
+// PHOTOS: Jon to supply a real Teens class photo (currently reusing the Juniors/Teens team shot).
 ---
-<Layout
+<TrialPage
   title="Teen BJJ Free Trial (Ages 10–15) — Guildford Jiu Jitsu"
-  description="Book your teenager's free Teen BJJ trial class in Guildford. Ages 10–15, Mon & Wed evenings plus Saturday sparring. Confidence, discipline and real skills in a safe, structured environment."
+  description="Book your teenager's free Teen BJJ trial class in Guildford. Ages 10–15. Confidence, discipline and real skills. Parents welcome to watch."
   path="/free-trial/teens"
-  noindex={true}
->
-  <!-- HERO -->
-  <section class="relative" id="trial-hero">
-    <div class="relative h-[46vh] min-h-[320px] md:h-[52vh]">
-      <img
-        src="/images/team-juniors-teens.png"
-        alt="Teen BJJ class at Guildford Jiu Jitsu"
-        class="absolute inset-0 w-full h-full object-cover object-top"
-      />
-      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20"></div>
-    </div>
-    <div class="relative -mt-24 md:-mt-28 px-4">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-brand-red font-bold tracking-[0.3em] uppercase text-xs mb-3">Ages 10–15 &middot; Guildford</p>
-        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4">
-          Your Teen's Free<br /><span class="text-brand-red">BJJ Trial</span>
-        </h1>
-        <p class="text-white/80 text-lg max-w-xl mx-auto">
-          One free class. Real skills, real discipline, real confidence — in a safe, structured environment built for teenagers.
-        </p>
-        <a href="#book" class="mt-8 inline-flex items-center gap-2 bg-brand-red hover:bg-red-700 px-8 py-4 font-black uppercase tracking-widest text-sm transition-transform hover:scale-105">Book Your Free Trial <span aria-hidden="true">&darr;</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST STRIP -->
-  <section class="py-8 border-y border-white/10 mt-10 overflow-hidden">
-    <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 px-4 max-w-5xl mx-auto">
-      {pullQuotes.slice(0, 6).map((q) => (
-        <span class="text-white/40 text-xs md:text-sm font-bold uppercase tracking-widest">{q}</span>
-      ))}
-    </div>
-  </section>
-
-  <!-- WHAT TO EXPECT -->
-  <section class="mx-auto max-w-3xl px-4 py-16">
-    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-6 text-center">What To Expect</h2>
-    <p class="text-white/70 leading-relaxed text-center mb-10">
-      Teenagers get their own dedicated class — not a watered-down kids' session and not thrown in with adults.
-      Real technique, live rolling, and a structured curriculum that builds discipline, fitness and genuine
-      self-defence skills alongside a strong, supportive team.
-    </p>
-    <div class="grid sm:grid-cols-2 gap-6">
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">When</h3>
-        <p class="text-white/70">Monday &amp; Wednesday, 5:20–6:15pm — plus Saturday sparring, 9:45–10:15am</p>
-      </div>
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Who</h3>
-        <p class="text-white/70">Ages 10–15. Complete beginners welcome — most teens who start have never trained before.</p>
-      </div>
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">What To Bring</h3>
-        <p class="text-white/70">Just comfortable clothes they can move in (t-shirt &amp; shorts/joggers) and a water bottle. No kit required for the trial.</p>
-      </div>
-      <div class="border border-white/10 p-6">
-        <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Where</h3>
-        <p class="text-white/70">Guildford Jiu Jitsu, GU1 4RY. Entrance and parking are at the end of <strong class="text-white">Fays Passage, off Bedford Road</strong>. The pedestrian gate on Bridge Street is currently closed.</p>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=Fays+Passage%2C+Guildford" target="_blank" rel="noopener" class="inline-block mt-2 text-sm text-brand-red underline hover:text-white">Open in Google Maps &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- COACH -->
-  <section class="bg-white/5 py-16">
-    <div class="mx-auto max-w-3xl px-4 flex flex-col sm:flex-row items-center gap-8">
-      <img src="/images/coach-jon-collins.jpg" alt="Head Coach Jon Collins" class="w-32 h-32 rounded-full object-cover shrink-0" loading="lazy" />
-      <div>
-        <p class="text-brand-red font-bold tracking-[0.2em] uppercase text-xs mb-2">Head Coach</p>
-        <h3 class="text-xl font-black uppercase tracking-tight mb-2">Jon Collins</h3>
-        <p class="text-white/70 leading-relaxed">
-          "Teenagers thrive on being taken seriously. Our Teen class gives them real training, a real
-          curriculum, and a team that holds them to a higher standard — that's where the confidence comes from."
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOCIAL PROOF (TrialProof component, design pass 23 Sep 2026).
-       OPEN ITEM: generic Google reviews — swap in programme-specific ones when available. -->
-  <TrialProof heading="What Our Members Say" reviews={reviews} stories={[]} />
-
-  <!-- SAFETY -->
-  <section class="mx-auto max-w-3xl px-4 pb-16 text-center">
-    <p class="text-white/50 text-sm">
-      Your teen's safety is our first priority. Read our
-      <a href="/child-protection-policy" class="underline hover:text-white">Child Protection Policy</a>.
-    </p>
-  </section>
-
-  <!-- BOOKING (TrialBooking component: no white box, how-it-works strip, mobile sticky CTA).
-       No pre-booking Coacha gate — registration link is sent after booking (Jon, 22 Sep 2026). -->
-  <TrialBooking calendarId={calendarId} label="Teen BJJ" kitLine="Comfy clothes they can move in and a water bottle — no kit needed." />
-</Layout>
+  calendarId="k7KTN4zLe1ZGJZjYF8sC"
+  label="Teen BJJ"
+  kids={true}
+  eyebrow="Ages 10–15 · Guildford"
+  headlineTop="Your Teen's Free"
+  headlineRed="BJJ Class"
+  intro="Real skills, real confidence, in a safe and structured class built for teenagers. No experience needed."
+  heroImage="/images/team-juniors-teens.png"
+  heroAlt="Teen BJJ class at Guildford Jiu Jitsu"
+  trustQuote={{ text: "Jon and his instructors really look after the kids, making them feel very welcome and at ease, especially when new.", name: "Mark Watson" }}
+  steps={[
+    { title: "Arrive & Meet", text: "Arrive 10 minutes early. The coach will meet you both and introduce your teen to the group." },
+    { title: "A Proper Class", text: "Real technique and games, pitched for beginners. Their own class, not a kids' session." },
+    { title: "Watch From Our Seats", text: "Parents are welcome to watch from our viewing area. We encourage it." },
+  ]}
+  coachQuote="Teenagers thrive on being taken seriously. Our Teen class gives them real training and a team that holds them to a higher standard. That's where the confidence comes from."
+  proofHeading="What Parents Say"
+  reviews={kidsParentReviews}
+  faqs={[
+    { q: "Can I watch?", a: "Yes, please do. We have a viewing area with seating for parents on the free trial." },
+    { q: "Is it safe?", a: "Classes are run by a DBS-checked, first-aid trained, insured head coach, and they're structured and closely supervised. You can read our <a href='/child-protection-policy' target='_blank' rel='noopener' class='text-brand-red underline'>Child Protection Policy</a>." },
+    { q: "They've never trained before. Is that OK?", a: "Yes. Most teens who start have never done a martial art. Everyone starts somewhere, and the class is pitched so beginners can join in straight away." },
+    faqBringKids, faqIllness, faqWhere, faqRegister, faqAfter,
+  ]}
+/>
