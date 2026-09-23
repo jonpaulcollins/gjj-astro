@@ -4,7 +4,9 @@
 // Experienced Grappler Free Trial. Built from the Juniors template, G2a
 // rollout — see Cowork/Memory/BACKLOG.md.
 import Layout from "../../layouts/Layout.astro";
-import { pullQuotes, googleReviews } from "../../data/testimonials";
+import { pullQuotes, googleReviews, studentStories } from "../../data/testimonials";
+import TrialProof from "../../components/trial/TrialProof.astro";
+import TrialBooking from "../../components/trial/TrialBooking.astro";
 
 const reviews = [googleReviews[3], googleReviews[6]]; // Alex P (experienced grapplers), Michael T
 
@@ -12,13 +14,13 @@ const reviews = [googleReviews[3], googleReviews[6]]; // Alex P (experienced gra
 const calendarId = "Eer3xvSGu4AKeCMhsCQJ";
 ---
 <Layout
-  title="Experienced Grappler Free Trial (No-Gi) \u2014 Guildford Jiu Jitsu"
-  description="Book your free No-Gi Submission Grappling trial class in Guildford. For existing grapplers and competitors \u2014 the area's biggest No-Gi team, with wrestling and leg-locks."
+  title="Experienced Grappler Free Trial (No-Gi) — Guildford Jiu Jitsu"
+  description="Book your free No-Gi Submission Grappling trial class in Guildford. For existing grapplers and competitors — the area's biggest No-Gi team, with wrestling and leg-locks."
   path="/free-trial/experienced"
   noindex={true}
 >
   <!-- HERO -->
-  <section class="relative">
+  <section class="relative" id="trial-hero">
     <div class="relative h-[46vh] min-h-[320px] md:h-[52vh]">
       <img
         src="/images/team-adults-nogi.jpg"
@@ -34,8 +36,9 @@ const calendarId = "Eer3xvSGu4AKeCMhsCQJ";
           Your Free<br /><span class="text-brand-red">No-Gi Trial</span>
         </h1>
         <p class="text-white/80 text-lg max-w-xl mx-auto">
-          One free session with the area's biggest No-Gi &amp; Submission Grappling team \u2014 wrestling, leg-locks, and a game built for competitors.
+          One free session with the area's biggest No-Gi &amp; Submission Grappling team — wrestling, leg-locks, and a game built for competitors.
         </p>
+        <a href="#book" class="mt-8 inline-flex items-center gap-2 bg-brand-red hover:bg-red-700 px-8 py-4 font-black uppercase tracking-widest text-sm transition-transform hover:scale-105">Book Your Free Trial <span aria-hidden="true">&darr;</span></a>
       </div>
     </div>
   </section>
@@ -53,26 +56,26 @@ const calendarId = "Eer3xvSGu4AKeCMhsCQJ";
   <section class="mx-auto max-w-3xl px-4 py-16">
     <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-6 text-center">What To Expect</h2>
     <p class="text-white/70 leading-relaxed text-center mb-10">
-      Our All Levels No-Gi classes are built for the demands of competition \u2014 sharpening existing skills
+      Our All Levels No-Gi classes are built for the demands of competition — sharpening existing skills
       and combining grappling with wrestling and leg-locks. We use a constraints-led, game-based approach, so
       no time is wasted drilling for the sake of drilling.
     </p>
     <div class="grid sm:grid-cols-2 gap-6">
       <div class="border border-white/10 p-6">
         <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">When</h3>
-        <p class="text-white/70">7:45pm Mon, Tue &amp; Thu \u2014 plus 10:30am Saturday.</p>
+        <p class="text-white/70">7:45pm Mon, Tue &amp; Thu — plus 10:30am Saturday.</p>
       </div>
       <div class="border border-white/10 p-6">
         <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Who</h3>
-        <p class="text-white/70">Existing grapplers and competitors \u2014 from other BJJ/No-Gi gyms, wrestling, or judo backgrounds.</p>
+        <p class="text-white/70">Existing grapplers and competitors — from other BJJ/No-Gi gyms, wrestling, or judo backgrounds.</p>
       </div>
       <div class="border border-white/10 p-6">
         <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">What To Bring</h3>
-        <p class="text-white/70">No-Gi kit \u2014 rashguard/shorts or spats \u2014 and a water bottle.</p>
+        <p class="text-white/70">No-Gi kit — rashguard/shorts or spats — and a water bottle.</p>
       </div>
       <div class="border border-white/10 p-6">
         <h3 class="font-bold uppercase tracking-wide text-sm mb-2 text-brand-red">Where</h3>
-        <p class="text-white/70">1-2 Bridge Street, Guildford GU1 4RY \u2014 Lower Ground Floor.</p>
+        <p class="text-white/70">1-2 Bridge Street, Guildford GU1 4RY — Lower Ground Floor.</p>
       </div>
     </div>
   </section>
@@ -86,40 +89,17 @@ const calendarId = "Eer3xvSGu4AKeCMhsCQJ";
         <h3 class="text-xl font-black uppercase tracking-tight mb-2">Jon Collins</h3>
         <p class="text-white/70 leading-relaxed">
           "If you're already grappling, come test yourself against the area's biggest No-Gi team. No easing
-          in gently \u2014 just live, competitive rolling with people who'll push you."
+          in gently — just live, competitive rolling with people who'll push you."
         </p>
       </div>
     </div>
   </section>
 
-  <!-- SOCIAL PROOF -->
-  <section class="mx-auto max-w-3xl px-4 py-16">
-    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-8 text-center">What Our Members Say</h2>
-    <div class="grid sm:grid-cols-2 gap-6">
-      {reviews.map((r) => (
-        <div class="border border-white/10 p-6">
-          <p class="text-white/80 italic leading-relaxed mb-4">&ldquo;{r.text}&rdquo;</p>
-          <p class="text-white/40 text-sm font-bold uppercase tracking-wide">{r.name} &middot; Google Review</p>
-        </div>
-      ))}
-    </div>
-  </section>
+  <!-- SOCIAL PROOF (TrialProof component, design pass 23 Sep 2026).
+       OPEN ITEM: generic Google reviews — swap in programme-specific ones when available. -->
+  <TrialProof heading="What Our Members Say" reviews={reviews} stories={[studentStories[4]]} />
 
-  <!-- BOOKING WIDGET -->
-  <section id="book" class="bg-black py-16">
-    <div class="mx-auto max-w-2xl px-4">
-      <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-2 text-center">Book Your Free Trial</h2>
-      <p class="text-white/60 text-center mb-8">Pick a time below \u2014 it takes less than a minute.</p>
-      <div class="w-full bg-white rounded-2xl overflow-hidden" style="min-height: 700px;">
-        <iframe
-          src={`https://api.leadconnectorhq.com/widget/booking/${calendarId}`}
-          style="width:100%;height:100%;min-height:700px;border:none;"
-          scrolling="no"
-          id="experienced-free-trial-booking"
-          title="Book your Experienced Grappler free trial"
-        ></iframe>
-      </div>
-      <script src="https://link.msgsndr.com/js/form_embed.js" is:inline></script>
-    </div>
-  </section>
+  <!-- BOOKING (TrialBooking component: no white box, how-it-works strip, mobile sticky CTA).
+       No pre-booking Coacha gate — registration link is sent after booking (Jon, 22 Sep 2026). -->
+  <TrialBooking calendarId={calendarId} label="Experienced Grappler" kitLine="Your No-Gi kit (rashguard & shorts/spats) and a water bottle." />
 </Layout>
