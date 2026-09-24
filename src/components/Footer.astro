@@ -1,5 +1,8 @@
 ---
 import { site } from "../data/site";
+// hideWhatsApp: free-trial booking pages hide the floating WhatsApp button — those leads have
+// already spoken to us on WhatsApp (Jon, Thu 24 Sep 2026). Every other page keeps it.
+const { hideWhatsApp = false } = Astro.props;
 ---
 <footer class="bg-black text-white/80 border-t border-white/10">
   <!-- FOLLOW US bar -->
@@ -116,6 +119,7 @@ import { site } from "../data/site";
 </footer>
 
 <!-- WhatsApp click-to-chat — replace number in src/data/site.ts -->
+{!hideWhatsApp && (
 <a
   href={`https://wa.me/${site.ghl.whatsappNumber}`}
   target="_blank"
@@ -127,3 +131,4 @@ import { site } from "../data/site";
     <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.12-2.9-6.98A9.82 9.82 0 0 0 12.04 2Z"/>
   </svg>
 </a>
+)}

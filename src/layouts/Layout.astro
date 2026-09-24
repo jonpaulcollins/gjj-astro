@@ -16,9 +16,10 @@ interface Props {
   // booking widget instead of sending people away (Jon, 23 Sep 2026).
   headerCta?: { label: string; href: string };
   minimalHeader?: boolean; // hide the nav menu (free-trial booking pages)
+  hideWhatsApp?: boolean; // hide the floating WhatsApp button (free-trial booking pages, Jon 24 Sep 2026)
 }
 
-const { title, description, path, schema, noindex, headerCta, minimalHeader } = Astro.props;
+const { title, description, path, schema, noindex, headerCta, minimalHeader, hideWhatsApp } = Astro.props;
 ---
 <!doctype html>
 <html lang="en-GB">
@@ -42,7 +43,7 @@ const { title, description, path, schema, noindex, headerCta, minimalHeader } = 
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer hideWhatsApp={hideWhatsApp} />
     <CookieConsent />
   </body>
 </html>

@@ -7,34 +7,36 @@ import { googleReviews, studentStories, experiencedReviews } from "../../data/te
 import { faqWhere, faqBringAdult, faqBringKids, faqIllness, faqAfter, faqRegister } from "../../data/trialPages";
 
 // PHOTO: trial-experienced-hero-3.jpg (competition team photo) chosen by Jon, Wed 23 Sep 2026: shows the standard is high.
+// COPY UPDATE (Jon, Thu 24 Sep 2026): trialists book only the sessions offered in the Experienced calendar (deliberate:
+// Jon meets trialists in specific sessions), so the copy says "an adult session", not "any adult class".
 // COPY: Jon, Wed 23 Sep 2026 — NOT a No-Gi-only trial. Experienced grapplers can book ANY adult
 // session (Foundations, All Levels, Gi or No-Gi); speak to them about how the gym trains and show
 // there are plenty of experienced people on the mats.
 ---
 <TrialPage
   title="Experienced Grappler Free Trial — Guildford Jiu Jitsu"
-  description="Already train BJJ, grappling, wrestling or judo? Book a free trial at Guildford Jiu Jitsu. Join any adult class, Gi or No-Gi, and roll with plenty of experienced training partners."
+  description="Already train BJJ, grappling, wrestling or judo? Book a free trial at Guildford Jiu Jitsu. Join an adult session, Gi or No-Gi, and roll with plenty of experienced training partners."
   path="/free-trial/experienced"
   calendarId="Eer3xvSGu4AKeCMhsCQJ"
   label="Experienced Grappler"
   eyebrow="Already Train? · Guildford"
   headlineTop="Your Free"
   headlineRed="Trial Session"
-  intro="Already train BJJ, grappling, wrestling or judo? Join any adult class, Gi or No-Gi, and roll with a mat full of experienced training partners."
+  intro="Already train BJJ, grappling, wrestling or judo? Join an adult session, Gi or No-Gi, and roll with a mat full of experienced training partners."
   heroImage="/images/trial-experienced-hero-3.jpg"
   heroAlt="The Guildford Jiu Jitsu competition team celebrating with their medals at a Pro Sport Grappling event"
   heroPosition="center 35%"
   trustQuote={{ text: "As someone who's trained at quite a few places, I've never felt more at home anywhere.", name: "Robbie Whitty" }}
   steps={[
-    { title: "Pick Any Adult Class", text: "Foundations, All Levels, Gi or No-Gi. Choose whatever suits your game." },
+    { title: "Pick Your Session", text: "Foundations or All Levels, Gi or No-Gi." },
     { title: "Train", text: "Game-based, constraints-led coaching. No drilling for the sake of drilling." },
     { title: "Roll", text: "Live rounds with experienced training partners, from white and blue belts up to competitors." },
   ]}
-  coachQuote="If you already train, you'll fit straight in. Book any adult class, Gi or No-Gi, and you'll find plenty of experienced people to roll with."
+  coachQuote="If you already train, you'll fit straight in. Book a session, Gi or No-Gi, and you'll find plenty of experienced people to roll with."
   reviews={experiencedReviews}
   stories={[studentStories[4]]}
   faqs={[
-    { q: "Which classes can I book?", a: "Any adult class: Foundations or All Levels, Gi or No-Gi. Having experience doesn't limit you to certain sessions. Pick the time that suits you." },
+    { q: "Which classes can I book?", a: "Any session shown in the booking calendar: Foundations and All Levels, Gi and No-Gi. They're the sessions where I can meet you on your first visit." },
     { q: "Is it Gi or No-Gi?", a: "Both. We run Gi and No-Gi classes through the week. Bring the kit for the class you book: your Gi for Gi classes, or a rashguard and shorts or spats for No-Gi." },
     { q: "How do you train here?", a: "Game-based, constraints-led coaching. You'll spend your time on live, purposeful practice rather than drilling for the sake of drilling." },
     { q: "Will there be people at my level?", a: "Yes. There are plenty of experienced grapplers on the mats, from white and blue belts up to active competitors, so you'll find good rounds." },
