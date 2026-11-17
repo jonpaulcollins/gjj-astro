@@ -92,3 +92,14 @@ was flagged as unresolved during the GHL build and applies here too.
 Deploy pipeline verified 2026-08-18.
 
 Deploy pipeline verified 2026-08-18.
+
+## Updating the class timetable
+
+The timetable lives in one file: `src/data/timetable.js`. Both the website
+grid (`/timetable`) and the downloadable image
+(`public/images/class-timetable.png`) are built from it.
+
+1. Edit the class in `src/data/timetable.js` (day → time band → list of classes).
+   New class types get a colour in `kinds` and a place in the `legend` list.
+2. Run `npm run timetable:image` to regenerate the downloadable PNG.
+3. Check the PNG, then commit both files and push to `main`.

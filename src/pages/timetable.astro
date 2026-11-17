@@ -4,6 +4,7 @@ import path from "node:path";
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
 import { programmes } from "../data/programmes";
+import { bands, days, schedule, legend, kinds } from "../data/timetable.js";
 
 const podiumDir = path.join(process.cwd(), "public", "images", "podium");
 // Sort first so the order is stable across builds, then interleave with a
@@ -77,108 +78,6 @@ const whyTrain = [
   { icon: "smile", text: "Friendly Community" },
 ];
 
-
-const bands = [
-  { key: "early", label: "Early" },
-  { key: "noon", label: "Mid-Morning/Noon" },
-  { key: "afternoon", label: "Afternoon" },
-  { key: "evening", label: "Evening/Night" },
-];
-
-const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-type ClassItem = { title: string; time: string; bg: string; cat: "adults" | "kids" };
-type Cell = ClassItem[] | "private" | "empty";
-
-const schedule: Record<string, Record<string, Cell>> = {
-  Monday: {
-    early: [{ title: "Wrestling (No-Gi)", time: "06:30 – 08:00", bg: "bg-yellow-500/20 border-l-yellow-500", cat: "adults" }],
-    noon: [{ title: "Foundations BJJ (Gi)", time: "12:00 – 13:00", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" }],
-    afternoon: [
-      { title: "Junior BJJ (Gi) (5-10yrs)", time: "16:30 – 17:15", bg: "bg-orange-500/20 border-l-orange-500", cat: "kids" },
-      { title: "Teen BJJ (Gi) (10-15yrs)", time: "17:20 – 18:15", bg: "bg-emerald-500/20 border-l-emerald-500", cat: "kids" },
-    ],
-    evening: [
-      { title: "Foundations BJJ (Gi)", time: "18:30 – 19:30", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" },
-      { title: "All Levels Submission Grappling (No-Gi)", time: "19:45 – 21:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
-    ],
-  },
-  Tuesday: {
-    early: "private",
-    noon: "private",
-    afternoon: "private",
-    evening: [
-      { title: "Foundations BJJ (Gi)", time: "18:30 – 19:30", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" },
-      { title: "All Levels Submission Grappling (No-Gi)", time: "19:45 – 21:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
-    ],
-  },
-  Wednesday: {
-    early: [{ title: "Wrestling (No-Gi)", time: "06:30 – 08:00", bg: "bg-yellow-500/20 border-l-yellow-500", cat: "adults" }],
-    noon: [{ title: "Foundations BJJ (Gi)", time: "12:00 – 13:00", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" }],
-    afternoon: [
-      { title: "Junior BJJ (Gi) (5-10yrs)", time: "16:30 – 17:15", bg: "bg-orange-500/20 border-l-orange-500", cat: "kids" },
-      { title: "Teen BJJ (Gi) (10-15yrs)", time: "17:20 – 18:15", bg: "bg-emerald-500/20 border-l-emerald-500", cat: "kids" },
-    ],
-    evening: [
-      { title: "Foundations (No-Gi)", time: "18:30 – 20:00", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" },
-      { title: "Foundations MMA (Guards & Gloves)", time: "20:00 – 21:00", bg: "bg-[#39FF14]/20 border-l-[#39FF14]", cat: "adults" },
-    ],
-  },
-  Thursday: {
-    early: "private",
-    noon: "private",
-    afternoon: [
-      { title: "Junior No-Gi (5-10yrs)", time: "16:30 – 17:15", bg: "bg-orange-500/20 border-l-orange-500", cat: "kids" },
-      { title: "Teen No-Gi (10-15yrs)", time: "17:20 – 18:15", bg: "bg-emerald-500/20 border-l-emerald-500", cat: "kids" },
-    ],
-    evening: [
-      { title: "Foundations BJJ (Gi)", time: "18:30 – 19:30", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" },
-      { title: "All Levels Submission Grappling (No-Gi)", time: "19:45 – 21:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
-    ],
-  },
-  Friday: {
-    early: "private",
-    noon: [{ title: "Sparring (No-Gi)", time: "12:00 – 13:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" }],
-    afternoon: "private",
-    evening: [
-      { title: "Foundations (No-Gi)", time: "18:30 – 20:00", bg: "bg-blue-400/20 border-l-blue-400", cat: "adults" },
-      { title: "Foundations MMA (COMING SOON!)", time: "20:00 – 21:00", bg: "bg-[#39FF14]/20 border-l-[#39FF14]", cat: "adults" },
-    ],
-  },
-  Saturday: {
-    early: [
-      { title: "Junior Sparring (No-Gi) (5-10yrs)", time: "09:00 – 09:30", bg: "bg-orange-500/20 border-l-orange-500", cat: "kids" },
-      { title: "Teen Sparring (No-Gi) (10-15yrs)", time: "09:45 – 10:15", bg: "bg-emerald-500/20 border-l-emerald-500", cat: "kids" },
-    ],
-    noon: [
-      { title: "All Levels Leglock Class (No-Gi)", time: "10:30 – 11:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
-      { title: "Sparring (No-Gi)", time: "11:00 – 12:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
-      { title: "Blue-Light Class (No-Gi)", time: "12:15 – 13:15", bg: "bg-blue-900/40 border-l-blue-900", cat: "adults" },
-    ],
-    afternoon: "empty",
-    evening: "empty",
-  },
-  Sunday: {
-    early: "empty",
-    noon: [
-      { title: "Women Only Class", time: "10:30 – 11:45", bg: "bg-fuchsia-500/20 border-l-fuchsia-500", cat: "adults" },
-      { title: "Sparring (No-Gi)", time: "12:00 – 13:00", bg: "bg-red-500/20 border-l-red-500", cat: "adults" },
-    ],
-    afternoon: "empty",
-    evening: "empty",
-  },
-};
-
-const legend = [
-  { label: "Foundations", swatch: "bg-blue-400" },
-  { label: "Foundations MMA", swatch: "bg-[#39FF14]" },
-  { label: "Wrestling", swatch: "bg-yellow-500" },
-  { label: "All Levels / Sparring", swatch: "bg-red-500" },
-  { label: "Kids / Juniors", swatch: "bg-orange-500" },
-  { label: "Teens", swatch: "bg-emerald-500" },
-  { label: "Women Only", swatch: "bg-fuchsia-500" },
-  { label: "Blue-Light", swatch: "bg-blue-900/40" },
-];
 
 const icons: Record<string, string> = {
   calendar: '<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>',
@@ -284,7 +183,7 @@ const icons: Record<string, string> = {
                     )}
                     {Array.isArray(cell) && cell.map((item) => (
                       <div
-                        class={`p-3 border border-white/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer rounded-sm flex-1 flex flex-col justify-center ${item.bg}`}
+                        class={`p-3 border border-white/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer rounded-sm flex-1 flex flex-col justify-center ${kinds[item.kind].tw}`}
                         data-cat={item.cat}
                         data-day={d}
                         data-band={band.key}
@@ -327,7 +226,7 @@ const icons: Record<string, string> = {
                     </div>
                   ) : (
                     Array.isArray(cell) && cell.map((item) => (
-                      <div class={`p-3 border border-white/10 rounded-sm mb-2 ${item.bg}`} data-cat={item.cat} data-day={d} data-band={band.key}>
+                      <div class={`p-3 border border-white/10 rounded-sm mb-2 ${kinds[item.kind].tw}`} data-cat={item.cat} data-day={d} data-band={band.key}>
                         <p class="text-sm font-black uppercase tracking-widest leading-tight mb-1 text-white">{item.title}</p>
                         <div class="text-white/50 text-xs">{item.time}</div>
                       </div>
