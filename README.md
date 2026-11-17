@@ -96,8 +96,9 @@ Deploy pipeline verified 2026-08-18.
 ## Updating the class timetable
 
 The timetable lives in one file: `src/data/timetable.js`. Both the website
-grid (`/timetable`) and the downloadable image
-(`public/images/class-timetable.png`) are built from it.
+grid (`/timetable`), the downloadable image
+(`public/images/class-timetable.png`) and the homepage opening-hours schema
+(first session to last session each day) are built from it.
 
 1. Edit the class in `src/data/timetable.js` (day → time band → list of classes).
    New class types get a colour in `kinds` and a place in the `legend` list.

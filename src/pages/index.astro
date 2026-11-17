@@ -6,6 +6,23 @@ import { pullQuotes, studentStories } from "../data/testimonials";
 import fs from "node:fs";
 import path from "node:path";
 
+import { days, schedule } from "../data/timetable.js";
+
+// Opening hours for the schema = first session start to last session end each
+// day, worked out from the shared timetable so it never drifts from it.
+const openingHoursSpecification = days.flatMap((day) => {
+  const times = Object.values(schedule[day]).flatMap((cell) =>
+    Array.isArray(cell) ? cell.map((c) => c.time.split(/\s*–\s*/)) : []
+  );
+  if (!times.length) return [];
+  return [{
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: day,
+    opens: times.map((t) => t[0]).sort()[0],
+    closes: times.map((t) => t[1]).sort().at(-1),
+  }];
+});
+
 const grapplingDir = path.join(process.cwd(), "public", "images", "grappling");
 // Sort files so the order is stable across builds, then interleave with a
 // stride so photos from the same event/upload batch (which sort next to each
@@ -58,15 +75,7 @@ const schema = [
     // Hours reflect the public class timetable (earliest class start to latest class
     // end, per day) — the building may open for members outside these windows.
     // Confirm with Jon if facility access hours differ from class hours.
-    openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "06:30", closes: "21:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Tuesday", opens: "18:30", closes: "21:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Wednesday", opens: "06:30", closes: "21:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Thursday", opens: "16:30", closes: "21:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "12:00", closes: "21:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "13:15" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "10:30", closes: "13:00" },
-    ],
+    openingHoursSpecification,
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "5.0",
